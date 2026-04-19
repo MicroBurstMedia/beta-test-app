@@ -3,725 +3,1119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALP Supercool LLC | Global Logistics & Shopping</title>
+    <title>ALP Supercool LLC | Caribbean Freight Authority</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* ══════════════════════════════════════════════
+           DESIGN SYSTEM (Modern Corporate Logistics Theme)
+        ══════════════════════════════════════════════ */
         :root {
-            --navy: #0F2027;
-            --navy-mid: #203A43;
-            --orange: #FF6B00;
-            --orange-dark: #e65c00;
-            --grey-bg: #F4F5F7;
-            --white: #FFFFFF;
-            --text: #333333;
-            --font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --bg-main: #ffffff;
+            --bg-alt: #f4f7f9;
+            --primary-blue: #0b2242; /* Trustworthy Corporate Navy */
+            --primary-light: #163866;
+            --accent: #ff6b00; /* Vibrant Orange for Action */
+            --accent-hover: #e66000;
+            --accent-glow: rgba(255, 107, 0, 0.25);
+            --text-dark: #111827;
+            --text-body: #4b5563;
+            --text-dim: #6b7280; /* Opacity increased for accessibility */
+            --border: #e5e7eb;
+            --border-hover: #cbd5e1;
+            --white: #ffffff;
+            --green: #10b981;
+            --red: #ef4444;
+            --t: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
         }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--grey-bg); color: var(--text); font-family: var(--font); line-height: 1.6; }
- 
-        /* ── HEADER ── */
-        header {
-            background: var(--navy);
-            color: var(--white);
-            padding: 0 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 64px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; }
-        .logo span { color: var(--orange); }
-        nav { display: flex; align-items: center; gap: 6px; }
-        nav a {
+
+        /* Ambient background mesh (Lightened) */
+        body::before {
+            content:'';
+            position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 40%, rgba(11, 34, 66, 0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 85% 70%, rgba(255, 107, 0, 0.03) 0%, transparent 70%);
+        }
+
+        /* Grid texture overlay */
+        body::after {
+            content:'';
+            position:fixed; inset:0; z-index:0; pointer-events:none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(0,0,0,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .display { font-family:'Barlow Condensed',sans-serif; font-weight:900; line-height:1.05; letter-spacing:-0.01em; }
+        .mono    { font-family:'IBM Plex Mono',monospace; }
+
+        /* ── UTILITY ── */
+        .cyan  { color: var(--primary-blue); }
+        .gold  { color: var(--accent); }
+        .green { color: var(--green); }
+        section, .above-fold { position:relative; z-index:1; }
+
+        /* ══════════════════════════════════════════════
+           NAVIGATION
+        ══════════════════════════════════════════════ */
+        nav {
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            display:flex; justify-content:space-between; align-items:center;
+            padding:0 3rem;
+            height:68px;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .nav-logo {
+            font-family:'Barlow Condensed',sans-serif;
+            font-size:1.6rem; font-weight:900;
+            letter-spacing:0.12em; text-transform:uppercase;
+            display:flex; align-items:center; gap:0.5rem;
+            text-decoration:none; color: var(--primary-blue);
+        }
+        .nav-logo i { color: var(--accent); font-size:1.2rem; }
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links { display:flex; gap:0.2rem; list-style:none; }
+        .nav-links a {
+            font-family:'IBM Plex Mono',monospace;
+            font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase;
+            color: var(--text-dark); text-decoration:none;
+            padding:6px 12px; border-radius:4px;
+            transition:var(--t); position:relative;
+            font-weight: 600;
+        }
+        .nav-links a:hover { color: var(--primary-blue); background: var(--bg-alt); }
+
+        .nav-track {
+            display:flex; align-items:center; gap:0.5rem;
+            font-family:'IBM Plex Mono',monospace;
+            font-size:0.75rem; letter-spacing:0.15em;
+            color: var(--text-dark); cursor:pointer; font-weight: 600;
+            padding:6px 12px; border-radius:4px;
+            border:1px solid var(--border); transition:var(--t);
+            background: var(--bg-main);
+        }
+        .nav-track:hover { color: var(--white); border-color: var(--primary-blue); background: var(--primary-blue); }
+
+        .nav-cta {
+            font-family:'Barlow Condensed',sans-serif;
+            font-size:0.95rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+            padding:0.6rem 1.6rem;
+            background: var(--accent); color: var(--white);
+            border:none; cursor:pointer; border-radius:3px;
+            box-shadow: 0 4px 12px var(--accent-glow); transition:var(--t);
+        }
+        .nav-cta:hover { background: var(--accent-hover); transform:translateY(-1px); }
+
+        /* Mobile burger */
+        .burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+        .burger span { display:block; width:24px; height:2px; background:var(--primary-blue); border-radius:2px; transition:var(--t); }
+
+        /* Mobile drawer */
+        .mobile-drawer {
+            display:none; position:fixed; top:68px; left:0; right:0;
+            background: rgba(255,255,255,0.98); backdrop-filter:blur(16px);
+            border-bottom:1px solid var(--border); z-index:999;
+            padding:1.5rem 2rem; flex-direction:column; gap:0.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .mobile-drawer.open { display:flex; }
+        .mobile-drawer a {
+            font-family:'IBM Plex Mono',monospace; font-weight: 600;
+            font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase;
+            color: var(--text-dark); text-decoration:none;
+            padding:12px 0; border-bottom:1px solid var(--border); transition:var(--t);
+        }
+        .mobile-drawer a:hover { color: var(--accent); }
+        .mobile-drawer .m-cta {
+            margin-top:1rem; background: var(--accent); color: var(--white);
+            text-align:center; padding:12px; border-radius:3px;
+            font-weight:700; letter-spacing:0.1em; border-bottom:none;
+        }
+
+        /* ══════════════════════════════════════════════
+           LIVE TICKER
+        ══════════════════════════════════════════════ */
+        .ticker {
+            position:fixed; top:68px; left:0; right:0; z-index:998;
+            background: var(--primary-blue);
+            padding:8px 0; overflow:hidden;
+        }
+        .ticker-track { display:flex; gap:4rem; animation:ticker-scroll 35s linear infinite; white-space:nowrap; }
+        .ticker-track:hover { animation-play-state:paused; }
+        .t-item {
+            font-family:'IBM Plex Mono',monospace;
+            font-size:0.7rem; letter-spacing:0.1em;
             color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s, background 0.2s;
+            display:flex; align-items:center; gap:0.6rem;
         }
-        nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
-        .btn-nav {
-            background: var(--orange);
-            color: var(--white) !important;
-            font-weight: 700;
-            padding: 8px 16px;
+        .t-item .dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); flex-shrink:0; animation:pulse 2s ease-in-out infinite; }
+        .t-item.alert .dot { background:var(--red); box-shadow:0 0 6px var(--red); }
+        .t-item.gold-item .dot { background:var(--accent); box-shadow:0 0 6px var(--accent); }
+
+        @keyframes ticker-scroll { from { transform:translateX(100vw); } to { transform:translateX(-100%); } }
+        @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.85); } }
+
+        /* ══════════════════════════════════════════════
+           HERO
+        ══════════════════════════════════════════════ */
+        #hero {
+            min-height:100vh; margin-top:104px; padding:6rem 3rem 4rem;
+            display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg-main) 100%);
+            position: relative;
         }
-        .btn-nav:hover { background: var(--orange-dark) !important; }
- 
-        /* ── HERO ── */
-        .hero {
-            background: linear-gradient(135deg, rgba(15,32,39,0.88) 0%, rgba(32,58,67,0.82) 100%),
-                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            min-height: 78vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            padding: 40px 20px;
-        }
+
         .hero-eyebrow {
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 14px;
+            display:inline-flex; align-items:center; gap:0.7rem;
+            font-family:'IBM Plex Mono',monospace;
+            font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase;
+            color: var(--accent); margin-bottom:1.8rem; font-weight: 600;
         }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
-        .hero h1 span { color: var(--orange); }
-        .hero p { font-size: 1.1rem; max-width: 580px; opacity: 0.9; margin-bottom: 36px; }
-        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
-        .btn-primary {
-            background: var(--orange);
-            color: var(--white);
-            padding: 14px 28px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.2s;
+        .hero-eyebrow::before, .hero-eyebrow::after { content:''; display:block; width:28px; height:2px; background:var(--accent); }
+
+        .hero-title {
+            font-family:'Barlow Condensed',sans-serif;
+            font-size:clamp(3.5rem, 9vw, 6.5rem); font-weight:900; line-height:1.0;
+            letter-spacing:-0.01em; margin-bottom:1.6rem; color: var(--primary-blue);
         }
-        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); }
-        .btn-outline {
-            border: 2px solid rgba(255,255,255,0.6);
-            color: var(--white);
-            padding: 14px 28px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: border-color 0.2s, transform 0.2s;
+        .hero-title .line-gold { color: var(--accent); }
+
+        .hero-sub {
+            font-size:1.1rem; font-weight:400; line-height:1.8;
+            color: var(--text-body); max-width:620px; margin:0 auto 2.5rem;
         }
-        .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
-        .tracking-widget {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px);
-            padding: 18px;
-            border-radius: 8px;
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            max-width: 580px;
-            border: 1px solid rgba(255,255,255,0.2);
+
+        .hero-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:3.5rem; }
+
+        .btn {
+            font-family:'Barlow Condensed',sans-serif;
+            font-weight:700; font-size:1.05rem; letter-spacing:0.12em; text-transform:uppercase;
+            padding:1rem 2.4rem; border:none; cursor:pointer;
+            transition:var(--t); border-radius:4px; text-decoration:none; display:inline-block;
         }
-        .tracking-widget input {
-            flex: 1;
-            padding: 13px 16px;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            outline: none;
+        .btn-primary { background:var(--accent); color:var(--white); box-shadow:0 4px 14px var(--accent-glow); }
+        .btn-primary:hover { background:var(--accent-hover); transform:translateY(-2px); box-shadow:0 6px 20px var(--accent-glow); }
+        .btn-secondary { background:var(--white); color:var(--primary-blue); border:2px solid var(--border); }
+        .btn-secondary:hover { border-color:var(--primary-blue); background:var(--bg-alt); transform:translateY(-2px); }
+
+        /* Tracking bar */
+        .track-bar {
+            display:flex; gap:0; max-width:560px; width:100%; margin:0 auto;
+            background: var(--white); border:1px solid var(--border); border-radius:6px; overflow:hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
-        .tracking-widget button {
-            background: var(--orange);
-            color: var(--white);
-            border: none;
-            padding: 0 26px;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s;
+        .track-bar input {
+            flex:1; padding:1.1rem 1.4rem; background:transparent; border:none; outline:none;
+            font-family:'Inter',sans-serif; font-size:1rem; color:var(--text-dark);
         }
-        .tracking-widget button:hover { background: var(--orange-dark); }
- 
-        /* ── TRUST BAR ── */
-        .trust-bar {
-            background: var(--navy-mid);
-            color: var(--white);
-            padding: 22px 5%;
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
+        .track-bar input::placeholder { color:var(--text-dim); }
+        .track-bar button {
+            font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+            padding:0 1.8rem; background:var(--primary-blue); color:var(--white);
+            border:none; cursor:pointer; white-space:nowrap; transition:var(--t);
         }
-        .trust-item { text-align: center; }
-        .trust-item .num { font-size: 1.9rem; font-weight: 800; color: var(--orange); }
-        .trust-item .label { font-size: 0.8rem; opacity: 0.75; letter-spacing: 0.5px; text-transform: uppercase; }
- 
-        /* ── SECTIONS ── */
-        section { padding: 80px 5%; }
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--orange);
-            text-align: center;
-            margin-bottom: 10px;
+        .track-bar button:hover { background:var(--primary-light); }
+
+        /* Stats bar */
+        .hero-stats {
+            display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:4rem; max-width:860px; width:100%;
+            border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
-        .section-title {
-            text-align: center;
-            font-size: clamp(1.7rem, 3.5vw, 2.4rem);
-            color: var(--navy);
-            margin-bottom: 14px;
+        .stat { background:var(--white); padding:1.6rem 1rem; text-align:center; transition:var(--t); }
+        .stat:hover { background:var(--bg-alt); }
+        .stat-num {
+            font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; font-weight:900; color:var(--primary-blue);
+            line-height:1; margin-bottom:0.4rem;
         }
-        .section-sub {
-            text-align: center;
-            max-width: 560px;
-            margin: 0 auto 48px;
-            color: #555;
-            font-size: 1rem;
+        .stat-lbl {
+            font-family:'IBM Plex Mono',monospace; font-size:0.65rem; font-weight: 600; letter-spacing:0.15em; text-transform:uppercase;
+            color:var(--text-dim);
         }
- 
-        /* ── HOW IT WORKS ── */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
+        
+        #video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Keeps it behind your photos/text */
+  object-fit: cover;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 1;
+}
+
+        /* ══════════════════════════════════════════════
+           SECTION HEADER (shared)
+        ══════════════════════════════════════════════ */
+        .s-head { text-align:center; margin-bottom:3.5rem; }
+        .s-tag {
+            font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight: 600; letter-spacing:0.3em; text-transform:uppercase;
+            color:var(--accent); margin-bottom:1rem; display:inline-block;
+            background: rgba(249, 99, 2, 0.1); padding: 6px 14px; border-radius: 20px;
         }
-        .steps-grid::before {
-            content: '';
-            position: absolute;
-            top: 36px;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background: linear-gradient(to right, var(--orange), var(--navy));
-            opacity: 0.2;
+        .s-title {
+            font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.2rem, 5vw, 3.5rem); font-weight:900;
+            line-height:1.05; margin-bottom:1rem; color: var(--primary-blue);
         }
-        .step {
-            text-align: center;
-            padding: 0 20px 30px;
-            position: relative;
-        }
+        .s-sub { font-size:1.05rem; color:var(--text-body); max-width:600px; margin:0 auto; line-height: 1.7; }
+
+        /* ══════════════════════════════════════════════
+           HOW IT WORKS
+        ══════════════════════════════════════════════ */
+        #how-it-works { padding:6rem 3rem; background: var(--bg-main); border-bottom: 1px solid var(--border); }
+        .steps-row { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:1100px; margin:0 auto; }
+        .step { background:var(--bg-alt); padding:3rem 2.5rem; text-align:center; border-radius:12px; position:relative; transition:var(--t); border: 1px solid var(--border); }
+        .step:hover { background:var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-5px); }
+        .step-num-wrap { position:relative; display:inline-block; margin-bottom:1.6rem; }
         .step-num {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: var(--orange);
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 4px 16px rgba(255,107,0,0.3);
+            width:68px; height:68px; border-radius:50%; border:2px solid var(--accent);
+            display:flex; align-items:center; justify-content:center; margin:0 auto;
+            font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:var(--accent);
+            background: rgba(249, 99, 2, 0.05);
         }
-        .step h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
-        .step p { font-size: 0.9rem; color: #555; }
- 
-        /* ── SERVICES ── */
-        #services { background: var(--white); }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 24px;
+        .step:not(:last-child)::after {
+            content:'\f054'; font-family:'Font Awesome 6 Free'; font-weight:900;
+            position:absolute; right:-18px; top:50%; transform:translateY(-50%);
+            color:var(--border-hover); font-size:1.2rem; z-index:2;
         }
-        .service-card {
-            background: var(--grey-bg);
-            padding: 36px 28px;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-bottom: 4px solid transparent;
+        .step h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:1rem; color:var(--primary-blue); }
+        .step p { font-size:0.95rem; color:var(--text-body); line-height:1.65; }
+
+        /* ══════════════════════════════════════════════
+           SERVICES
+        ══════════════════════════════════════════════ */
+        #services { padding:6rem 3rem; background: var(--bg-alt); }
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:1200px; margin:0 auto; }
+        .svc-card {
+            background: var(--white); border:1px solid var(--border); padding:2.5rem; border-radius:12px;
+            position:relative; overflow:hidden; transition:var(--t); box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-            border-bottom-color: var(--orange);
+        .svc-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:3px;
+            background: var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.35s ease;
         }
-        .service-icon { font-size: 2.6rem; margin-bottom: 14px; }
-        .service-card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--navy); }
-        .service-card p { font-size: 0.9rem; color: #555; }
- 
-        /* ── WHY US ── */
-        .why-us { background: var(--grey-bg); }
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 960px;
-            margin: 0 auto;
+        .svc-card:hover::before { transform:scaleX(1); }
+        .svc-card:hover { border-color:var(--border-hover); box-shadow:0 15px 35px rgba(0,0,0,0.08); transform:translateY(-5px); }
+        .svc-icon {
+            width:54px; height:54px; border-radius:8px; background: rgba(11, 34, 66, 0.05);
+            display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--primary-blue); margin-bottom:1.5rem; transition:var(--t);
         }
-        .why-item {
-            background: var(--white);
-            border-radius: 8px;
-            padding: 28px 22px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        .svc-card:hover .svc-icon { background: var(--primary-blue); color: var(--white); }
+        .svc-card h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.8rem; color:var(--text-dark); }
+        .svc-card p { font-size:0.95rem; color:var(--text-body); line-height:1.65; }
+
+        /* ══════════════════════════════════════════════
+           WHY US
+        ══════════════════════════════════════════════ */
+        #why { padding:6rem 3rem; background: var(--bg-main); border-top:1px solid var(--border); }
+        .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1100px; margin:0 auto; }
+        .why-card {
+            background: var(--bg-alt); border:1px solid var(--border); padding:2rem; border-radius:10px;
+            display:flex; gap:1.2rem; align-items:flex-start; transition:var(--t);
         }
-        .why-icon { font-size: 2rem; margin-bottom: 12px; }
-        .why-item h4 { font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
-        .why-item p { font-size: 0.85rem; color: #666; }
- 
-        /* ── GLOBAL SHOPPING ── */
-        #shopping {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-            color: var(--white);
+        .why-card:hover { border-color:var(--accent); background: var(--white); box-shadow: 0 10px 25px rgba(0,0,0,0.05); transform:translateY(-3px); }
+        .why-icon {
+            width:46px; height:46px; flex-shrink:0; border-radius:8px;
+            background: rgba(249, 99, 2, 0.1); display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--accent);
         }
-        #shopping .section-title { color: var(--white); }
-        #shopping .section-sub { color: rgba(255,255,255,0.7); }
-        .brands-grid {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 48px;
-        }
+        .why-card h4 { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.4rem; color: var(--text-dark); }
+        .why-card p { font-size:0.9rem; color:var(--text-body); line-height:1.6; }
+
+        /* ══════════════════════════════════════════════
+           GLOBAL SHOPPING HUB
+        ══════════════════════════════════════════════ */
+        #shopping { padding:6rem 3rem; background: var(--primary-blue); color: var(--white); }
+        #shopping .s-title, #shopping .s-sub, #shopping .s-tag { color: var(--white); }
+        #shopping .s-tag { background: rgba(255,255,255,0.1); color: var(--accent); }
+        .shop-layout { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1100px; margin:0 auto; }
+        .shop-left p { font-size:1.05rem; color: rgba(255,255,255,0.8); line-height:1.75; margin-bottom:1.8rem; }
+        .brands-cloud { display:flex; flex-wrap:wrap; gap:0.8rem; margin-bottom:2.5rem; }
         .brand-tag {
-            background: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: background 0.2s;
+            font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.1em; text-transform:uppercase;
+            padding:8px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05); transition:var(--t);
         }
-        .brand-tag:hover { background: rgba(255,255,255,0.18); }
-        .address-box {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-left: 5px solid var(--orange);
-            border-radius: 8px;
-            padding: 32px 40px;
-            display: inline-block;
-            text-align: left;
-            max-width: 480px;
-            width: 100%;
+        .brand-tag:hover { border-color:var(--accent); color:var(--white); background:var(--accent); }
+        
+        .address-panel {
+            background: var(--white); color: var(--text-dark); border-left:5px solid var(--accent);
+            padding:2.5rem; border-radius:8px; box-shadow:0 15px 40px rgba(0,0,0,0.2);
         }
-        .address-box h4 { color: var(--orange); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-        .address-box p { margin-bottom: 6px; font-size: 0.95rem; }
-        .address-box strong { color: rgba(255,255,255,0.6); font-weight: 500; }
-        .address-cta {
-            display: inline-block;
-            margin-top: 20px;
-            background: var(--orange);
-            color: var(--white);
-            padding: 11px 24px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: background 0.2s;
+        .address-panel .panel-tag {
+            font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight: 600; letter-spacing:0.2em; text-transform:uppercase;
+            color:var(--primary-blue); margin-bottom:1.5rem; display:block;
         }
-        .address-cta:hover { background: var(--orange-dark); }
-        .shopping-inner { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: flex-start; }
- 
-        /* ── QUOTE FORM ── */
-        #quote { background: var(--white); }
-        .form-container {
-            max-width: 760px;
-            margin: 0 auto;
-            background: var(--grey-bg);
-            padding: 44px;
-            border-radius: 10px;
-            border: 1px solid #e4e6e9;
+        .address-row { display:flex; gap:0.8rem; align-items:center; font-size:0.95rem; margin-bottom:0.9rem; color:var(--text-body); }
+        .address-row i { color:var(--accent); width:18px; flex-shrink:0; font-size:1rem; }
+        .address-row strong { color:var(--text-dark); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-family:'IBM Plex Mono',monospace; font-size:0.85rem; }
+        .panel-note { margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; color:var(--text-dim); line-height:1.6; }
+        
+        .btn-gold {
+            display:inline-block; margin-top:1.5rem; font-family:'Barlow Condensed',sans-serif;
+            font-size:1rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+            padding:0.9rem 2.4rem; background:var(--accent); color:var(--white);
+            border-radius:4px; text-decoration:none; transition:var(--t); box-shadow: 0 4px 14px var(--accent-glow);
         }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; color: var(--navy); }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d0d4d9;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            background: var(--white);
-            transition: border-color 0.2s;
-            outline: none;
+        .btn-gold:hover { background:var(--accent-hover); transform:translateY(-2px); }
+
+        /* ══════════════════════════════════════════════
+           FREIGHT ESTIMATOR
+        ══════════════════════════════════════════════ */
+        #estimator { padding:6rem 3rem; background: var(--bg-main); border-bottom: 1px solid var(--border); }
+        .est-layout { display:grid; grid-template-columns:1fr 1.2fr; gap:4rem; align-items:start; max-width:1100px; margin:0 auto; }
+        .est-info h3 { font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; font-weight:900; color:var(--primary-blue); line-height:1.1; margin-bottom:1.2rem; }
+        .est-info > p { color:var(--text-body); font-size:1.05rem; line-height:1.75; margin-bottom:2rem; }
+        .benefit-list { list-style:none; }
+        .b-item {
+            display:flex; gap:1.2rem; align-items:flex-start; padding:1.2rem;
+            background: var(--bg-alt); border-left:3px solid var(--accent);
+            border-radius:0 8px 8px 0; margin-bottom:1.2rem; transition:var(--t); border: 1px solid var(--border); border-left-width: 3px;
         }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus { border-color: var(--orange); }
-        .submit-btn {
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            padding: 15px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            transition: background 0.2s;
+        .b-item:hover { background: var(--white); box-shadow: 0 8px 20px rgba(0,0,0,0.05); transform:translateX(5px); }
+        .b-icon { color:var(--accent); font-size:1.2rem; flex-shrink:0; margin-top:2px; }
+        .b-text h4 { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.3rem; color: var(--primary-blue); }
+        .b-text p { font-size:0.9rem; color:var(--text-body); margin:0; }
+        
+        .est-form-panel { background: var(--white); border:1px solid var(--border); padding:3rem; border-radius:12px; box-shadow:0 15px 40px rgba(0,0,0,0.06); }
+        .f-group { margin-bottom:1.6rem; }
+        .f-label { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dark); display:block; margin-bottom:0.6rem; }
+        .f-select, .f-input, .f-textarea {
+            width:100%; padding:0.9rem 1.2rem; background: var(--bg-alt); border:1px solid var(--border);
+            color:var(--text-dark); font-family:'Inter',sans-serif; font-size:1rem; border-radius:6px; transition:var(--t); outline:none;
         }
-        .submit-btn:hover { background: var(--orange); }
-        #formStatus {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-            padding: 18px;
-            background: #e8f5e9;
-            border-radius: 5px;
-            color: #2e7d32;
-            font-weight: 600;
+        .f-select:focus, .f-input:focus, .f-textarea:focus { border-color:var(--primary-blue); background:var(--white); box-shadow: 0 0 0 4px rgba(11, 34, 66, 0.05); }
+        .f-textarea { resize:vertical; min-height:100px; }
+        .f-row { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+        
+        .cb-group { display:flex; flex-direction:column; gap:0.8rem; }
+        .cb-item { display:flex; align-items:center; gap:1rem; padding:0.9rem 1.2rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius:6px; cursor:pointer; transition:var(--t); }
+        .cb-item:hover { background: var(--white); border-color: var(--primary-blue); }
+        .cb-item input { width:18px; height:18px; accent-color:var(--primary-blue); cursor:pointer; }
+        .cb-item label { font-size:0.95rem; color: var(--text-dark); font-weight: 500; cursor:pointer; flex:1; }
+        
+        .btn-calc {
+            width:100%; margin-top:1.5rem; padding:1.2rem; background: var(--primary-blue);
+            color:var(--white); font-family:'Barlow Condensed',sans-serif;
+            font-size:1.1rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+            border:none; cursor:pointer; border-radius:6px; transition:var(--t);
         }
- 
-        /* ── FOOTER ── */
-        footer {
-            background: var(--navy);
-            color: rgba(255,255,255,0.7);
-            padding: 48px 5% 24px;
+        .btn-calc:hover { background: var(--primary-light); transform:translateY(-2px); box-shadow: 0 8px 20px rgba(11, 34, 66, 0.2); }
+        
+        .est-result {
+            display:none; margin-top:1.5rem; padding:1.8rem; background: rgba(16, 185, 129, 0.05);
+            border:1px solid rgba(16, 185, 129, 0.2); border-radius:8px; animation:slideIn 0.3s ease; text-align: center;
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+        .est-result.show { display:block; }
+        .est-result-label { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dark); margin-bottom:0.6rem; }
+        .est-price { font-family:'Barlow Condensed',sans-serif; font-size:3rem; font-weight:900; color:var(--green); }
+        .est-note { font-size:0.85rem; color:var(--text-dim); margin-top:0.8rem; }
+
+        @keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+        /* ══════════════════════════════════════════════
+           QUOTE / CONTACT FORM
+        ══════════════════════════════════════════════ */
+        #quote { padding:6rem 3rem; background: var(--bg-alt); border-top: 1px solid var(--border); }
+        .quote-panel { max-width:800px; margin:0 auto; background: var(--white); border:1px solid var(--border); border-radius:12px; padding:3.5rem; box-shadow:0 15px 40px rgba(0,0,0,0.04); }
+        .form-success {
+            display:none; padding:2rem; text-align:center; background: rgba(16, 185, 129, 0.05);
+            border:1px solid rgba(16, 185, 129, 0.2); border-radius:8px; color:var(--green);
+            font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; letter-spacing:0.05em; font-weight: 600;
         }
-        .footer-brand .logo { font-size: 1.3rem; display: block; margin-bottom: 12px; }
-        .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
-        .footer-col h5 { color: var(--white); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-        .footer-col a, .footer-col p {
-            display: block;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.88rem;
-            margin-bottom: 8px;
-            transition: color 0.2s;
+
+        /* ══════════════════════════════════════════════
+           CTA SECTION
+        ══════════════════════════════════════════════ */
+        #cta { padding:7rem 3rem; text-align:center; background: var(--primary-blue); color: var(--white); }
+        .cta-inner { max-width:800px; margin:0 auto; }
+        #cta .s-tag { background: rgba(255,255,255,0.1); color: var(--accent); border-radius: 20px; padding: 8px 16px; }
+        .cta-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:900; line-height:1.1; margin-bottom:1.5rem; color: var(--white); }
+        .cta-title .cyan { color: var(--accent); }
+        .cta-sub { font-size:1.15rem; color: rgba(255,255,255,0.85); line-height:1.8; margin-bottom:3rem; max-width:650px; margin-left:auto; margin-right:auto; }
+
+        /* ══════════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════════ */
+        footer { padding:4rem 3rem 2rem; background: var(--bg-main); border-top:1px solid var(--border); }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; max-width:1200px; margin:0 auto 3rem; }
+        .f-brand .brand-logo {
+            font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase;
+            color:var(--primary-blue); display:block; margin-bottom:1rem; text-decoration:none;
         }
-        .footer-col a:hover { color: var(--orange); }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 0.82rem;
+        .f-brand .brand-logo span { color:var(--accent); }
+        .f-brand p { font-size:0.95rem; color:var(--text-body); line-height:1.7; max-width:300px; }
+        .f-col h5 { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dark); margin-bottom:1.4rem; }
+        .f-col ul { list-style:none; }
+        .f-col li { margin-bottom:0.8rem; }
+        .f-col a, .f-col span { font-family:'IBM Plex Mono',monospace; font-size:0.8rem; font-weight: 500; letter-spacing:0.05em; color:var(--text-dim); text-decoration:none; transition:var(--t); }
+        .f-col a:hover { color:var(--accent); padding-left:4px; }
+        .f-bottom { border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; max-width:1200px; margin:0 auto; }
+        .f-bottom p { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.05em; color:var(--text-dim); font-weight: 500; }
+        .f-bottom-links { display:flex; gap:1.5rem; }
+        .f-bottom-links a { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 500; color:var(--text-dim); text-decoration:none; transition:var(--t); }
+        .f-bottom-links a:hover { color:var(--accent); }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════════ */
+        @media (max-width:1024px) {
+            .services-grid      { grid-template-columns:repeat(2,1fr); }
+            .why-grid           { grid-template-columns:repeat(2,1fr); }
+            .footer-grid        { grid-template-columns:1fr 1fr; }
         }
- 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
-            nav a:not(.btn-nav) { display: none; }
-            .trust-bar { gap: 30px; }
-            .steps-grid::before { display: none; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .tracking-widget { flex-direction: column; }
-            .address-box { padding: 24px; }
-            .form-container { padding: 24px; }
+        @media (max-width:768px) {
+            nav { padding:0 1.5rem; }
+            .nav-links, .nav-track, .nav-cta { display:none; }
+            .burger { display:flex; }
+            #hero { margin-top:68px; padding:4rem 1.5rem; }
+            .hero-stats { grid-template-columns:repeat(2,1fr); }
+            .steps-row { grid-template-columns:1fr; }
+            .step::after { display:none; }
+            .services-grid { grid-template-columns:1fr; }
+            .why-grid { grid-template-columns:1fr; }
+            .shop-layout { grid-template-columns:1fr; gap:3rem; }
+            .est-layout { grid-template-columns:1fr; gap:3rem; }
+            .footer-grid { grid-template-columns:1fr; gap:3rem; }
+            .f-row { grid-template-columns:1fr; }
+            section, #estimator, #quote, #cta, #why, #shopping, #how-it-works { padding:4rem 1.5rem; }
+            .quote-panel { padding:2rem 1.5rem; }
+            .est-form-panel { padding:2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
- 
-<!-- ═══ HEADER ═══ -->
-<header>
-    <div class="logo">ALP <span>Supercool</span></div>
-    <nav>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#services">Services</a>
-        <a href="#shopping">Global Shopping</a>
-        <a href="#quote">Get a Quote</a>
-        <a href="#" class="btn-nav">Portal Login</a>
-    </nav>
-</header>
- 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-    <p class="hero-eyebrow">Fort Lauderdale · Caribbean · Worldwide</p>
-    <h1>Your Gateway to<br><span>Global Trade.</span></h1>
-    <p>Air, Ocean, and Ground logistics — from US retailers straight to your door, anywhere in the Caribbean and beyond.</p>
-    <div class="hero-ctas">
-        <a href="#quote" class="btn-primary">Start a Shipment</a>
-        <a href="#how-it-works" class="btn-outline">How It Works</a>
+
+<video id="video-background" autoplay muted loop playsinline>
+  <source src="" type="video/mp4">
+</video>
+
+<nav>
+    <a href="#hero" class="nav-logo"><i class="fas fa-plane-departure"></i> ALP <span>SUPERCOOL</span></a>
+
+    <ul class="nav-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#shopping">Shopping Hub</a></li>
+        <li><a href="#estimator">Estimate</a></li>
+        <li><a href="#quote">Contact</a></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+        <button class="nav-track" onclick="document.getElementById('trackInput').focus(); document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-satellite-dish"></i> TRACK
+        </button>
+        <button class="nav-cta" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">GET QUOTE</button>
+        <button class="burger" id="burgerBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-    <div class="tracking-widget">
-        <input type="text" placeholder="Enter Tracking or AWB Number…" id="trackInput">
-        <button onclick="handleTrack()">Track Package</button>
-    </div>
-</section>
- 
-<!-- ═══ TRUST BAR ═══ -->
-<div class="trust-bar">
-    <div class="trust-item">
-        <div class="num">Air</div>
-        <div class="label">Express Freight</div>
-    </div>
-    <div class="trust-item">
-        <div class="num">Ocean</div>
-        <div class="label">Bulk Shipping</div>
-    </div>
-    <div class="trust-item">
-        <div class="num">Ground</div>
-        <div class="label">Last-Mile Delivery</div>
-    </div>
-    <div class="trust-item">
-        <div class="num">24/7</div>
-        <div class="label">Customer Support</div>
-    </div>
-    <div class="trust-item">
-        <div class="num">FLL Hub</div>
-        <div class="label">Fort Lauderdale</div>
+</nav>
+
+<div class="mobile-drawer" id="mobileDrawer">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#services">Services</a>
+    <a href="#shopping">Shopping Hub</a>
+    <a href="#estimator">Freight Estimate</a>
+    <a href="#quote">Contact / Quote</a>
+    <a href="#quote" class="m-cta">Get a Quote →</a>
+</div>
+
+<div class="ticker">
+    <div class="ticker-track">
+        <div class="t-item"><span class="dot"></span> LIVE · MV Caribbean Carrier — Nassau, Bahamas — ETA 14:30 EST</div>
+        <div class="t-item"><span class="dot"></span> DOCK 7 · FCL Container #ALPC-2847 — Kingston, Jamaica — Customs Cleared</div>
+        <div class="t-item"><span class="dot"></span> TRUCKING · Route I-95 North — 3 Active Rigs — Broward Distribution Hub</div>
+        <div class="t-item alert"><span class="dot"></span> PRIORITY · Bridgetown, Barbados — Express Clearance Processing</div>
+        <div class="t-item gold-item"><span class="dot"></span> NEW ROUTE · St. Lucia Direct Charter — Weekly Service Now Available</div>
+        <div class="t-item"><span class="dot"></span> AIR · FLL → SDQ — Overnight Freight — Departs 23:45 EST</div>
+        <div class="t-item"><span class="dot"></span> OCEAN · LCL Consolidation — San Juan, PR — Booking Open</div>
     </div>
 </div>
- 
-<!-- ═══ HOW IT WORKS ═══ -->
+
+<section id="hero">
+    <div class="hero-content" style="max-width:900px;width:100%;">
+        <div class="hero-eyebrow">
+            <i class="fas fa-circle-check"></i> Port Everglades Operations Center · Fort Lauderdale, FL
+        </div>
+
+        <h1 class="hero-title display">
+            From <span class="cyan">Broward</span><br>
+            To The <span class="line-gold">Islands</span>:<br>
+            Seamless Freight.<br>
+            <span style="font-size:0.65em; color:var(--text-body); font-weight:600; letter-spacing:0.04em;">Superior Velocity.</span>
+        </h1>
+
+        <p class="hero-sub">
+            ALP Supercool LLC delivers end-to-end Caribbean logistics from Broward County's premier freight hub — air, ocean, and ground under one roof. Zero bottlenecks. Maximum velocity.
+        </p>
+
+        <div class="hero-btns">
+            <a href="#quote" class="btn btn-primary">GET FREIGHT QUOTE</a>
+            <a href="#estimator" class="btn btn-secondary">ESTIMATE COST</a>
+        </div>
+
+        <div class="track-bar">
+            <input type="text" id="trackInput" placeholder="Enter Tracking or AWB Number…">
+            <button onclick="handleTrack()"><i class="fas fa-search" style="margin-right:0.4rem;font-size:0.8rem;"></i>TRACK</button>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-num">18+</div>
+                <div class="stat-lbl">Caribbean Routes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">96H</div>
+                <div class="stat-lbl">Avg. Broward–Island</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">24/7</div>
+                <div class="stat-lbl">Ops Monitoring</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">99.2%</div>
+                <div class="stat-lbl">On-Time Delivery</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="how-it-works">
-    <p class="section-label">Simple Process</p>
-    <h2 class="section-title">Ship in 3 Easy Steps</h2>
-    <p class="section-sub">Getting your purchases from US retailers to your front door has never been simpler.</p>
-    <div class="steps-grid">
+    <div class="s-head">
+        <span class="s-tag">Simple Process</span>
+        <h2 class="s-title display">Ship in <span class="cyan">3 Easy Steps</span></h2>
+        <p class="s-sub">From US retailers to your island front door — we make international logistics effortless.</p>
+    </div>
+
+    <div class="steps-row">
         <div class="step">
-            <div class="step-num">1</div>
+            <div class="step-num-wrap">
+                <div class="step-num">01</div>
+            </div>
             <h3>Register & Get Your US Address</h3>
-            <p>Sign up for free and receive your unique ALP Supercool mailbox address at our Fort Lauderdale warehouse.</p>
+            <p>Sign up for free and receive your unique ALP Supercool mailbox ID at our Fort Lauderdale warehouse — ready to use immediately.</p>
         </div>
         <div class="step">
-            <div class="step-num">2</div>
+            <div class="step-num-wrap">
+                <div class="step-num">02</div>
+            </div>
             <h3>Shop Any US Retailer</h3>
-            <p>Order from Amazon, Walmart, Best Buy, and more. Ship directly to your ALP address — we receive it for you.</p>
+            <p>Order from Amazon, Walmart, Best Buy, and more. Ship directly to your ALP address — we receive, log, and consolidate your packages.</p>
         </div>
         <div class="step">
-            <div class="step-num">3</div>
+            <div class="step-num-wrap">
+                <div class="step-num">03</div>
+            </div>
             <h3>We Deliver to You</h3>
-            <p>We consolidate, clear customs, and dispatch your packages via Air, Ocean, or Ground — straight to your door.</p>
+            <p>We handle customs clearance and dispatch your shipment via Air, Ocean, or Ground — tracked every mile from our hub to your door.</p>
         </div>
     </div>
 </section>
- 
-<!-- ═══ SERVICES ═══ -->
+
 <section id="services">
-    <p class="section-label">What We Offer</p>
-    <h2 class="section-title">Our Logistics Solutions</h2>
-    <p class="section-sub">Reliable, scalable shipping options tailored to your timeline and budget.</p>
+    <div class="s-head">
+        <span class="s-tag">Comprehensive Solutions</span>
+        <h2 class="s-title display">Our <span class="cyan">Logistics Services</span></h2>
+        <p class="s-sub">Reliable, scalable shipping options tailored to your timeline and budget.</p>
+    </div>
+
     <div class="services-grid">
-        <div class="service-card">
-            <div class="service-icon">✈️</div>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-plane-departure"></i></div>
             <h3>Air Freight</h3>
-            <p>Expedited global transport. When time is critical, our air network ensures your cargo arrives securely and on schedule with competitive rates.</p>
+            <p>Expedited cargo transport with guaranteed delivery windows. Perfect for time-sensitive shipments across the Caribbean network.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🚢</div>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-ship"></i></div>
             <h3>Ocean Freight</h3>
-            <p>Cost-effective bulk shipping. Reliable container solutions for oversized freight and large-scale commercial imports across the Caribbean and beyond.</p>
+            <p>Cost-effective FCL and LCL consolidation. Full container or partial loads with professional customs brokerage included.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🚛</div>
-            <h3>Ground Shipping</h3>
-            <p>The crucial last mile. Dependable ground transport network originating from our Fort Lauderdale distribution hub direct to your door.</p>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-truck"></i></div>
+            <h3>Ground Logistics</h3>
+            <p>Door-to-door delivery from Broward to island destinations. Dedicated trucking routes with live GPS tracking.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">📦</div>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-boxes-stacked"></i></div>
             <h3>Consolidation</h3>
-            <p>Combine multiple packages into one shipment to significantly reduce your freight costs. Enjoy up to 7 days of free warehouse storage.</p>
+            <p>Combine multiple packages into one shipment to cut freight costs. Enjoy up to 7 days of free warehouse storage at our FLL hub.</p>
         </div>
-        <div class="service-card">
-            <div class="service-icon">🛍️</div>
-            <h3>Assisted Purchasing</h3>
-            <p>No US credit card? No problem. Our team can purchase on your behalf — just send us the link and we handle the rest.</p>
-        </div>
-        <div class="service-card">
-            <div class="service-icon">📋</div>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-file-contract"></i></div>
             <h3>Customs Brokerage</h3>
-            <p>In-house customs clearance expertise. We manage all documentation and compliance, ensuring smooth entry with no unexpected delays.</p>
+            <p>In-house documentation and clearance. We navigate Caribbean customs regulations so you don't have to.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-icon"><i class="fas fa-headset"></i></div>
+            <h3>24/7 Support</h3>
+            <p>Dedicated account managers and an always-on emergency line. We're available whenever your supply chain needs us.</p>
         </div>
     </div>
 </section>
- 
-<!-- ═══ WHY CHOOSE US ═══ -->
-<section class="why-us">
-    <p class="section-label">Why ALP Supercool</p>
-    <h2 class="section-title">Built for the Caribbean & Beyond</h2>
-    <p class="section-sub">We combine local knowledge with global logistics infrastructure so your shipments always arrive on time and on budget.</p>
+
+<section id="why">
+    <div class="s-head">
+        <span class="s-tag">Why ALP Supercool</span>
+        <h2 class="s-title display">Built for the <span class="gold">Caribbean</span> & Beyond</h2>
+        <p class="s-sub">Local knowledge. Global infrastructure. One accountable operator from origin to destination.</p>
+    </div>
+
     <div class="why-grid">
-        <div class="why-item">
-            <div class="why-icon">🏢</div>
-            <h4>In-House Brokerage</h4>
-            <p>Customs clearance handled internally — faster processing, fewer fees.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-anchor"></i></div>
+            <div>
+                <h4>Port Priority Access</h4>
+                <p>Dedicated berth relationships at Port Everglades for faster loading and shorter dwell times.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <div class="why-icon">📍</div>
-            <h4>Free US Address</h4>
-            <p>Get a dedicated Fort Lauderdale address the moment you register.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+                <h4>Free US Address</h4>
+                <p>Get a dedicated Fort Lauderdale mailing address the moment you register — no cost, no commitment.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <div class="why-icon">📱</div>
-            <h4>Live Tracking</h4>
-            <p>Monitor every shipment in real time through our online portal.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-satellite-dish"></i></div>
+            <div>
+                <h4>Real-Time Visibility</h4>
+                <p>GPS tracking from Broward to island delivery with automated status alerts via our portal.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <div class="why-icon">💰</div>
-            <h4>Affordable Rates</h4>
-            <p>Competitive, transparent pricing — no hidden charges, ever.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+                <h4>Bonded & Insured</h4>
+                <p>Fully licensed freight forwarder and customs broker — your cargo is covered end to end.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <div class="why-icon">⚡</div>
-            <h4>Fast Turnaround</h4>
-            <p>Regular departure schedules mean your cargo moves without unnecessary delays.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-handshake"></i></div>
+            <div>
+                <h4>Island Network</h4>
+                <p>Established ground partners on every major Caribbean island for reliable last-mile delivery.</p>
+            </div>
         </div>
-        <div class="why-item">
-            <div class="why-icon">🤝</div>
-            <h4>Dedicated Support</h4>
-            <p>A real person available to answer your questions every step of the way.</p>
+        <div class="why-card">
+            <div class="why-icon"><i class="fas fa-dollar-sign"></i></div>
+            <div>
+                <h4>Transparent Pricing</h4>
+                <p>Competitive rates with no hidden fees — what you're quoted is what you pay.</p>
+            </div>
         </div>
     </div>
 </section>
- 
-<!-- ═══ GLOBAL SHOPPING ═══ -->
+
 <section id="shopping">
-    <p class="section-label" style="color:var(--orange)">Shop The World</p>
-    <h2 class="section-title">Your Free US Shipping Address</h2>
-    <p class="section-sub">Purchase from any US retailer. Ship to our warehouse. We handle the rest — including customs clearance and final delivery.</p>
-    <div class="brands-grid">
-        <div class="brand-tag">Amazon</div>
-        <div class="brand-tag">Walmart</div>
-        <div class="brand-tag">Best Buy</div>
-        <div class="brand-tag">Sam's Club</div>
-        <div class="brand-tag">Target</div>
-        <div class="brand-tag">Costco</div>
-        <div class="brand-tag">Temu</div>
-        <div class="brand-tag">SHEIN</div>
+    <div class="s-head">
+        <span class="s-tag">Shop the World</span>
+        <h2 class="s-title display">Your <span class="white">Free US</span> Shipping Address</h2>
+        <p class="s-sub">Buy from any US retailer. Ship to our warehouse. We handle customs, consolidation, and final delivery.</p>
     </div>
-    <div class="shopping-inner">
-        <div class="address-box">
-            <h4>Your US Shipping Address</h4>
-            <p><strong>Name: </strong> [Your Full Name / ALP ID]</p>
-            <p><strong>Address: </strong> 3232 SW 2nd Ave, Bay 113</p>
-            <p><strong>City: </strong> Fort Lauderdale, FL 33315</p>
-            <p><strong>Phone: </strong> +1 (954) 773-1002</p>
-            <p style="margin-top:14px; font-size:0.82rem; opacity:0.65;">Register today to receive your unique ALP customer ID to include with your name on all shipments.</p>
-            <a href="#quote" class="address-cta">Register for Free →</a>
+
+    <div class="shop-layout">
+        <div class="shop-left">
+            <p>Shop from the world's largest retailers and have everything shipped to your dedicated ALP Supercool address in Fort Lauderdale. No US credit card? No problem — our team can purchase on your behalf.</p>
+            <div class="brands-cloud">
+                <span class="brand-tag">Amazon</span>
+                <span class="brand-tag">Walmart</span>
+                <span class="brand-tag">Best Buy</span>
+                <span class="brand-tag">Sam's Club</span>
+                <span class="brand-tag">Target</span>
+                <span class="brand-tag">Costco</span>
+                <span class="brand-tag">Temu</span>
+                <span class="brand-tag">SHEIN</span>
+                <span class="brand-tag">Home Depot</span>
+                <span class="brand-tag">Apple Store</span>
+                <span class="brand-tag">Nike</span>
+                <span class="brand-tag">+ Any US Store</span>
+            </div>
+            <a href="#quote" class="btn-gold"><i class="fas fa-user-plus" style="margin-right:0.5rem;"></i>REGISTER FOR FREE</a>
+        </div>
+
+        <div>
+            <div class="address-panel">
+                <span class="panel-tag"><i class="fas fa-warehouse" style="margin-right:0.5rem;"></i>Your US Shipping Address</span>
+                <div class="address-row"><i class="fas fa-user"></i> <strong>Name:</strong> [Your Name / ALP Customer ID]</div>
+                <div class="address-row"><i class="fas fa-map-marker-alt"></i> <strong>Addr:</strong> 3232 SW 2nd Ave, Bay 113</div>
+                <div class="address-row"><i class="fas fa-city"></i> <strong>City:</strong> Fort Lauderdale, FL 33315</div>
+                <div class="address-row"><i class="fas fa-phone"></i> <strong>Phone:</strong> +1 (954) 773-1002</div>
+                <p class="panel-note">Register today to receive your unique ALP customer ID to include with your name on all incoming shipments. Free 7-day storage upon arrival at our warehouse.</p>
+            </div>
         </div>
     </div>
 </section>
- 
-<!-- ═══ QUOTE FORM ═══ -->
-<section id="quote">
-    <p class="section-label">Get Started</p>
-    <h2 class="section-title">Initiate a Shipment</h2>
-    <p class="section-sub">Fill out the form below and our dispatch team will follow up with pricing and next steps within one business day.</p>
-    <div class="form-container">
-        <form id="dispatchForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Full Name / Company Name</label>
-                    <input type="text" id="clientName" placeholder="John Smith" required>
+
+<section id="estimator">
+    <div class="s-head">
+        <span class="s-tag">Instant Pricing Tool</span>
+        <h2 class="s-title display">Freight <span class="gold">Cost Estimator</span></h2>
+        <p class="s-sub">Get a ballpark estimate in seconds. Our team will follow up with a binding quote.</p>
+    </div>
+
+    <div class="est-layout">
+        <div class="est-info">
+            <h3>Why Choose<br>ALP Supercool?</h3>
+            <p>Our logistics team will follow up with a binding quote tailored to your exact cargo specifications within one business day.</p>
+            
+            <ul class="benefit-list">
+                <li class="b-item">
+                    <i class="fas fa-anchor b-icon"></i>
+                    <div class="b-text">
+                        <h4>Port Priority Access</h4>
+                        <p>Dedicated berth relationships at Port Everglades</p>
+                    </div>
+                </li>
+                <li class="b-item">
+                    <i class="fas fa-shield-halved b-icon"></i>
+                    <div class="b-text">
+                        <h4>Bonded & Insured</h4>
+                        <p>Fully licensed freight forwarder & customs broker</p>
+                    </div>
+                </li>
+                <li class="b-item">
+                    <i class="fas fa-satellite-dish b-icon"></i>
+                    <div class="b-text">
+                        <h4>Real-Time Visibility</h4>
+                        <p>GPS tracking from Broward to island delivery</p>
+                    </div>
+                </li>
+                <li class="b-item">
+                    <i class="fas fa-handshake b-icon"></i>
+                    <div class="b-text">
+                        <h4>Island Network</h4>
+                        <p>Established partners on every major island</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="est-form-panel">
+            <form id="estimatorForm">
+                <div class="f-group">
+                    <label class="f-label">Destination Island</label>
+                    <select class="f-select" id="destination">
+                        <option value="">Select destination…</option>
+                        <option value="nassau">Nassau, Bahamas (~24 HR)</option>
+                        <option value="kingston">Kingston, Jamaica (~72 HR)</option>
+                        <option value="sanjuan">San Juan, Puerto Rico (~48 HR)</option>
+                        <option value="bridgetown">Bridgetown, Barbados (~96 HR)</option>
+                        <option value="portofspain">Port of Spain, Trinidad (~96 HR)</option>
+                        <option value="stlucia">Castries, St. Lucia (~96 HR)</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="clientEmail" placeholder="john@email.com" required>
+
+                <div class="f-group">
+                    <label class="f-label">Container / Shipment Type</label>
+                    <select class="f-select" id="container">
+                        <option value="">Select type…</option>
+                        <option value="lcl">LCL — Less-than-Container Load</option>
+                        <option value="fcl20">FCL — 20ft Dry Container</option>
+                        <option value="fcl40">FCL — 40ft Standard</option>
+                        <option value="fcl40hc">FCL — 40ft High Cube</option>
+                        <option value="reefer">Reefer (Refrigerated)</option>
+                    </select>
+                </div>
+
+                <div class="f-group">
+                    <label class="f-label">Estimated Cargo Weight</label>
+                    <select class="f-select" id="weight">
+                        <option value="">Select weight range…</option>
+                        <option value="500">Under 500 lbs</option>
+                        <option value="2000">500–2,000 lbs</option>
+                        <option value="10000">2,001–10,000 lbs</option>
+                        <option value="25000">10,001–25,000 lbs</option>
+                        <option value="50000">25,000+ lbs (Full Load)</option>
+                    </select>
+                </div>
+
+                <div class="f-group">
+                    <label class="f-label">Additional Services</label>
+                    <div class="cb-group">
+                        <div class="cb-item">
+                            <input type="checkbox" id="customs" value="customs">
+                            <label for="customs">Customs Brokerage (+$150)</label>
+                        </div>
+                        <div class="cb-item">
+                            <input type="checkbox" id="insurance" value="insurance">
+                            <label for="insurance">Cargo Insurance (+$200)</label>
+                        </div>
+                        <div class="cb-item">
+                            <input type="checkbox" id="warehouse" value="warehouse">
+                            <label for="warehouse">Extended Warehousing (+$100/day)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-calc" onclick="calcEstimate()">
+                    <i class="fas fa-calculator" style="margin-right:0.5rem;"></i>CALCULATE ESTIMATE
+                </button>
+
+                <div class="est-result" id="estResult">
+                    <div class="est-result-label">Estimated Freight Cost</div>
+                    <div class="est-price" id="estPrice">$0.00</div>
+                    <div class="est-note">*Binding quote available upon request — contact our team for exact pricing.</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="quote">
+    <div class="s-head">
+        <span class="s-tag">Get Started</span>
+        <h2 class="s-title display">Initiate a <span class="cyan">Shipment</span></h2>
+        <p class="s-sub">Submit your details and our dispatch team will follow up within one business day.</p>
+    </div>
+
+    <div class="quote-panel">
+        <form id="dispatchForm">
+            <div class="f-row">
+                <div class="f-group">
+                    <label class="f-label">Full Name / Company</label>
+                    <input type="text" class="f-input" id="clientName" placeholder="John Smith / Acme Ltd." required>
+                </div>
+                <div class="f-group">
+                    <label class="f-label">Email Address</label>
+                    <input type="email" class="f-input" id="clientEmail" placeholder="you@company.com" required>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="clientPhone" placeholder="+1 (000) 000-0000">
+            <div class="f-row">
+                <div class="f-group">
+                    <label class="f-label">Phone Number</label>
+                    <input type="tel" class="f-input" id="clientPhone" placeholder="+1 (000) 000-0000">
                 </div>
-                <div class="form-group">
-                    <label>Service Type</label>
-                    <select id="serviceType">
-                        <option value="air">✈️ Air Freight</option>
-                        <option value="ocean">🚢 Ocean Freight</option>
+                <div class="f-group">
+                    <label class="f-label">Service Type</label>
+                    <select class="f-select" id="serviceType">
+                        <option value="air">✈ Air Freight</option>
+                        <option value="ocean">⛵ Ocean Freight</option>
                         <option value="ground">🚛 Ground Shipping</option>
-                        <option value="dropship">📦 Shopping / Drop-Ship Consolidation</option>
+                        <option value="consolidation">📦 Shopping / Consolidation</option>
                         <option value="customs">📋 Customs Brokerage Only</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Shipment Details <span style="font-weight:400; color:#888;">(Origin, Destination, Weight/Dimensions)</span></label>
-                <textarea id="shipmentDetails" rows="4" placeholder="e.g. Miami, FL → Nassau, Bahamas · 3 boxes · ~40 lbs" required></textarea>
+            <div class="f-group">
+                <label class="f-label">Shipment Details <span style="opacity:0.5;font-weight:400;">(Origin · Destination · Weight/Dims)</span></label>
+                <textarea class="f-textarea" id="shipmentDetails" placeholder="e.g. Miami, FL → Nassau, Bahamas · 3 boxes · ~40 lbs · Electronics" required></textarea>
             </div>
-            <button type="submit" class="submit-btn" id="submitBtn">Submit Dispatch Request</button>
+            <button type="submit" class="btn-calc" id="submitBtn" style="background:var(--accent);">
+                <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i>SUBMIT DISPATCH REQUEST
+            </button>
         </form>
-        <div id="formStatus">
-            ✅ Request received! Our dispatch team will contact you shortly.
+        <div class="form-success" id="formSuccess">
+            <i class="fas fa-circle-check" style="font-size:1.8rem;display:block;margin-bottom:0.7rem;"></i>
+            Request received — our dispatch team will contact you shortly.
         </div>
     </div>
 </section>
- 
-<!-- ═══ FOOTER ═══ -->
+
+<section id="cta">
+    <div class="cta-inner">
+        <span class="s-tag">Ready to Ship?</span>
+        <h2 class="cta-title display">
+            The Caribbean Runs On<br>
+            <span class="cyan">ALP Supercool</span>
+        </h2>
+        <p class="cta-sub">
+            Join hundreds of importers, exporters, and distributors who trust ALP Supercool LLC to keep their Caribbean supply chains moving — with zero disruption and maximum velocity.
+        </p>
+        <div class="hero-btns">
+            <a href="#quote" class="btn btn-primary" style="background:var(--accent);">START YOUR SHIPMENT</a>
+            <a href="#estimator" class="btn btn-secondary" style="border-color:white; color:black;">ESTIMATE FREIGHT COST</a>
+        </div>
+    </div>
+</section>
+
 <footer>
     <div class="footer-grid">
-        <div class="footer-brand">
-            <span class="logo">ALP <span>Supercool</span></span>
-            <p>Seamless Air, Ocean, and Ground logistics bridging the gap between global retailers and your front door across the Caribbean and beyond.</p>
+        <div class="f-brand">
+            <a href="#hero" class="brand-logo">ALP <span>SUPERCOOL</span></a>
+            <p>Caribbean freight authority delivering expedited logistics solutions from Port Everglades to 18+ island destinations. One operator. Zero bottlenecks.</p>
         </div>
-        <div class="footer-col">
+
+        <div class="f-col">
             <h5>Quick Links</h5>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#services">Our Services</a>
-            <a href="#shopping">Global Shopping</a>
-            <a href="#quote">Get a Quote</a>
+            <ul>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#shopping">Shopping Hub</a></li>
+                <li><a href="#estimator">Estimate</a></li>
+                <li><a href="#quote">Get a Quote</a></li>
+            </ul>
         </div>
-        <div class="footer-col">
-            <h5>Contact Us</h5>
-            <p>3232 SW 2nd Ave, Bay 113</p>
-            <p>Fort Lauderdale, FL 33315</p>
-            <a href="tel:+19547731002">+1 (954) 773-1002</a>
-            <a href="mailto:info@alpsupercool.com">info@alpsupercool.com</a>
+
+        <div class="f-col">
+            <h5>Contact</h5>
+            <ul>
+                <li><a href="tel:+19547731002">+1 (954) 773-1002</a></li>
+                <li><a href="mailto:info@alpsupercool.com">info@alpsupercool.com</a></li>
+                <li><span>3232 SW 2nd Ave, Bay 113</span></li>
+                <li><span>Fort Lauderdale, FL 33315</span></li>
+            </ul>
+        </div>
+
+        <div class="f-col">
+            <h5>Service Areas</h5>
+            <ul>
+                <li><a href="#quote">Nassau, Bahamas</a></li>
+                <li><a href="#quote">Kingston, Jamaica</a></li>
+                <li><a href="#quote">San Juan, Puerto Rico</a></li>
+                <li><a href="#quote">Bridgetown, Barbados</a></li>
+                <li><a href="#quote">Port of Spain, Trinidad</a></li>
+                <li><a href="#quote">Castries, St. Lucia</a></li>
+            </ul>
         </div>
     </div>
-    <div class="footer-bottom">
-        <span>&copy; 2026 ALP Supercool LLC. All Rights Reserved.</span>
-        <span>
-            <a href="#" style="color:rgba(255,255,255,0.5); text-decoration:none; margin-right:16px;">Privacy Policy</a>
-            <a href="#" style="color:rgba(255,255,255,0.5); text-decoration:none;">Terms & Conditions</a>
-        </span>
+
+    <div class="f-bottom">
+        <p>&copy; 2026 ALP Supercool LLC. All Rights Reserved. | Certified Freight Forwarder | Caribbean Logistics Authority</p>
+        <div class="f-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Cookie Policy</a>
+        </div>
     </div>
 </footer>
- 
+
 <script>
+    /* Mobile burger toggle */
+    document.getElementById('burgerBtn').addEventListener('click', function() {
+        const drawer = document.getElementById('mobileDrawer');
+        drawer.classList.toggle('open');
+    });
+    
+    /* Close drawer on nav link click */
+    document.querySelectorAll('.mobile-drawer a').forEach(a => {
+        a.addEventListener('click', () => document.getElementById('mobileDrawer').classList.remove('open'));
+    });
+
+    /* Smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }); }
+        });
+    });
+
+    /* Tracking */
     function handleTrack() {
-        const val = document.getElementById('trackInput').value.trim();
-        if (!val) { alert('Please enter a tracking or AWB number.'); return; }
-        alert('Tracking lookup for: ' + val + '\n\nConnect this to your tracking backend to enable live results.');
+        const v = document.getElementById('trackInput').value.trim();
+        if (!v) { document.getElementById('trackInput').focus(); return; }
+        alert('Tracking lookup: ' + v + '\n\nConnect to your tracking backend to return live results.');
     }
- 
+
+    /* Freight estimator */
+    function calcEstimate() {
+        const dest      = document.getElementById('destination').value;
+        const container = document.getElementById('container').value;
+        const weight    = document.getElementById('weight').value;
+
+        if (!dest || !container || !weight) {
+            alert('Please select a Destination, Container Type, and Weight Range.');
+            return;
+        }
+
+        const base = { lcl:499, fcl20:1200, fcl40:2400, fcl40hc:2800, reefer:3500 };
+        let est = base[container] || 0;
+        est += parseInt(weight) * 0.05;
+        if (document.getElementById('customs').checked)   est += 150;
+        if (document.getElementById('insurance').checked) est += 200;
+        if (document.getElementById('warehouse').checked) est += 300;
+
+        document.getElementById('estPrice').textContent = '$' + est.toFixed(2);
+        document.getElementById('estResult').classList.add('show');
+    }
+
+    /* Contact form */
     document.getElementById('dispatchForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.textContent = 'Sending…';
         btn.disabled = true;
- 
+
         const payload = {
-            name: document.getElementById('clientName').value,
-            email: document.getElementById('clientEmail').value,
-            phone: document.getElementById('clientPhone').value,
+            name:    document.getElementById('clientName').value,
+            email:   document.getElementById('clientEmail').value,
+            phone:   document.getElementById('clientPhone').value,
             service: document.getElementById('serviceType').value,
             details: document.getElementById('shipmentDetails').value,
-            timestamp: new Date().toISOString()
+            ts:      new Date().toISOString()
         };
- 
-        console.log('Dispatch payload:', payload);
- 
-        // TODO: Replace with your webhook URL (e.g. Make.com / Zapier / Google Apps Script)
-        const WEBHOOK_URL = '';
- 
-        if (WEBHOOK_URL) {
+
+        const WEBHOOK = ''; // ← Insert your Make.com / Zapier / Apps Script webhook URL
+
+        if (WEBHOOK) {
             try {
-                await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                document.getElementById('dispatchForm').style.display = 'none';
-                document.getElementById('formStatus').style.display = 'block';
+                await fetch(WEBHOOK, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+                showSuccess();
             } catch (err) {
-                console.error('Submission error:', err);
-                alert('Submission failed. Please call us directly at +1 (954) 773-1002.');
-                btn.textContent = 'Submit Dispatch Request';
+                alert('Submission error. Please call +1 (954) 773-1002 directly.');
+                btn.textContent = 'SUBMIT DISPATCH REQUEST';
                 btn.disabled = false;
             }
         } else {
-            setTimeout(() => {
-                document.getElementById('dispatchForm').style.display = 'none';
-                document.getElementById('formStatus').style.display = 'block';
-            }, 700);
+            setTimeout(showSuccess, 700);
         }
     });
+
+    function showSuccess() {
+        document.getElementById('dispatchForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+    }
+   
+   async function updateContent() {
+  const API_URL = "https://script.google.com/macros/s/AKfycbylh9Mkk6DnC0xVnEkAdu7NwBOiW1i90UWICG1uGPV2eJ1bEZKGH_wlMLYi-QzeQW5q/exec";
+  
+  try {
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      redirect: 'follow' // This ensures it follows Google's internal redirect
+    });
+    
+    // Check if the response is actually JSON
+    if (!response.ok) throw new Error('Network response was not ok');
+    
+    const data = await response.json();
+    console.log("Data received:", data); // Check your browser console to see if data arrives
+    
+    if (data.Main_Background) {
+      document.getElementById('video-background').src = data.Main_Background;
+    }
+    if (data.Hero_Photo) {
+      document.getElementById('hero-img').src = data.Hero_Photo;
+    }
+  } catch (error) {
+    console.error("Connection Error:", error);
+  }
+}
+
+window.onload = updateContent;
+   
 </script>
+
 </body>
 </html>
