@@ -507,8 +507,8 @@
 </head>
 <body>
 
-<video id="video-background" autoplay muted loop playsinline>
-  <source src="" type="video/mp4">
+<video id="video-background" autoplay muted loop playsinline style="background-color: #0b2242;">
+    <source src="" type="video/mp4">
 </video>
 
 <nav>
@@ -1092,24 +1092,30 @@
   
   try {
     const response = await fetch(API_URL, {
-      method: 'GET',
-      redirect: 'follow' // This ensures it follows Google's internal redirect
-    });
-    
-    // Check if the response is actually JSON
-    if (!response.ok) throw new Error('Network response was not ok');
-    
+    method: 'GET',
+    redirect: 'follow'
+});
     const data = await response.json();
-    console.log("Data received:", data); // Check your browser console to see if data arrives
+    console.log("Data from Sheet:", data); // Check the console to see the actual keys
     
-    if (data.Main_Background) {
-      document.getElementById('video-background').src = data.Main_Background;
+    // 1. Match the label "Video_Background" from your screenshot
+    if (data.Video_Background) {
+      const videoElement = document.getElementById('video-background');
+      if (videoElement) {
+          videoElement.src = data.Video_Background;
+          videoElement.load(); // Forces the player to recognize the new source
+      }
     }
-    if (data.Hero_Photo) {
-      document.getElementById('hero-img').src = data.Hero_Photo;
+    
+    // 2. Match the label "Photo_Background" from your screenshot
+    if (data.Photo_Background) {
+      const heroImg = document.getElementById('hero-img');
+      if (heroImg) {
+          heroImg.src = data.Photo_Background;
+      }
     }
   } catch (error) {
-    console.error("Connection Error:", error);
+    console.error("Content fetch failed:", error);
   }
 }
 
