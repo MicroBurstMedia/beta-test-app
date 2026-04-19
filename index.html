@@ -179,7 +179,7 @@
         #hero {
             min-height:100vh; margin-top:104px; padding:6rem 3rem 4rem;
             display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg-main) 100%);
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg-transparent) 100%);
             position: relative;
         }
 
@@ -187,20 +187,20 @@
             display:inline-flex; align-items:center; gap:0.7rem;
             font-family:'IBM Plex Mono',monospace;
             font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase;
-            color: var(--accent); margin-bottom:1.8rem; font-weight: 600;
+            color: #ffffff; margin-bottom:1.8rem; font-weight: 600;
         }
         .hero-eyebrow::before, .hero-eyebrow::after { content:''; display:block; width:28px; height:2px; background:var(--accent); }
 
         .hero-title {
             font-family:'Barlow Condensed',sans-serif;
             font-size:clamp(3.5rem, 9vw, 6.5rem); font-weight:900; line-height:1.0;
-            letter-spacing:-0.01em; margin-bottom:1.6rem; color: var(--primary-blue);
+            letter-spacing:-0.01em; margin-bottom:1.6rem; color: #ffffff;
         }
-        .hero-title .line-gold { color: var(--accent); }
+        .hero-title .line-gold { color: #ffb800; }
 
         .hero-sub {
             font-size:1.1rem; font-weight:400; line-height:1.8;
-            color: var(--text-body); max-width:620px; margin:0 auto 2.5rem;
+            color: #d1d5db; max-width:620px; margin:0 auto 2.5rem;
         }
 
         .hero-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:3.5rem; }
@@ -252,18 +252,21 @@
         }
         
         #video-background {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1; /* Keeps it behind your photos/text */
-  object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    /* This adds the dark tint */
+    filter: brightness(0.4) contrast(1.1); 
 }
 
 .content-overlay {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1; /* Lifts the text above the -1 index of the video */
+    background: transparent; /* Ensures we can see the video through the gaps */
 }
 
         /* ══════════════════════════════════════════════
@@ -507,9 +510,11 @@
 </head>
 <body>
 
-<video id="video-background" autoplay muted loop playsinline style="background-color: #0b2242;">
-    <source src="" type="video/mp4">
+<video id="video-background" autoplay muted loop playsinline style="background-color: #00000;">
+    <source src="https://www.dropbox.com/scl/fi/8qpwnzjyqt5j0btht9up8/alp-supercool-llc-video-ad.mp4?rlkey=b92ln97it014g6vnkq02vvccr&st=ba65yz77&raw=1" type="video/mp4">
 </video>
+
+<div class="content-overlay">
 
 <nav>
     <a href="#hero" class="nav-logo"><i class="fas fa-plane-departure"></i> ALP <span>SUPERCOOL</span></a>
@@ -561,10 +566,10 @@
         </div>
 
         <h1 class="hero-title display">
-            From <span class="cyan">Broward</span><br>
+            From <span style="color: #ff6b00;">Broward</span><br>
             To The <span class="line-gold">Islands</span>:<br>
             Seamless Freight.<br>
-            <span style="font-size:0.65em; color:var(--text-body); font-weight:600; letter-spacing:0.04em;">Superior Velocity.</span>
+            <span style="font-size:0.65em; color: #d1d5db; font-weight:600; letter-spacing:0.04em;">Superior Velocity.</span>
         </h1>
 
         <p class="hero-sub">
