@@ -1,1132 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALP Supercool LLC | Caribbean Freight Authority</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* ══════════════════════════════════════════════
-           DESIGN SYSTEM (Modern Corporate Logistics Theme)
-        ══════════════════════════════════════════════ */
-        :root {
-            --bg-main: #ffffff;
-            --bg-alt: #f4f7f9;
-            --primary-blue: #0b2242; /* Trustworthy Corporate Navy */
-            --primary-light: #163866;
-            --accent: #ff6b00; /* Vibrant Orange for Action */
-            --accent-hover: #e66000;
-            --accent-glow: rgba(255, 107, 0, 0.25);
-            --text-dark: #111827;
-            --text-body: #4b5563;
-            --text-dim: #6b7280; /* Opacity increased for accessibility */
-            --border: #e5e7eb;
-            --border-hover: #cbd5e1;
-            --white: #ffffff;
-            --green: #10b981;
-            --red: #ef4444;
-            --t: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Árabe & Español | Traductor A1-A2</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
+    body {
+      background: linear-gradient(145deg, #f9f5f0 0%, #efe6db 100%);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-main);
-            color: var(--text-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Main card */
+    .translator-card {
+      max-width: 760px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(2px);
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
 
-        /* Ambient background mesh (Lightened) */
-        body::before {
-            content:'';
-            position:fixed; inset:0; z-index:0; pointer-events:none;
-            background:
-                radial-gradient(ellipse 60% 50% at 15% 40%, rgba(11, 34, 66, 0.03) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 60% at 85% 70%, rgba(255, 107, 0, 0.03) 0%, transparent 70%);
-        }
+    .translator-card:hover {
+      transform: scale(1.01);
+    }
 
-        /* Grid texture overlay */
-        body::after {
-            content:'';
-            position:fixed; inset:0; z-index:0; pointer-events:none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(0,0,0,0.03)' stroke-width='1'/%3E%3C/svg%3E");
-        }
+    /* header with cultural hint */
+    .hero {
+      background: #1e2a3e;
+      padding: 1.8rem 2rem;
+      color: white;
+      text-align: center;
+    }
 
-        /* ── TYPOGRAPHY ── */
-        .display { font-family:'Barlow Condensed',sans-serif; font-weight:900; line-height:1.05; letter-spacing:-0.01em; }
-        .mono    { font-family:'IBM Plex Mono',monospace; }
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #F9E0A0, #E9B35F);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      margin-bottom: 0.4rem;
+    }
 
-        /* ── UTILITY ── */
-        .cyan  { color: var(--primary-blue); }
-        .gold  { color: var(--accent); }
-        .green { color: var(--green); }
-        section, .above-fold { position:relative; z-index:1; }
+    .hero-sub {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #cddcec;
+      margin-top: 0.5rem;
+    }
 
-        /* ══════════════════════════════════════════════
-           NAVIGATION
-        ══════════════════════════════════════════════ */
-        nav {
-            position:fixed; top:0; left:0; right:0; z-index:1000;
-            display:flex; justify-content:space-between; align-items:center;
-            padding:0 3rem;
-            height:68px;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
+    .lang-badge {
+      background: rgba(255,255,240,0.15);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
 
-        .nav-logo {
-            font-family:'Barlow Condensed',sans-serif;
-            font-size:1.6rem; font-weight:900;
-            letter-spacing:0.12em; text-transform:uppercase;
-            display:flex; align-items:center; gap:0.5rem;
-            text-decoration:none; color: var(--primary-blue);
-        }
-        .nav-logo i { color: var(--accent); font-size:1.2rem; }
-        .nav-logo span { color: var(--accent); }
+    .content {
+      padding: 2rem 2rem 1.8rem;
+    }
 
-        .nav-links { display:flex; gap:0.2rem; list-style:none; }
-        .nav-links a {
-            font-family:'IBM Plex Mono',monospace;
-            font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase;
-            color: var(--text-dark); text-decoration:none;
-            padding:6px 12px; border-radius:4px;
-            transition:var(--t); position:relative;
-            font-weight: 600;
-        }
-        .nav-links a:hover { color: var(--primary-blue); background: var(--bg-alt); }
+    /* filter info */
+    .info-chip {
+      background: #fef3e2;
+      border-left: 5px solid #E9B35F;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.8rem;
+      color: #4a3b28;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
 
-        .nav-track {
-            display:flex; align-items:center; gap:0.5rem;
-            font-family:'IBM Plex Mono',monospace;
-            font-size:0.75rem; letter-spacing:0.15em;
-            color: var(--text-dark); cursor:pointer; font-weight: 600;
-            padding:6px 12px; border-radius:4px;
-            border:1px solid var(--border); transition:var(--t);
-            background: var(--bg-main);
-        }
-        .nav-track:hover { color: var(--white); border-color: var(--primary-blue); background: var(--primary-blue); }
+    .info-chip span:first-child {
+      background: #E9B35F;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      color: #2e241a;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
 
-        .nav-cta {
-            font-family:'Barlow Condensed',sans-serif;
-            font-size:0.95rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
-            padding:0.6rem 1.6rem;
-            background: var(--accent); color: var(--white);
-            border:none; cursor:pointer; border-radius:3px;
-            box-shadow: 0 4px 12px var(--accent-glow); transition:var(--t);
-        }
-        .nav-cta:hover { background: var(--accent-hover); transform:translateY(-1px); }
+    /* input group */
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
 
-        /* Mobile burger */
-        .burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
-        .burger span { display:block; width:24px; height:2px; background:var(--primary-blue); border-radius:2px; transition:var(--t); }
+    label {
+      font-weight: 600;
+      color: #2c3e2f;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
 
-        /* Mobile drawer */
-        .mobile-drawer {
-            display:none; position:fixed; top:68px; left:0; right:0;
-            background: rgba(255,255,255,0.98); backdrop-filter:blur(16px);
-            border-bottom:1px solid var(--border); z-index:999;
-            padding:1.5rem 2rem; flex-direction:column; gap:0.5rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .mobile-drawer.open { display:flex; }
-        .mobile-drawer a {
-            font-family:'IBM Plex Mono',monospace; font-weight: 600;
-            font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase;
-            color: var(--text-dark); text-decoration:none;
-            padding:12px 0; border-bottom:1px solid var(--border); transition:var(--t);
-        }
-        .mobile-drawer a:hover { color: var(--accent); }
-        .mobile-drawer .m-cta {
-            margin-top:1rem; background: var(--accent); color: var(--white);
-            text-align:center; padding:12px; border-radius:3px;
-            font-weight:700; letter-spacing:0.1em; border-bottom:none;
-        }
+    .search-area {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
 
-        /* ══════════════════════════════════════════════
-           LIVE TICKER
-        ══════════════════════════════════════════════ */
-        .ticker {
-            position:fixed; top:68px; left:0; right:0; z-index:998;
-            background: var(--primary-blue);
-            padding:8px 0; overflow:hidden;
-        }
-        .ticker-track { display:flex; gap:4rem; animation:ticker-scroll 35s linear infinite; white-space:nowrap; }
-        .ticker-track:hover { animation-play-state:paused; }
-        .t-item {
-            font-family:'IBM Plex Mono',monospace;
-            font-size:0.7rem; letter-spacing:0.1em;
-            color: rgba(255,255,255,0.85);
-            display:flex; align-items:center; gap:0.6rem;
-        }
-        .t-item .dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); flex-shrink:0; animation:pulse 2s ease-in-out infinite; }
-        .t-item.alert .dot { background:var(--red); box-shadow:0 0 6px var(--red); }
-        .t-item.gold-item .dot { background:var(--accent); box-shadow:0 0 6px var(--accent); }
+    input {
+      flex: 3;
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      border: 1.5px solid #e2dcd5;
+      border-radius: 2rem;
+      background: white;
+      transition: all 0.2s;
+      font-family: 'Inter', monospace;
+      outline: none;
+    }
 
-        @keyframes ticker-scroll { from { transform:translateX(100vw); } to { transform:translateX(-100%); } }
-        @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.85); } }
+    input:focus {
+      border-color: #E9B35F;
+      box-shadow: 0 0 0 3px rgba(233, 179, 95, 0.2);
+    }
 
-        /* ══════════════════════════════════════════════
-           HERO
-        ══════════════════════════════════════════════ */
-        #hero {
-            min-height:100vh; margin-top:104px; padding:6rem 3rem 4rem;
-            display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg-transparent) 100%);
-            position: relative;
-        }
+    button {
+      background: #1e2a3e;
+      border: none;
+      padding: 0 1.6rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-        .hero-eyebrow {
-            display:inline-flex; align-items:center; gap:0.7rem;
-            font-family:'IBM Plex Mono',monospace;
-            font-size:0.75rem; letter-spacing:0.28em; text-transform:uppercase;
-            color: #ffffff; margin-bottom:1.8rem; font-weight: 600;
-        }
-        .hero-eyebrow::before, .hero-eyebrow::after { content:''; display:block; width:28px; height:2px; background:var(--accent); }
+    button:hover {
+      background: #2d3f54;
+      transform: translateY(-2px);
+    }
 
-        .hero-title {
-            font-family:'Barlow Condensed',sans-serif;
-            font-size:clamp(3.5rem, 9vw, 6.5rem); font-weight:900; line-height:1.0;
-            letter-spacing:-0.01em; margin-bottom:1.6rem; color: #ffffff;
-        }
-        .hero-title .line-gold { color: #ffb800; }
+    /* result area */
+    .result-box {
+      background: #fefcf8;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid #efe2d0;
+      min-height: 110px;
+    }
 
-        .hero-sub {
-            font-size:1.1rem; font-weight:400; line-height:1.8;
-            color: #d1d5db; max-width:620px; margin:0 auto 2.5rem;
-        }
+    .translation-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      color: #b68b40;
+      margin-bottom: 0.5rem;
+    }
 
-        .hero-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:3.5rem; }
+    .arabic-text {
+      font-size: 1.8rem;
+      font-family: 'Amiri', 'Tahoma', 'Segoe UI', serif;
+      direction: rtl;
+      text-align: right;
+      font-weight: 500;
+      word-break: break-word;
+      line-height: 1.4;
+      color: #1e3a2f;
+    }
 
-        .btn {
-            font-family:'Barlow Condensed',sans-serif;
-            font-weight:700; font-size:1.05rem; letter-spacing:0.12em; text-transform:uppercase;
-            padding:1rem 2.4rem; border:none; cursor:pointer;
-            transition:var(--t); border-radius:4px; text-decoration:none; display:inline-block;
-        }
-        .btn-primary { background:var(--accent); color:var(--white); box-shadow:0 4px 14px var(--accent-glow); }
-        .btn-primary:hover { background:var(--accent-hover); transform:translateY(-2px); box-shadow:0 6px 20px var(--accent-glow); }
-        .btn-secondary { background:var(--white); color:var(--primary-blue); border:2px solid var(--border); }
-        .btn-secondary:hover { border-color:var(--primary-blue); background:var(--bg-alt); transform:translateY(-2px); }
+    .notification-message {
+      background: #fff1f0;
+      border-radius: 1rem;
+      padding: 1rem;
+      color: #ac3b2c;
+      font-weight: 500;
+      border-left: 4px solid #d9534f;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
 
-        /* Tracking bar */
-        .track-bar {
-            display:flex; gap:0; max-width:560px; width:100%; margin:0 auto;
-            background: var(--white); border:1px solid var(--border); border-radius:6px; overflow:hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-        .track-bar input {
-            flex:1; padding:1.1rem 1.4rem; background:transparent; border:none; outline:none;
-            font-family:'Inter',sans-serif; font-size:1rem; color:var(--text-dark);
-        }
-        .track-bar input::placeholder { color:var(--text-dim); }
-        .track-bar button {
-            font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
-            padding:0 1.8rem; background:var(--primary-blue); color:var(--white);
-            border:none; cursor:pointer; white-space:nowrap; transition:var(--t);
-        }
-        .track-bar button:hover { background:var(--primary-light); }
+    .notification-message i {
+      font-size: 1.4rem;
+    }
 
-        /* Stats bar */
-        .hero-stats {
-            display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:4rem; max-width:860px; width:100%;
-            border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-        .stat { background:var(--white); padding:1.6rem 1rem; text-align:center; transition:var(--t); }
-        .stat:hover { background:var(--bg-alt); }
-        .stat-num {
-            font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; font-weight:900; color:var(--primary-blue);
-            line-height:1; margin-bottom:0.4rem;
-        }
-        .stat-lbl {
-            font-family:'IBM Plex Mono',monospace; font-size:0.65rem; font-weight: 600; letter-spacing:0.15em; text-transform:uppercase;
-            color:var(--text-dim);
-        }
-        
-        #video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    /* This adds the dark tint */
-    filter: brightness(0.4) contrast(1.1); 
-}
+    .sample-words {
+      margin-top: 1.8rem;
+      border-top: 1px dashed #e2cfb5;
+      padding-top: 1.2rem;
+    }
 
-.content-overlay {
-    position: relative;
-    z-index: 1; /* Lifts the text above the -1 index of the video */
-    background: transparent; /* Ensures we can see the video through the gaps */
-}
+    .sample-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #7c5f3a;
+      margin-bottom: 0.8rem;
+    }
 
-        /* ══════════════════════════════════════════════
-           SECTION HEADER (shared)
-        ══════════════════════════════════════════════ */
-        .s-head { text-align:center; margin-bottom:3.5rem; }
-        .s-tag {
-            font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight: 600; letter-spacing:0.3em; text-transform:uppercase;
-            color:var(--accent); margin-bottom:1rem; display:inline-block;
-            background: rgba(249, 99, 2, 0.1); padding: 6px 14px; border-radius: 20px;
-        }
-        .s-title {
-            font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.2rem, 5vw, 3.5rem); font-weight:900;
-            line-height:1.05; margin-bottom:1rem; color: var(--primary-blue);
-        }
-        .s-sub { font-size:1.05rem; color:var(--text-body); max-width:600px; margin:0 auto; line-height: 1.7; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
 
-        /* ══════════════════════════════════════════════
-           HOW IT WORKS
-        ══════════════════════════════════════════════ */
-        #how-it-works { padding:6rem 3rem; background: var(--bg-main); border-bottom: 1px solid var(--border); }
-        .steps-row { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:1100px; margin:0 auto; }
-        .step { background:var(--bg-alt); padding:3rem 2.5rem; text-align:center; border-radius:12px; position:relative; transition:var(--t); border: 1px solid var(--border); }
-        .step:hover { background:var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.06); transform: translateY(-5px); }
-        .step-num-wrap { position:relative; display:inline-block; margin-bottom:1.6rem; }
-        .step-num {
-            width:68px; height:68px; border-radius:50%; border:2px solid var(--accent);
-            display:flex; align-items:center; justify-content:center; margin:0 auto;
-            font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:var(--accent);
-            background: rgba(249, 99, 2, 0.05);
-        }
-        .step:not(:last-child)::after {
-            content:'\f054'; font-family:'Font Awesome 6 Free'; font-weight:900;
-            position:absolute; right:-18px; top:50%; transform:translateY(-50%);
-            color:var(--border-hover); font-size:1.2rem; z-index:2;
-        }
-        .step h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:1rem; color:var(--primary-blue); }
-        .step p { font-size:0.95rem; color:var(--text-body); line-height:1.65; }
+    .chip {
+      background: #f1e9df;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      color: #3b2c1e;
+    }
 
-        /* ══════════════════════════════════════════════
-           SERVICES
-        ══════════════════════════════════════════════ */
-        #services { padding:6rem 3rem; background: var(--bg-alt); }
-        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:1200px; margin:0 auto; }
-        .svc-card {
-            background: var(--white); border:1px solid var(--border); padding:2.5rem; border-radius:12px;
-            position:relative; overflow:hidden; transition:var(--t); box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-        .svc-card::before {
-            content:''; position:absolute; top:0; left:0; right:0; height:3px;
-            background: var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.35s ease;
-        }
-        .svc-card:hover::before { transform:scaleX(1); }
-        .svc-card:hover { border-color:var(--border-hover); box-shadow:0 15px 35px rgba(0,0,0,0.08); transform:translateY(-5px); }
-        .svc-icon {
-            width:54px; height:54px; border-radius:8px; background: rgba(11, 34, 66, 0.05);
-            display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--primary-blue); margin-bottom:1.5rem; transition:var(--t);
-        }
-        .svc-card:hover .svc-icon { background: var(--primary-blue); color: var(--white); }
-        .svc-card h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.8rem; color:var(--text-dark); }
-        .svc-card p { font-size:0.95rem; color:var(--text-body); line-height:1.65; }
+    .chip:hover {
+      background: #e2cfb5;
+    }
 
-        /* ══════════════════════════════════════════════
-           WHY US
-        ══════════════════════════════════════════════ */
-        #why { padding:6rem 3rem; background: var(--bg-main); border-top:1px solid var(--border); }
-        .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1100px; margin:0 auto; }
-        .why-card {
-            background: var(--bg-alt); border:1px solid var(--border); padding:2rem; border-radius:10px;
-            display:flex; gap:1.2rem; align-items:flex-start; transition:var(--t);
-        }
-        .why-card:hover { border-color:var(--accent); background: var(--white); box-shadow: 0 10px 25px rgba(0,0,0,0.05); transform:translateY(-3px); }
-        .why-icon {
-            width:46px; height:46px; flex-shrink:0; border-radius:8px;
-            background: rgba(249, 99, 2, 0.1); display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--accent);
-        }
-        .why-card h4 { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.4rem; color: var(--text-dark); }
-        .why-card p { font-size:0.9rem; color:var(--text-body); line-height:1.6; }
+    .filter-demo-note {
+      background: #eef4fa;
+      border-radius: 1rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.75rem;
+      color: #2c5f6e;
+      text-align: center;
+      margin-top: 1.3rem;
+    }
 
-        /* ══════════════════════════════════════════════
-           GLOBAL SHOPPING HUB
-        ══════════════════════════════════════════════ */
-        #shopping { padding:6rem 3rem; background: var(--primary-blue); color: var(--white); }
-        #shopping .s-title, #shopping .s-sub, #shopping .s-tag { color: var(--white); }
-        #shopping .s-tag { background: rgba(255,255,255,0.1); color: var(--accent); }
-        .shop-layout { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1100px; margin:0 auto; }
-        .shop-left p { font-size:1.05rem; color: rgba(255,255,255,0.8); line-height:1.75; margin-bottom:1.8rem; }
-        .brands-cloud { display:flex; flex-wrap:wrap; gap:0.8rem; margin-bottom:2.5rem; }
-        .brand-tag {
-            font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.1em; text-transform:uppercase;
-            padding:8px 18px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.9);
-            background: rgba(255,255,255,0.05); transition:var(--t);
-        }
-        .brand-tag:hover { border-color:var(--accent); color:var(--white); background:var(--accent); }
-        
-        .address-panel {
-            background: var(--white); color: var(--text-dark); border-left:5px solid var(--accent);
-            padding:2.5rem; border-radius:8px; box-shadow:0 15px 40px rgba(0,0,0,0.2);
-        }
-        .address-panel .panel-tag {
-            font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight: 600; letter-spacing:0.2em; text-transform:uppercase;
-            color:var(--primary-blue); margin-bottom:1.5rem; display:block;
-        }
-        .address-row { display:flex; gap:0.8rem; align-items:center; font-size:0.95rem; margin-bottom:0.9rem; color:var(--text-body); }
-        .address-row i { color:var(--accent); width:18px; flex-shrink:0; font-size:1rem; }
-        .address-row strong { color:var(--text-dark); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-family:'IBM Plex Mono',monospace; font-size:0.85rem; }
-        .panel-note { margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; color:var(--text-dim); line-height:1.6; }
-        
-        .btn-gold {
-            display:inline-block; margin-top:1.5rem; font-family:'Barlow Condensed',sans-serif;
-            font-size:1rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
-            padding:0.9rem 2.4rem; background:var(--accent); color:var(--white);
-            border-radius:4px; text-decoration:none; transition:var(--t); box-shadow: 0 4px 14px var(--accent-glow);
-        }
-        .btn-gold:hover { background:var(--accent-hover); transform:translateY(-2px); }
+    footer {
+      font-size: 0.7rem;
+      text-align: center;
+      color: #9c8870;
+      padding: 1rem 0 1.2rem;
+      border-top: 1px solid #eedfcb;
+      margin-top: 0.5rem;
+    }
 
-        /* ══════════════════════════════════════════════
-           FREIGHT ESTIMATOR
-        ══════════════════════════════════════════════ */
-        #estimator { padding:6rem 3rem; background: var(--bg-main); border-bottom: 1px solid var(--border); }
-        .est-layout { display:grid; grid-template-columns:1fr 1.2fr; gap:4rem; align-items:start; max-width:1100px; margin:0 auto; }
-        .est-info h3 { font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; font-weight:900; color:var(--primary-blue); line-height:1.1; margin-bottom:1.2rem; }
-        .est-info > p { color:var(--text-body); font-size:1.05rem; line-height:1.75; margin-bottom:2rem; }
-        .benefit-list { list-style:none; }
-        .b-item {
-            display:flex; gap:1.2rem; align-items:flex-start; padding:1.2rem;
-            background: var(--bg-alt); border-left:3px solid var(--accent);
-            border-radius:0 8px 8px 0; margin-bottom:1.2rem; transition:var(--t); border: 1px solid var(--border); border-left-width: 3px;
-        }
-        .b-item:hover { background: var(--white); box-shadow: 0 8px 20px rgba(0,0,0,0.05); transform:translateX(5px); }
-        .b-icon { color:var(--accent); font-size:1.2rem; flex-shrink:0; margin-top:2px; }
-        .b-text h4 { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:0.3rem; color: var(--primary-blue); }
-        .b-text p { font-size:0.9rem; color:var(--text-body); margin:0; }
-        
-        .est-form-panel { background: var(--white); border:1px solid var(--border); padding:3rem; border-radius:12px; box-shadow:0 15px 40px rgba(0,0,0,0.06); }
-        .f-group { margin-bottom:1.6rem; }
-        .f-label { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dark); display:block; margin-bottom:0.6rem; }
-        .f-select, .f-input, .f-textarea {
-            width:100%; padding:0.9rem 1.2rem; background: var(--bg-alt); border:1px solid var(--border);
-            color:var(--text-dark); font-family:'Inter',sans-serif; font-size:1rem; border-radius:6px; transition:var(--t); outline:none;
-        }
-        .f-select:focus, .f-input:focus, .f-textarea:focus { border-color:var(--primary-blue); background:var(--white); box-shadow: 0 0 0 4px rgba(11, 34, 66, 0.05); }
-        .f-textarea { resize:vertical; min-height:100px; }
-        .f-row { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
-        
-        .cb-group { display:flex; flex-direction:column; gap:0.8rem; }
-        .cb-item { display:flex; align-items:center; gap:1rem; padding:0.9rem 1.2rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius:6px; cursor:pointer; transition:var(--t); }
-        .cb-item:hover { background: var(--white); border-color: var(--primary-blue); }
-        .cb-item input { width:18px; height:18px; accent-color:var(--primary-blue); cursor:pointer; }
-        .cb-item label { font-size:0.95rem; color: var(--text-dark); font-weight: 500; cursor:pointer; flex:1; }
-        
-        .btn-calc {
-            width:100%; margin-top:1.5rem; padding:1.2rem; background: var(--primary-blue);
-            color:var(--white); font-family:'Barlow Condensed',sans-serif;
-            font-size:1.1rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
-            border:none; cursor:pointer; border-radius:6px; transition:var(--t);
-        }
-        .btn-calc:hover { background: var(--primary-light); transform:translateY(-2px); box-shadow: 0 8px 20px rgba(11, 34, 66, 0.2); }
-        
-        .est-result {
-            display:none; margin-top:1.5rem; padding:1.8rem; background: rgba(16, 185, 129, 0.05);
-            border:1px solid rgba(16, 185, 129, 0.2); border-radius:8px; animation:slideIn 0.3s ease; text-align: center;
-        }
-        .est-result.show { display:block; }
-        .est-result-label { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 600; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dark); margin-bottom:0.6rem; }
-        .est-price { font-family:'Barlow Condensed',sans-serif; font-size:3rem; font-weight:900; color:var(--green); }
-        .est-note { font-size:0.85rem; color:var(--text-dim); margin-top:0.8rem; }
-
-        @keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-
-        /* ══════════════════════════════════════════════
-           QUOTE / CONTACT FORM
-        ══════════════════════════════════════════════ */
-        #quote { padding:6rem 3rem; background: var(--bg-alt); border-top: 1px solid var(--border); }
-        .quote-panel { max-width:800px; margin:0 auto; background: var(--white); border:1px solid var(--border); border-radius:12px; padding:3.5rem; box-shadow:0 15px 40px rgba(0,0,0,0.04); }
-        .form-success {
-            display:none; padding:2rem; text-align:center; background: rgba(16, 185, 129, 0.05);
-            border:1px solid rgba(16, 185, 129, 0.2); border-radius:8px; color:var(--green);
-            font-family:'Barlow Condensed',sans-serif; font-size:1.5rem; letter-spacing:0.05em; font-weight: 600;
-        }
-
-        /* ══════════════════════════════════════════════
-           CTA SECTION
-        ══════════════════════════════════════════════ */
-        #cta { padding:7rem 3rem; text-align:center; background: var(--primary-blue); color: var(--white); }
-        .cta-inner { max-width:800px; margin:0 auto; }
-        #cta .s-tag { background: rgba(255,255,255,0.1); color: var(--accent); border-radius: 20px; padding: 8px 16px; }
-        .cta-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:900; line-height:1.1; margin-bottom:1.5rem; color: var(--white); }
-        .cta-title .cyan { color: var(--accent); }
-        .cta-sub { font-size:1.15rem; color: rgba(255,255,255,0.85); line-height:1.8; margin-bottom:3rem; max-width:650px; margin-left:auto; margin-right:auto; }
-
-        /* ══════════════════════════════════════════════
-           FOOTER
-        ══════════════════════════════════════════════ */
-        footer { padding:4rem 3rem 2rem; background: var(--bg-main); border-top:1px solid var(--border); }
-        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; max-width:1200px; margin:0 auto 3rem; }
-        .f-brand .brand-logo {
-            font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase;
-            color:var(--primary-blue); display:block; margin-bottom:1rem; text-decoration:none;
-        }
-        .f-brand .brand-logo span { color:var(--accent); }
-        .f-brand p { font-size:0.95rem; color:var(--text-body); line-height:1.7; max-width:300px; }
-        .f-col h5 { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-dark); margin-bottom:1.4rem; }
-        .f-col ul { list-style:none; }
-        .f-col li { margin-bottom:0.8rem; }
-        .f-col a, .f-col span { font-family:'IBM Plex Mono',monospace; font-size:0.8rem; font-weight: 500; letter-spacing:0.05em; color:var(--text-dim); text-decoration:none; transition:var(--t); }
-        .f-col a:hover { color:var(--accent); padding-left:4px; }
-        .f-bottom { border-top:1px solid var(--border); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; max-width:1200px; margin:0 auto; }
-        .f-bottom p { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.05em; color:var(--text-dim); font-weight: 500; }
-        .f-bottom-links { display:flex; gap:1.5rem; }
-        .f-bottom-links a { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight: 500; color:var(--text-dim); text-decoration:none; transition:var(--t); }
-        .f-bottom-links a:hover { color:var(--accent); }
-
-        /* ══════════════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════════════ */
-        @media (max-width:1024px) {
-            .services-grid      { grid-template-columns:repeat(2,1fr); }
-            .why-grid           { grid-template-columns:repeat(2,1fr); }
-            .footer-grid        { grid-template-columns:1fr 1fr; }
-        }
-        @media (max-width:768px) {
-            nav { padding:0 1.5rem; }
-            .nav-links, .nav-track, .nav-cta { display:none; }
-            .burger { display:flex; }
-            #hero { margin-top:68px; padding:4rem 1.5rem; }
-            .hero-stats { grid-template-columns:repeat(2,1fr); }
-            .steps-row { grid-template-columns:1fr; }
-            .step::after { display:none; }
-            .services-grid { grid-template-columns:1fr; }
-            .why-grid { grid-template-columns:1fr; }
-            .shop-layout { grid-template-columns:1fr; gap:3rem; }
-            .est-layout { grid-template-columns:1fr; gap:3rem; }
-            .footer-grid { grid-template-columns:1fr; gap:3rem; }
-            .f-row { grid-template-columns:1fr; }
-            section, #estimator, #quote, #cta, #why, #shopping, #how-it-works { padding:4rem 1.5rem; }
-            .quote-panel { padding:2rem 1.5rem; }
-            .est-form-panel { padding:2rem 1.5rem; }
-        }
-    </style>
+    @media (max-width: 560px) {
+      .content {
+        padding: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+      .arabic-text {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<video id="video-background" autoplay muted loop playsinline style="background-color: #00000;">
-    <source src="https://www.dropbox.com/scl/fi/8qpwnzjyqt5j0btht9up8/alp-supercool-llc-video-ad.mp4?rlkey=b92ln97it014g6vnkq02vvccr&st=ba65yz77&raw=1" type="video/mp4">
-</video>
-
-<div class="content-overlay">
-
-<nav>
-    <a href="#hero" class="nav-logo"><i class="fas fa-plane-departure"></i> ALP <span>SUPERCOOL</span></a>
-
-    <ul class="nav-links">
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#shopping">Shopping Hub</a></li>
-        <li><a href="#estimator">Estimate</a></li>
-        <li><a href="#quote">Contact</a></li>
-    </ul>
-
-    <div style="display:flex;align-items:center;gap:0.8rem;">
-        <button class="nav-track" onclick="document.getElementById('trackInput').focus(); document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
-            <i class="fas fa-satellite-dish"></i> TRACK
-        </button>
-        <button class="nav-cta" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">GET QUOTE</button>
-        <button class="burger" id="burgerBtn" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+<div class="translator-card">
+  <div class="hero">
+    <h1>🇪🇸 ➜ 🇸🇦 ترجمة · Traducción</h1>
+    <div class="hero-sub">
+      <span class="lang-badge">Español → Árabe</span>
+      <span class="lang-badge">Filtro CEFR A1-A2</span>
     </div>
-</nav>
+  </div>
+  <div class="content">
+    <!-- filter explanation & prototype description -->
+    <div class="info-chip">
+      <span>🎯 FILTRO ACTIVO</span>
+      <span>Solo palabras españolas nivel A1/A2 (vocabulario básico). Cualquier palabra fuera de este rango recibirá un aviso de "Traducción no disponible".</span>
+    </div>
 
-<div class="mobile-drawer" id="mobileDrawer">
-    <a href="#how-it-works">How It Works</a>
-    <a href="#services">Services</a>
-    <a href="#shopping">Shopping Hub</a>
-    <a href="#estimator">Freight Estimate</a>
-    <a href="#quote">Contact / Quote</a>
-    <a href="#quote" class="m-cta">Get a Quote →</a>
+    <div class="input-group">
+      <label>📝 Palabra o frase en español (A1-A2)</label>
+      <div class="search-area">
+        <input type="text" id="spanishInput" placeholder="ejemplo: hola, gracias, buenos días, casa ..." autocomplete="off">
+        <button id="translateBtn">⟳ Traducir</button>
+      </div>
+    </div>
+
+    <!-- Dynamic result area -->
+    <div id="resultContainer" class="result-box">
+      <div class="translation-title">RESULTADO / الترجمة</div>
+      <div id="translationDisplay" class="arabic-text" style="font-size:1.4rem; color:#937a54;">✨ esperando tu palabra...</div>
+    </div>
+
+    <!-- quick examples : demo useful words + out-of-level test -->
+    <div class="sample-words">
+      <div class="sample-title">⚡ Palabras de ejemplo (nivel A1-A2)</div>
+      <div class="chips" id="exampleChips">
+        <!-- JS will inject sample words, but we create inline static + extra -->
+      </div>
+      <div class="filter-demo-note">
+        💡 Prueba también una palabra "avanzada" como <strong>desarrollador</strong>, <strong>aeropuerto</strong> o <strong>revolución</strong> → el filtro mostrará notificación.
+      </div>
+    </div>
+    <footer>
+      🔍 Prototipo funcional · Diccionario básico A1/A2 (CEFR) · Traducción Español ↔ Árabe
+    </footer>
+  </div>
 </div>
-
-<div class="ticker">
-    <div class="ticker-track">
-        <div class="t-item"><span class="dot"></span> LIVE · MV Caribbean Carrier — Nassau, Bahamas — ETA 14:30 EST</div>
-        <div class="t-item"><span class="dot"></span> DOCK 7 · FCL Container #ALPC-2847 — Kingston, Jamaica — Customs Cleared</div>
-        <div class="t-item"><span class="dot"></span> TRUCKING · Route I-95 North — 3 Active Rigs — Broward Distribution Hub</div>
-        <div class="t-item alert"><span class="dot"></span> PRIORITY · Bridgetown, Barbados — Express Clearance Processing</div>
-        <div class="t-item gold-item"><span class="dot"></span> NEW ROUTE · St. Lucia Direct Charter — Weekly Service Now Available</div>
-        <div class="t-item"><span class="dot"></span> AIR · FLL → SDQ — Overnight Freight — Departs 23:45 EST</div>
-        <div class="t-item"><span class="dot"></span> OCEAN · LCL Consolidation — San Juan, PR — Booking Open</div>
-    </div>
-</div>
-
-<section id="hero">
-    <div class="hero-content" style="max-width:900px;width:100%;">
-        <div class="hero-eyebrow">
-            <i class="fas fa-circle-check"></i> Port Everglades Operations Center · Fort Lauderdale, FL
-        </div>
-
-        <h1 class="hero-title display">
-            From <span style="color: #ff6b00;">Broward</span><br>
-            To The <span class="line-gold">Islands</span>:<br>
-            Seamless Freight.<br>
-            <span style="font-size:0.65em; color: #d1d5db; font-weight:600; letter-spacing:0.04em;">Superior Velocity.</span>
-        </h1>
-
-        <p class="hero-sub">
-            ALP Supercool LLC delivers end-to-end Caribbean logistics from Broward County's premier freight hub — air, ocean, and ground under one roof. Zero bottlenecks. Maximum velocity.
-        </p>
-
-        <div class="hero-btns">
-            <a href="#quote" class="btn btn-primary">GET FREIGHT QUOTE</a>
-            <a href="#estimator" class="btn btn-secondary">ESTIMATE COST</a>
-        </div>
-
-        <div class="track-bar">
-            <input type="text" id="trackInput" placeholder="Enter Tracking or AWB Number…">
-            <button onclick="handleTrack()"><i class="fas fa-search" style="margin-right:0.4rem;font-size:0.8rem;"></i>TRACK</button>
-        </div>
-
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-num">18+</div>
-                <div class="stat-lbl">Caribbean Routes</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">96H</div>
-                <div class="stat-lbl">Avg. Broward–Island</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">24/7</div>
-                <div class="stat-lbl">Ops Monitoring</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">99.2%</div>
-                <div class="stat-lbl">On-Time Delivery</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="how-it-works">
-    <div class="s-head">
-        <span class="s-tag">Simple Process</span>
-        <h2 class="s-title display">Ship in <span class="cyan">3 Easy Steps</span></h2>
-        <p class="s-sub">From US retailers to your island front door — we make international logistics effortless.</p>
-    </div>
-
-    <div class="steps-row">
-        <div class="step">
-            <div class="step-num-wrap">
-                <div class="step-num">01</div>
-            </div>
-            <h3>Register & Get Your US Address</h3>
-            <p>Sign up for free and receive your unique ALP Supercool mailbox ID at our Fort Lauderdale warehouse — ready to use immediately.</p>
-        </div>
-        <div class="step">
-            <div class="step-num-wrap">
-                <div class="step-num">02</div>
-            </div>
-            <h3>Shop Any US Retailer</h3>
-            <p>Order from Amazon, Walmart, Best Buy, and more. Ship directly to your ALP address — we receive, log, and consolidate your packages.</p>
-        </div>
-        <div class="step">
-            <div class="step-num-wrap">
-                <div class="step-num">03</div>
-            </div>
-            <h3>We Deliver to You</h3>
-            <p>We handle customs clearance and dispatch your shipment via Air, Ocean, or Ground — tracked every mile from our hub to your door.</p>
-        </div>
-    </div>
-</section>
-
-<section id="services">
-    <div class="s-head">
-        <span class="s-tag">Comprehensive Solutions</span>
-        <h2 class="s-title display">Our <span class="cyan">Logistics Services</span></h2>
-        <p class="s-sub">Reliable, scalable shipping options tailored to your timeline and budget.</p>
-    </div>
-
-    <div class="services-grid">
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-plane-departure"></i></div>
-            <h3>Air Freight</h3>
-            <p>Expedited cargo transport with guaranteed delivery windows. Perfect for time-sensitive shipments across the Caribbean network.</p>
-        </div>
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-ship"></i></div>
-            <h3>Ocean Freight</h3>
-            <p>Cost-effective FCL and LCL consolidation. Full container or partial loads with professional customs brokerage included.</p>
-        </div>
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-truck"></i></div>
-            <h3>Ground Logistics</h3>
-            <p>Door-to-door delivery from Broward to island destinations. Dedicated trucking routes with live GPS tracking.</p>
-        </div>
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-boxes-stacked"></i></div>
-            <h3>Consolidation</h3>
-            <p>Combine multiple packages into one shipment to cut freight costs. Enjoy up to 7 days of free warehouse storage at our FLL hub.</p>
-        </div>
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-file-contract"></i></div>
-            <h3>Customs Brokerage</h3>
-            <p>In-house documentation and clearance. We navigate Caribbean customs regulations so you don't have to.</p>
-        </div>
-        <div class="svc-card">
-            <div class="svc-icon"><i class="fas fa-headset"></i></div>
-            <h3>24/7 Support</h3>
-            <p>Dedicated account managers and an always-on emergency line. We're available whenever your supply chain needs us.</p>
-        </div>
-    </div>
-</section>
-
-<section id="why">
-    <div class="s-head">
-        <span class="s-tag">Why ALP Supercool</span>
-        <h2 class="s-title display">Built for the <span class="gold">Caribbean</span> & Beyond</h2>
-        <p class="s-sub">Local knowledge. Global infrastructure. One accountable operator from origin to destination.</p>
-    </div>
-
-    <div class="why-grid">
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-anchor"></i></div>
-            <div>
-                <h4>Port Priority Access</h4>
-                <p>Dedicated berth relationships at Port Everglades for faster loading and shorter dwell times.</p>
-            </div>
-        </div>
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-location-dot"></i></div>
-            <div>
-                <h4>Free US Address</h4>
-                <p>Get a dedicated Fort Lauderdale mailing address the moment you register — no cost, no commitment.</p>
-            </div>
-        </div>
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-satellite-dish"></i></div>
-            <div>
-                <h4>Real-Time Visibility</h4>
-                <p>GPS tracking from Broward to island delivery with automated status alerts via our portal.</p>
-            </div>
-        </div>
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
-            <div>
-                <h4>Bonded & Insured</h4>
-                <p>Fully licensed freight forwarder and customs broker — your cargo is covered end to end.</p>
-            </div>
-        </div>
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-handshake"></i></div>
-            <div>
-                <h4>Island Network</h4>
-                <p>Established ground partners on every major Caribbean island for reliable last-mile delivery.</p>
-            </div>
-        </div>
-        <div class="why-card">
-            <div class="why-icon"><i class="fas fa-dollar-sign"></i></div>
-            <div>
-                <h4>Transparent Pricing</h4>
-                <p>Competitive rates with no hidden fees — what you're quoted is what you pay.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="shopping">
-    <div class="s-head">
-        <span class="s-tag">Shop the World</span>
-        <h2 class="s-title display">Your <span class="white">Free US</span> Shipping Address</h2>
-        <p class="s-sub">Buy from any US retailer. Ship to our warehouse. We handle customs, consolidation, and final delivery.</p>
-    </div>
-
-    <div class="shop-layout">
-        <div class="shop-left">
-            <p>Shop from the world's largest retailers and have everything shipped to your dedicated ALP Supercool address in Fort Lauderdale. No US credit card? No problem — our team can purchase on your behalf.</p>
-            <div class="brands-cloud">
-                <span class="brand-tag">Amazon</span>
-                <span class="brand-tag">Walmart</span>
-                <span class="brand-tag">Best Buy</span>
-                <span class="brand-tag">Sam's Club</span>
-                <span class="brand-tag">Target</span>
-                <span class="brand-tag">Costco</span>
-                <span class="brand-tag">Temu</span>
-                <span class="brand-tag">SHEIN</span>
-                <span class="brand-tag">Home Depot</span>
-                <span class="brand-tag">Apple Store</span>
-                <span class="brand-tag">Nike</span>
-                <span class="brand-tag">+ Any US Store</span>
-            </div>
-            <a href="#quote" class="btn-gold"><i class="fas fa-user-plus" style="margin-right:0.5rem;"></i>REGISTER FOR FREE</a>
-        </div>
-
-        <div>
-            <div class="address-panel">
-                <span class="panel-tag"><i class="fas fa-warehouse" style="margin-right:0.5rem;"></i>Your US Shipping Address</span>
-                <div class="address-row"><i class="fas fa-user"></i> <strong>Name:</strong> [Your Name / ALP Customer ID]</div>
-                <div class="address-row"><i class="fas fa-map-marker-alt"></i> <strong>Addr:</strong> 3232 SW 2nd Ave, Bay 113</div>
-                <div class="address-row"><i class="fas fa-city"></i> <strong>City:</strong> Fort Lauderdale, FL 33315</div>
-                <div class="address-row"><i class="fas fa-phone"></i> <strong>Phone:</strong> +1 (954) 773-1002</div>
-                <p class="panel-note">Register today to receive your unique ALP customer ID to include with your name on all incoming shipments. Free 7-day storage upon arrival at our warehouse.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="estimator">
-    <div class="s-head">
-        <span class="s-tag">Instant Pricing Tool</span>
-        <h2 class="s-title display">Freight <span class="gold">Cost Estimator</span></h2>
-        <p class="s-sub">Get a ballpark estimate in seconds. Our team will follow up with a binding quote.</p>
-    </div>
-
-    <div class="est-layout">
-        <div class="est-info">
-            <h3>Why Choose<br>ALP Supercool?</h3>
-            <p>Our logistics team will follow up with a binding quote tailored to your exact cargo specifications within one business day.</p>
-            
-            <ul class="benefit-list">
-                <li class="b-item">
-                    <i class="fas fa-anchor b-icon"></i>
-                    <div class="b-text">
-                        <h4>Port Priority Access</h4>
-                        <p>Dedicated berth relationships at Port Everglades</p>
-                    </div>
-                </li>
-                <li class="b-item">
-                    <i class="fas fa-shield-halved b-icon"></i>
-                    <div class="b-text">
-                        <h4>Bonded & Insured</h4>
-                        <p>Fully licensed freight forwarder & customs broker</p>
-                    </div>
-                </li>
-                <li class="b-item">
-                    <i class="fas fa-satellite-dish b-icon"></i>
-                    <div class="b-text">
-                        <h4>Real-Time Visibility</h4>
-                        <p>GPS tracking from Broward to island delivery</p>
-                    </div>
-                </li>
-                <li class="b-item">
-                    <i class="fas fa-handshake b-icon"></i>
-                    <div class="b-text">
-                        <h4>Island Network</h4>
-                        <p>Established partners on every major island</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="est-form-panel">
-            <form id="estimatorForm">
-                <div class="f-group">
-                    <label class="f-label">Destination Island</label>
-                    <select class="f-select" id="destination">
-                        <option value="">Select destination…</option>
-                        <option value="nassau">Nassau, Bahamas (~24 HR)</option>
-                        <option value="kingston">Kingston, Jamaica (~72 HR)</option>
-                        <option value="sanjuan">San Juan, Puerto Rico (~48 HR)</option>
-                        <option value="bridgetown">Bridgetown, Barbados (~96 HR)</option>
-                        <option value="portofspain">Port of Spain, Trinidad (~96 HR)</option>
-                        <option value="stlucia">Castries, St. Lucia (~96 HR)</option>
-                    </select>
-                </div>
-
-                <div class="f-group">
-                    <label class="f-label">Container / Shipment Type</label>
-                    <select class="f-select" id="container">
-                        <option value="">Select type…</option>
-                        <option value="lcl">LCL — Less-than-Container Load</option>
-                        <option value="fcl20">FCL — 20ft Dry Container</option>
-                        <option value="fcl40">FCL — 40ft Standard</option>
-                        <option value="fcl40hc">FCL — 40ft High Cube</option>
-                        <option value="reefer">Reefer (Refrigerated)</option>
-                    </select>
-                </div>
-
-                <div class="f-group">
-                    <label class="f-label">Estimated Cargo Weight</label>
-                    <select class="f-select" id="weight">
-                        <option value="">Select weight range…</option>
-                        <option value="500">Under 500 lbs</option>
-                        <option value="2000">500–2,000 lbs</option>
-                        <option value="10000">2,001–10,000 lbs</option>
-                        <option value="25000">10,001–25,000 lbs</option>
-                        <option value="50000">25,000+ lbs (Full Load)</option>
-                    </select>
-                </div>
-
-                <div class="f-group">
-                    <label class="f-label">Additional Services</label>
-                    <div class="cb-group">
-                        <div class="cb-item">
-                            <input type="checkbox" id="customs" value="customs">
-                            <label for="customs">Customs Brokerage (+$150)</label>
-                        </div>
-                        <div class="cb-item">
-                            <input type="checkbox" id="insurance" value="insurance">
-                            <label for="insurance">Cargo Insurance (+$200)</label>
-                        </div>
-                        <div class="cb-item">
-                            <input type="checkbox" id="warehouse" value="warehouse">
-                            <label for="warehouse">Extended Warehousing (+$100/day)</label>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-calc" onclick="calcEstimate()">
-                    <i class="fas fa-calculator" style="margin-right:0.5rem;"></i>CALCULATE ESTIMATE
-                </button>
-
-                <div class="est-result" id="estResult">
-                    <div class="est-result-label">Estimated Freight Cost</div>
-                    <div class="est-price" id="estPrice">$0.00</div>
-                    <div class="est-note">*Binding quote available upon request — contact our team for exact pricing.</div>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-<section id="quote">
-    <div class="s-head">
-        <span class="s-tag">Get Started</span>
-        <h2 class="s-title display">Initiate a <span class="cyan">Shipment</span></h2>
-        <p class="s-sub">Submit your details and our dispatch team will follow up within one business day.</p>
-    </div>
-
-    <div class="quote-panel">
-        <form id="dispatchForm">
-            <div class="f-row">
-                <div class="f-group">
-                    <label class="f-label">Full Name / Company</label>
-                    <input type="text" class="f-input" id="clientName" placeholder="John Smith / Acme Ltd." required>
-                </div>
-                <div class="f-group">
-                    <label class="f-label">Email Address</label>
-                    <input type="email" class="f-input" id="clientEmail" placeholder="you@company.com" required>
-                </div>
-            </div>
-            <div class="f-row">
-                <div class="f-group">
-                    <label class="f-label">Phone Number</label>
-                    <input type="tel" class="f-input" id="clientPhone" placeholder="+1 (000) 000-0000">
-                </div>
-                <div class="f-group">
-                    <label class="f-label">Service Type</label>
-                    <select class="f-select" id="serviceType">
-                        <option value="air">✈ Air Freight</option>
-                        <option value="ocean">⛵ Ocean Freight</option>
-                        <option value="ground">🚛 Ground Shipping</option>
-                        <option value="consolidation">📦 Shopping / Consolidation</option>
-                        <option value="customs">📋 Customs Brokerage Only</option>
-                    </select>
-                </div>
-            </div>
-            <div class="f-group">
-                <label class="f-label">Shipment Details <span style="opacity:0.5;font-weight:400;">(Origin · Destination · Weight/Dims)</span></label>
-                <textarea class="f-textarea" id="shipmentDetails" placeholder="e.g. Miami, FL → Nassau, Bahamas · 3 boxes · ~40 lbs · Electronics" required></textarea>
-            </div>
-            <button type="submit" class="btn-calc" id="submitBtn" style="background:var(--accent);">
-                <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i>SUBMIT DISPATCH REQUEST
-            </button>
-        </form>
-        <div class="form-success" id="formSuccess">
-            <i class="fas fa-circle-check" style="font-size:1.8rem;display:block;margin-bottom:0.7rem;"></i>
-            Request received — our dispatch team will contact you shortly.
-        </div>
-    </div>
-</section>
-
-<section id="cta">
-    <div class="cta-inner">
-        <span class="s-tag">Ready to Ship?</span>
-        <h2 class="cta-title display">
-            The Caribbean Runs On<br>
-            <span class="cyan">ALP Supercool</span>
-        </h2>
-        <p class="cta-sub">
-            Join hundreds of importers, exporters, and distributors who trust ALP Supercool LLC to keep their Caribbean supply chains moving — with zero disruption and maximum velocity.
-        </p>
-        <div class="hero-btns">
-            <a href="#quote" class="btn btn-primary" style="background:var(--accent);">START YOUR SHIPMENT</a>
-            <a href="#estimator" class="btn btn-secondary" style="border-color:white; color:black;">ESTIMATE FREIGHT COST</a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-grid">
-        <div class="f-brand">
-            <a href="#hero" class="brand-logo">ALP <span>SUPERCOOL</span></a>
-            <p>Caribbean freight authority delivering expedited logistics solutions from Port Everglades to 18+ island destinations. One operator. Zero bottlenecks.</p>
-        </div>
-
-        <div class="f-col">
-            <h5>Quick Links</h5>
-            <ul>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#shopping">Shopping Hub</a></li>
-                <li><a href="#estimator">Estimate</a></li>
-                <li><a href="#quote">Get a Quote</a></li>
-            </ul>
-        </div>
-
-        <div class="f-col">
-            <h5>Contact</h5>
-            <ul>
-                <li><a href="tel:+19547731002">+1 (954) 773-1002</a></li>
-                <li><a href="mailto:info@alpsupercool.com">info@alpsupercool.com</a></li>
-                <li><span>3232 SW 2nd Ave, Bay 113</span></li>
-                <li><span>Fort Lauderdale, FL 33315</span></li>
-            </ul>
-        </div>
-
-        <div class="f-col">
-            <h5>Service Areas</h5>
-            <ul>
-                <li><a href="#quote">Nassau, Bahamas</a></li>
-                <li><a href="#quote">Kingston, Jamaica</a></li>
-                <li><a href="#quote">San Juan, Puerto Rico</a></li>
-                <li><a href="#quote">Bridgetown, Barbados</a></li>
-                <li><a href="#quote">Port of Spain, Trinidad</a></li>
-                <li><a href="#quote">Castries, St. Lucia</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="f-bottom">
-        <p>&copy; 2026 ALP Supercool LLC. All Rights Reserved. | Certified Freight Forwarder | Caribbean Logistics Authority</p>
-        <div class="f-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Cookie Policy</a>
-        </div>
-    </div>
-</footer>
 
 <script>
-    /* Mobile burger toggle */
-    document.getElementById('burgerBtn').addEventListener('click', function() {
-        const drawer = document.getElementById('mobileDrawer');
-        drawer.classList.toggle('open');
-    });
-    
-    /* Close drawer on nav link click */
-    document.querySelectorAll('.mobile-drawer a').forEach(a => {
-        a.addEventListener('click', () => document.getElementById('mobileDrawer').classList.remove('open'));
-    });
+  // ------------------------------------------------------------------
+  //  DICCIONARIO A1-A2 (Español normalizado -> Árabe)
+  //  Todos los términos están dentro del nivel principiante/elemental
+  //  Soporta frases comunes de nivel básico.
+  // ------------------------------------------------------------------
+  const translationMap = new Map([
+    // saludos y cortesía
+    ["hola", "مرحبا"],
+    ["adios", "وداعا"],
+    ["gracias", "شكرا"],
+    ["por favor", "من فضلك"],
+    ["lo siento", "آسف"],
+    ["buenos dias", "صباح الخير"],
+    ["buenas noches", "ليلة سعيدة"],
+    ["como estas", "كيف حالك"],
+    ["bien", "بخير"],
+    ["mal", "سيء"],
+    // sustantivos básicos
+    ["casa", "منزل"],
+    ["perro", "كلب"],
+    ["gato", "قطة"],
+    ["sol", "شمس"],
+    ["luna", "قمر"],
+    ["agua", "ماء"],
+    ["comida", "طعام"],
+    ["rojo", "أحمر"],
+    ["azul", "أزرق"],
+    ["verde", "أخضر"],
+    ["grande", "كبير"],
+    ["pequeño", "صغير"],
+    ["pequeno", "صغير"],   // variante sin acento
+    ["hablar", "تحدث"],
+    ["comer", "أكل"],
+    ["beber", "شرب"],
+    // números básicos (A1)
+    ["uno", "واحد"],
+    ["dos", "اثنان"],
+    ["tres", "ثلاثة"],
+    ["cuatro", "أربعة"],
+    ["cinco", "خمسة"],
+    // verbos comunes / otros
+    ["vivir", "يعيش"],
+    ["trabajo", "عمل"],
+    ["escuela", "مدرسة"],
+    ["amigo", "صديق"],
+    ["familia", "عائلة"],
+    ["feliz", "سعيد"],
+    ["triste", "حزين"],
+    ["rapido", "سريع"],
+    ["lento", "بطيء"],
+    // frases básicas de interacción
+    ["te quiero", "أحبك"],
+    ["buena suerte", "حظ سعيد"],
+    ["de nada", "على الرحب"],
+    ["perdon", "عذراً"]
+  ]);
 
-    /* Smooth scroll */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            const t = document.querySelector(this.getAttribute('href'));
-            if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }); }
-        });
-    });
-
-    /* Tracking */
-    function handleTrack() {
-        const v = document.getElementById('trackInput').value.trim();
-        if (!v) { document.getElementById('trackInput').focus(); return; }
-        alert('Tracking lookup: ' + v + '\n\nConnect to your tracking backend to return live results.');
-    }
-
-    /* Freight estimator */
-    function calcEstimate() {
-        const dest      = document.getElementById('destination').value;
-        const container = document.getElementById('container').value;
-        const weight    = document.getElementById('weight').value;
-
-        if (!dest || !container || !weight) {
-            alert('Please select a Destination, Container Type, and Weight Range.');
-            return;
-        }
-
-        const base = { lcl:499, fcl20:1200, fcl40:2400, fcl40hc:2800, reefer:3500 };
-        let est = base[container] || 0;
-        est += parseInt(weight) * 0.05;
-        if (document.getElementById('customs').checked)   est += 150;
-        if (document.getElementById('insurance').checked) est += 200;
-        if (document.getElementById('warehouse').checked) est += 300;
-
-        document.getElementById('estPrice').textContent = '$' + est.toFixed(2);
-        document.getElementById('estResult').classList.add('show');
-    }
-
-    /* Contact form */
-    document.getElementById('dispatchForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
-
-        const payload = {
-            name:    document.getElementById('clientName').value,
-            email:   document.getElementById('clientEmail').value,
-            phone:   document.getElementById('clientPhone').value,
-            service: document.getElementById('serviceType').value,
-            details: document.getElementById('shipmentDetails').value,
-            ts:      new Date().toISOString()
-        };
-
-        const WEBHOOK = ''; // ← Insert your Make.com / Zapier / Apps Script webhook URL
-
-        if (WEBHOOK) {
-            try {
-                await fetch(WEBHOOK, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
-                showSuccess();
-            } catch (err) {
-                alert('Submission error. Please call +1 (954) 773-1002 directly.');
-                btn.textContent = 'SUBMIT DISPATCH REQUEST';
-                btn.disabled = false;
-            }
-        } else {
-            setTimeout(showSuccess, 700);
-        }
-    });
-
-    function showSuccess() {
-        document.getElementById('dispatchForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-    }
-   
-   async function updateContent() {
-  const API_URL = "https://script.google.com/macros/s/AKfycbylh9Mkk6DnC0xVnEkAdu7NwBOiW1i90UWICG1uGPV2eJ1bEZKGH_wlMLYi-QzeQW5q/exec";
-  
-  try {
-    const response = await fetch(API_URL, {
-    method: 'GET',
-    redirect: 'follow'
-});
-    const data = await response.json();
-    console.log("Data from Sheet:", data); // Check the console to see the actual keys
-    
-    // 1. Match the label "Video_Background" from your screenshot
-    if (data.Video_Background) {
-      const videoElement = document.getElementById('video-background');
-      if (videoElement) {
-          videoElement.src = data.Video_Background;
-          videoElement.load(); // Forces the player to recognize the new source
-      }
-    }
-    
-    // 2. Match the label "Photo_Background" from your screenshot
-    if (data.Photo_Background) {
-      const heroImg = document.getElementById('hero-img');
-      if (heroImg) {
-          heroImg.src = data.Photo_Background;
-      }
-    }
-  } catch (error) {
-    console.error("Content fetch failed:", error);
+  // Función de normalización para español: minúsculas, eliminar acentos,
+  // quitar puntuación (comas, puntos, signos interrogación/exclamación)
+  function normalizeSpanishWord(rawText) {
+    let processed = rawText.trim().toLowerCase();
+    // eliminar signos de puntuación comunes, comillas, paréntesis, etc. Mantener espacios y letras/números
+    processed = processed.replace(/[.,!?¿¡;:'"“”‘’`~@#$%^&*()\[\]{}<>\/\\|]/g, '');
+    // Eliminar acentos y diéresis (para mapear correctamente: "adiós" -> "adios", "cómo" -> "como")
+    const accentMap = {
+      'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+      'ü': 'u', 'ñ': 'n',   // 'ñ' se mantiene como 'ñ' pero es raro en A1/A2; pero lo dejamos
+      'Á': 'a', 'É': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u'
+    };
+    processed = processed.replace(/[áéíóúüÁÉÍÓÚÜ]/g, match => accentMap[match] || match);
+    // eliminar espacios múltiples y trim
+    processed = processed.replace(/\s+/g, ' ').trim();
+    return processed;
   }
-}
 
-window.onload = updateContent;
-   
+  // Verificar y obtener traducción si está dentro del nivel A1-A2
+  function getTranslationOrFilterMessage(userInputRaw) {
+    if (!userInputRaw || userInputRaw.trim() === "") {
+      return { success: false, message: "⚠️ Por favor, ingresa una palabra o frase en español.", arabic: null };
+    }
+    const normalized = normalizeSpanishWord(userInputRaw);
+    if (normalized === "") {
+      return { success: false, message: "⚠️ Entrada no válida después de limpiar caracteres. Escribe una palabra válida.", arabic: null };
+    }
+    
+    // Buscar en el diccionario de nivel A1/A2
+    if (translationMap.has(normalized)) {
+      const arabicTranslation = translationMap.get(normalized);
+      return { success: true, arabic: arabicTranslation, originalNormalized: normalized };
+    } else {
+      // palabra excede nivel A1-A2 (no está incluída en vocabulario básico)
+      return { 
+        success: false, 
+        message: `🚫 Traducción no disponible: “${userInputRaw.trim()}” supera el nivel A1-A2 (o no pertenece al vocabulario básico permitido). El filtro solo permite palabras/frases del rango elemental.`, 
+        arabic: null 
+      };
+    }
+  }
+
+  // Referencias al DOM
+  const inputField = document.getElementById("spanishInput");
+  const translateButton = document.getElementById("translateBtn");
+  const resultContainerDiv = document.getElementById("resultContainer");
+  const translationDisplaySpan = document.getElementById("translationDisplay");
+
+  // Función principal para actualizar UI según resultado
+  function performTranslation() {
+    const rawInput = inputField.value;
+    const result = getTranslationOrFilterMessage(rawInput);
+    
+    // Limpiar clases previas del contenedor de resultado y estilos extra
+    resultContainerDiv.classList.remove("notification-message");
+    translationDisplaySpan.style.fontSize = "1.8rem"; // reset por si acaso
+    translationDisplaySpan.style.fontFamily = "'Amiri', 'Tahoma', serif";
+    
+    if (result.success) {
+      // Traducción exitosa -> mostrar en árabe con estilo claro
+      translationDisplaySpan.innerHTML = `🇸🇦 ${result.arabic}`;
+      translationDisplaySpan.style.color = "#1e3a2f";
+      translationDisplaySpan.style.direction = "rtl";
+      translationDisplaySpan.style.textAlign = "right";
+      translationDisplaySpan.style.fontWeight = "500";
+      // Asegurar que el contenedor vuelva al estilo normal (sin fondo de error)
+      resultContainerDiv.style.background = "#fefcf8";
+      resultContainerDiv.style.borderLeft = "none";
+      // También podemos incluir un pequeño mensaje de éxito oculto
+    } else {
+      // Modo notificación: mostramos el mensaje de filtro / error
+      translationDisplaySpan.innerHTML = `⚠️ ${result.message}`;
+      translationDisplaySpan.style.color = "#b13b2c";
+      translationDisplaySpan.style.fontSize = "1rem";
+      translationDisplaySpan.style.fontFamily = "'Inter', sans-serif";
+      translationDisplaySpan.style.direction = "ltr";
+      translationDisplaySpan.style.textAlign = "left";
+      translationDisplaySpan.style.fontWeight = "500";
+      // agregar estilo de notificación al contenedor principal
+      resultContainerDiv.style.background = "#fff5f2";
+      resultContainerDiv.style.borderLeft = "4px solid #d9534f";
+    }
+  }
+
+  // Eventos
+  translateButton.addEventListener("click", () => {
+    performTranslation();
+  });
+  
+  inputField.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performTranslation();
+    }
+  });
+
+  // Inicializar ejemplos visuales con soporte de prueba / filtro
+  const exampleWords = [
+    { text: "hola", level: "✅ A1" },
+    { text: "gracias", level: "✅ A1" },
+    { text: "casa", level: "✅ A1" },
+    { text: "perro", level: "✅ A1" },
+    { text: "buenos días", level: "✅ A1" },
+    { text: "¿cómo estás?", level: "✅ A2" },
+    { text: "comida", level: "✅ A1" },
+    { text: "desarrollador", level: "❌ FILTRO" },  // palabra avanzada
+    { text: "aeropuerto", level: "❌ FILTRO" },
+    { text: "revolución", level: "❌ FILTRO" }
+  ];
+
+  const chipsContainer = document.getElementById("exampleChips");
+  
+  function buildChips() {
+    chipsContainer.innerHTML = "";
+    exampleWords.forEach(ex => {
+      const chip = document.createElement("div");
+      chip.className = "chip";
+      chip.innerHTML = `${ex.text} <span style="font-size:0.65rem; opacity:0.7;">${ex.level}</span>`;
+      chip.addEventListener("click", () => {
+        // Rellenar el input con el texto mostrado (evitando la etiqueta extra)
+        let rawExample = ex.text;
+        inputField.value = rawExample;
+        performTranslation();  // ejecutar traducción/filtro inmediatamente
+      });
+      chipsContainer.appendChild(chip);
+    });
+    // añadir algunos ejemplos extra de frases detectables
+    const extraPhrases = [
+      { text: "por favor", level: "A1" }, 
+      { text: "te quiero", level: "A1" },
+      { text: "buenas noches", level: "A1" },
+      { text: "lo siento", level: "A1" }
+    ];
+    extraPhrases.forEach(ph => {
+      const chip = document.createElement("div");
+      chip.className = "chip";
+      chip.innerHTML = `${ph.text} <span style="font-size:0.65rem;">✅ ${ph.level}</span>`;
+      chip.addEventListener("click", () => {
+        inputField.value = ph.text;
+        performTranslation();
+      });
+      chipsContainer.appendChild(chip);
+    });
+  }
+  
+  buildChips();
+
+  // Optional: mostrar un mensaje inicial sutil en el resultado con diseño normal
+  // pero esperando al usuario - mantenemos diseño original
+  translationDisplaySpan.innerHTML = "✨ escribe una palabra y pulsa traducir...";
+  translationDisplaySpan.style.color = "#937a54";
+  translationDisplaySpan.style.direction = "ltr";
+  translationDisplaySpan.style.fontSize = "1rem";
+  translationDisplaySpan.style.fontWeight = "400";
+  translationDisplaySpan.style.fontFamily = "'Inter', sans-serif";
+  resultContainerDiv.style.background = "#fefcf8";
+  resultContainerDiv.style.borderLeft = "none";
+
+  // Pequeña mejora: si se hace clic en algún chip extra también se muestra filtrado correctamente
+  // y garantizamos que el filtro comprueba correctamente incluso con mayúsculas, acentos, puntuación
+  // por ejemplo: "¿Cómo estás?" se normaliza a "como estas" ✔️ dentro del diccionario -> muestra traducción.
+  // Verificación manual en el set: "como estas" existe en Map
+  // asegurar que "como estas" ya existe (lo añadimos)
+  if (!translationMap.has("como estas")) {
+    translationMap.set("como estas", "كيف حالك");
+  }
+  if (!translationMap.has("buenos dias")) {
+    translationMap.set("buenos dias", "صباح الخير");
+  }
+  if (!translationMap.has("buenas noches")) {
+    translationMap.set("buenas noches", "ليلة سعيدة");
+  }
+  if (!translationMap.has("te quiero")) {
+    translationMap.set("te quiero", "أحبك");
+  }
+  if (!translationMap.has("de nada")) {
+    translationMap.set("de nada", "على الرحب");
+  }
+  if (!translationMap.has("lo siento")) {
+    translationMap.set("lo siento", "آسف");
+  }
+  if (!translationMap.has("perdon")) {
+    translationMap.set("perdon", "عذراً");
+  }
+  if (!translationMap.has("por favor")) {
+    translationMap.set("por favor", "من فضلك");
+  }
+  // Asegurar también pequeña frase "buena suerte"
+  if (!translationMap.has("buena suerte")) {
+    translationMap.set("buena suerte", "حظ سعيد");
+  }
+  if (!translationMap.has("trabajo")) {
+    translationMap.set("trabajo", "عمل");
+  }
+  if (!translationMap.has("escuela")) {
+    translationMap.set("escuela", "مدرسة");
+  }
+  if (!translationMap.has("amigo")) {
+    translationMap.set("amigo", "صديق");
+  }
+  if (!translationMap.has("familia")) {
+    translationMap.set("familia", "عائلة");
+  }
+  if (!translationMap.has("feliz")) {
+    translationMap.set("feliz", "سعيد");
+  }
+  if (!translationMap.has("triste")) {
+    translationMap.set("triste", "حزين");
+  }
+  // garantizar que 'pequeno' y 'pequeño' funcionan, pero ya en el map existe peque
+  console.log("Prototipo listo: filtro de nivel A1-A2 activo");
 </script>
-
 </body>
 </html>
