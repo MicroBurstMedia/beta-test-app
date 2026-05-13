@@ -1,1924 +1,1148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<title>W3Schools Tryit Editor</title>
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="https://www.w3schools.com/images/w3schools_logo_436_2.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="436">
+<meta property="og:image:height" content="228">
+<meta property="og:title" content="W3Schools online HTML editor">
+<meta property="og:description" content="The W3Schools online code editor allows you to edit code and view the result in your browser">
+<link rel="stylesheet" href="/lib/w3schools.css?v=1.0.1">
+<link rel="icon" href="https://www.w3schools.com/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest" crossorigin="use-credentials">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#04aa6d">
+<meta name="msapplication-TileColor" content="#00a300">
+<meta name="theme-color" content="#ffffff">
+<link rel='stylesheet' href='/lib/codemirror.css'>
+<script src='/lib/codemirror.js'></script>
+<script src='/lib/codemirror_jsx.js'></script>
 
-        gtag('config', 'G-B933Q59SFQ');
-    </script>
+<link rel="stylesheet" href="/lib/sparteo.css?v=1.0.5">
+<script data-cfasync=false data-no-optimize=1 data-wpmeteor-nooptimize=true nowprocket>window.FAST_CMP_OPTIONS={domainUid:"849c868d-5fd6-58f9-8963-b1468ae3b279",countryCode:"NO",jurisdiction:"tcfeuv2",customOpener: true,policyUrl:"https://www.w3schools.com/about/about_privacy.asp",displaySynchronous:!1,publisherName:"W3Schools",publisherLogo:function(r){return r.createElement("img",{src:"https://www.w3schools.com/images/w3schools_logo_500_04AA6D.webp",height:"40"})},bootstrap:{excludedIABVendors:[],excludedGoogleVendors:[]},custom:{vendors:[]},},function(){var o={484:function(r){window.FAST_CMP_T0=Date.now(),window.FAST_CMP_QUEUE={},window.FAST_CMP_QUEUE_ID=0,r.exports={name:"light",handler:function(){var r=Array.prototype.slice.call(arguments);if(!r.length)return Object.values(window.FAST_CMP_QUEUE);"ping"===r[0]?"function"==typeof r[2]&&r[2]({cmpLoaded:!1,cmpStatus:"stub",apiVersion:"2.0",cmpId:parseInt("388",10)}):window.FAST_CMP_QUEUE[window.FAST_CMP_QUEUE_ID++]=r}}}},n={};function e(r){return(e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(r){return typeof r}:function(r){return r&&"function"==typeof Symbol&&r.constructor===Symbol&&r!==Symbol.prototype?"symbol":typeof r})(r)}var r,a=function r(e){var a=n[e];if(void 0!==a)return a.exports;var t=n[e]={exports:{}};return o[e](t,t.exports,r),t.exports}(484),i="__tcfapiLocator",c=window,t=c;for(;t;){try{if(t.frames[i]){r=t;break}}catch(o){}if(t===c.top)break;t=t.parent}if("custom"!==c.FAST_CMP_HANDLER)for(var s in r?(c.__tcfapi=a.handler,c.FAST_CMP_HANDLER=a.name):(function r(){var e=c.document,a=!!c.frames[i];if(!a)if(e.body){var t=e.createElement("iframe");t.style.cssText="display:none",t.name=i,e.body.appendChild(t)}else setTimeout(r,5);return!a}(),c.__tcfapi=a.handler,c.FAST_CMP_HANDLER=a.name,c.addEventListener("message",function(t){var o="string"==typeof t.data,r={};if(o)try{r=JSON.parse(t.data)}catch(t){}else r=t.data;var n="object"===e(r)?r.__tcfapiCall:null;n&&window.__tcfapi(n.command,n.version,function(r,e){var a={__tcfapiReturn:{returnValue:r,success:e,callId:n.callId}};t&&t.source&&t.source.postMessage&&t.source.postMessage(o?JSON.stringify(a):a,"*")},n.parameter)},!1)),window.FAST_CMP_QUEUE||{})c.__tcfapi.apply(null,window.FAST_CMP_QUEUE[s])}()</script>
+<script data-cfasync=false data-no-optimize=1 data-wpmeteor-nooptimize=true nowprocket async charset=UTF-8 src=https://static.fastcmp.com/fast-cmp-stub.js></script>
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KTCFC3S');
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Marketing Network | MicroBurstMedia</title>
-    <meta name="description" content="Optimize your business with AI Automation. Done for you by Digital Marketing Network, MicroBurstMedia.">
-    <link rel="icon" type="image/x-icon" href="https://cdn.launchcart.com/s47561/1695846294-bb2c7ca6-3563-4ba6-a820-11297c768cd2-thumb.png"> 
+var subjectFolder = location.pathname;
+subjectFolder = subjectFolder.replace("/", "");
+if (subjectFolder.startsWith("python/") == true ) {
+  if (subjectFolder.includes("/numpy/") == true ) {
+    subjectFolder = "numpy/"
+  } else if (subjectFolder.includes("/pandas/") == true ) {
+      subjectFolder = "pandas/"
+  } else if (subjectFolder.includes("/scipy/") == true ) {
+      subjectFolder = "scipy/"
+  }
+}
+subjectFolder = subjectFolder.substr(0, subjectFolder.indexOf("/"));
+</script>
+<!-- End Google Tag Manager -->
+<script src="/lib/uic.js?v=1.1.0"></script>
+<script src="/lib/uic_prov.js?v=1.4.9"></script>
+<script data-cfasync="false" type="text/javascript">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "MicroBurstMedia",
-        "url": "https://microburstmedia.github.io/digital-marketing-network/",
-        "logo": "https://cdn.launchcart.com/s47561/1695846294-bb2c7ca6-3563-4ba6-a820-11297c768cd2-thumb.png",
-        "description": "Digital Marketing Network AI Automation Support Services."
+uic_prov_pre("tryit","",subjectFolder);
+if (window.addEventListener) {              
+    window.addEventListener("resize", browserResize);
+} else if (window.attachEvent) {                 
+    window.attachEvent("onresize", browserResize);
+}
+var xbeforeResize = window.innerWidth;
+
+function browserResize() {
+    var afterResize = window.innerWidth;
+    if ((xbeforeResize < (970) && afterResize >= (970)) || (xbeforeResize >= (970) && afterResize < (970)) ||
+        (xbeforeResize < (728) && afterResize >= (728)) || (xbeforeResize >= (728) && afterResize < (728)) ||
+        (xbeforeResize < (468) && afterResize >= (468)) ||(xbeforeResize >= (468) && afterResize < (468))) {
+        xbeforeResize = afterResize;
+        uic_prov_run();
     }
-    </script>
-
-    <style>
-    /* ==========================================================================
-       MBMN MASTER STYLESHEET
-       ========================================================================== */
-
-    /* --------------------------------------------------------------------------
-       1. GLOBAL VARIABLES & RESETS
-       -------------------------------------------------------------------------- */
-    :root {
-        --bg-dark: #0f172a !important; 
-        --bg-alt: #1e293b !important;  
-        --accent-blue: #3b82f6 !important; 
-        --accent-yellow: #eec242 !important; /* Glamour Yellow */
-        --text-primary: #ffffff !important;
-        --text-muted: #ffffff !important;
-        --border-color: rgba(255, 255, 255, 0.1) !important;
-        --glass-bg: rgba(15, 23, 42, 0.8) !important; /* Glamour Glass Base */
+    if (window.screen.availWidth <= 768) {
+      restack(window.innerHeight > window.innerWidth);
     }
+    fixDragBtn();
+    showFrameSize();  
+  
+      
+}
+var fileID = "";
+</script>
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  color:#000000;
+  margin:0px;
+  font-size:100%;
+}
+.trytopnav {
+  height:48px;
+  overflow:hidden;
+  min-width:380px;
+  position:absolute;
+  width:100%;
+  top:99px;
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  background-color:#E7E9EB;
+}
+.topnav-icons {
+  margin-right:8px;
+}
+.trytopnav a,.trytopnav button {
+  color:#999999;
+}
+.w3-bar .w3-bar-item:hover {
+  color:#757575 !important;
+}
+a.w3schoolslink {
+  padding:0 !important;
+  display:inline !important;
+}
+a.w3schoolslink:hover,a.w3schoolslink:active {
+  text-decoration:underline !important;
+  background-color:transparent !important;
+}
+#dragbar{
+  position:absolute;
+  cursor: col-resize;
+  z-index:3;
+  padding:5px;
+}
+#shield {
+  display:none;
+  top:0;
+  left:0;
+  width:100%;
+  position:absolute;
+  height:100%;
+  z-index:4;
+}
+#framesize {
+  font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+}
+#container {
+  background-color:#E7E9EB;
+  width:100%;
+  overflow:auto;
+  position:absolute;
+  top:144px;
 
-    body {
-        background-color: var(--bg-dark);
-        color: var(--text-primary);
-        font-family: sans-serif;
-    }
+  bottom:0;
+  height:auto;
+}
+#textareacontainer, #iframecontainer {
+  float:left;
+  height:100%;
+  width:50%;
+}
 
-    /* --------------------------------------------------------------------------
-       2. UTILITIES & SPACING
-       -------------------------------------------------------------------------- */
-    .mbm-padding-global {
-        padding: 0 5%; /* Gives edge breathing room on all screens */
-    }
+#textarea, #textarea2, #iframe {
+  height:100%;
+  width:100%;
+  padding-bottom:10px;
+  padding-top:1px;
+}
+#textarea {
+  padding-left:10px;
+  padding-right:5px;  
+}
+#iframe {
+  padding-left:5px;
+  padding-right:10px;  
+  position:relative;  
+  
+}
+#textareawrapper {
+  width:100%;
+  height:100%;
+  
+  overflow:auto;
+  
+  background-color: #ffffff;
+  position:relative;
+  
+    box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
+}
+#iframewrapper {
+  width:100%;
+  height:100%;
+  -webkit-overflow-scrolling: touch;
+  background-color: #ffffff;
+  
+    box-shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  
+}
+#textareaCode, #textareaCode2 {
+  background-color: #ffffff;
+  font-family: consolas,Menlo,"courier new",monospace;
+  font-size:15px;
+  height:100%;
+  width:100%;
+  padding:8px;
+  resize: none;
+  border:none;
+  line-height:normal;    
+}
+/*
+  .localhostcontainer {
+    position:absolute;
+    width:auto;
+    right:0;
+    left:0;
+    z-index:2;
+    padding:4px 12px;
+    border-bottom:1px solid #d9d9d9;
+    background-color:#E7E9EB;
+  }
+  .localhostdiv {
+    overflow:hidden;
+    font-family:arial;
+    border:1px solid #d9d9d9;
+    background-color:#fff;
+    font-size:14px;
+    padding-left:10px;
+  }
+*/
 
-    .mbm-container-large {
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
-    }
+.localhostoutercontainer {
+  position: absolute;
+  width: auto;
+  left:5px;
+  right:10px;
+  background-color: #E7E9EB;
+  height: 30px;
+  z-index: 9;
+}
+.localhostoutercontainer.horizontal {
+  left:10px;
+}
+.localhostcontainer {
+  position:relative;
+  width:auto;
+  right:0;
+  left:0;
+  z-index:2;
+  xpadding:6px 12px;
+  xxborder-bottom:1px solid #d9d9d9;
+  background-color:#F1F1F1;
+  background-color:#38444d;
+  border-top-right-radius:10px;
+  border-top-left-radius:10px;
+  overflow:hidden;
+  padding-top:4px;
+}
+.localhostdiv {
+  overflow:hidden;
+  font-family:arial;
+  color:#000;
+  background-color:#fff;
+  font-size:15px;
+  padding-left:10px;
+  border-radius:20px;
+  width:60%;
+  float:left;
+  font-family: consolas,Menlo,"courier new",monospace;  
+}
+.localhostbuttoncontainer {
+  width:20%;
+  min-width:100px;
+  color:#ffc107;
+  float:left;  
+  font-size:16px;
+  overflow:auto;
+}
+div.localhostbuttoncontainer span{
+  display:inline-block;
+  color:#ffc107;
+  position:relative;
+  padding-bottom:4px;
+  padding-left:2px;  
+}
 
-    .spacer-small { height: 24px; }
-    .spacer-medium { height: 48px; }
-    .spacer-large { height: 80px; }
-    .spacer-huge { height: 120px; }
+div.localhostbuttoncontainer span:first-child{
+  color:#dc3545;
+  padding-left:12px;
 
-    /* --------------------------------------------------------------------------
-       3. BUTTONS
-       -------------------------------------------------------------------------- */
-    .btn { 
-        display: inline-block; 
-        padding: 14px 28px; 
-        border-radius: 50px; 
-        font-weight: 700; 
-        text-transform: uppercase; 
-        transition: all 0.2s; 
-        cursor: pointer; 
-        text-decoration: none; 
-        font-size: 0.85rem; 
-        border: none; 
-        text-align: center; 
-    }
+}
+div.localhostbuttoncontainer span:last-child{
+  color:#04AA6D;
+  padding-left:2px;    
+}
+
+body.darktheme .localhostoutercontainer {
+  background-color: #38444d;
+}
+body.darktheme .localhostcontainer {
+  background-color:rgb(21,32,43)
+}
+
+body.darktheme .localhostdiv {
+  border:1px solid #595959;
+  background-color:#ffffff;
+}
+
+/**/
+
+
+  #filenamecontainer {
+    position:absolute;
+    text-align:center;
+    z-index:4;
+    width:100%;
+  }
+  #filenamecontainer span {
+    opacity:0.9;
+    padding:1px 6px;
+    font-family:Consolas;
+    background-color:#E7E9EB;
+    font-size:16px;
+  }
+  body.darktheme #filenamecontainer span {
+    background-color:#555555;
+    color:#E7E9EB;
+  }
+
+.CodeMirror.cm-s-default {
+  line-height:normal;
+  padding: 4px;
+  
+  height:100%;
+  width:100%;
+}
+
+#iframeResult, #iframeSource {
+  background-color: #ffffff;
+  
+  
+  height:100%;
+  width:100%;  
+}
+
+#stackV {background-color:#999999;}
+#stackV:hover {background-color:#BBBBBB !important;}
+#stackV.horizontal {background-color:transparent;}
+#stackV.horizontal:hover {background-color:#BBBBBB !important;}
+#stackH.horizontal {background-color:#999999;}
+#stackH.horizontal:hover {background-color:#999999 !important;}
+#textareacontainer.horizontal,#iframecontainer.horizontal{
+  height:50%;
+  float:none;
+  width:100%;
+}
+
+
+#textarea.horizontal{
+  height:100%;
+  padding-left:10px;
+  padding-right:10px;
+}
+#iframe.horizontal{
+  height:100%;
+  padding-right:10px;
+  padding-bottom:10px;
+  padding-left:10px;  
+}
+#container.horizontal{
+  min-height:200px;
+  margin-left:0;
+}
+#tryitLeaderboard {
+  overflow:hidden;
+  text-align:center;
+  margin-top:5px;
+  height:90px;
+}
+.w3-dropdown-content {width:350px}
+
+#breadcrumb ul {
+  font-family:'Montserrat', 'Source Sans Pro', sans-serif;
+  list-style: none;
+  display: inline-table;
+  padding-inline-start: 1px;
+  font-size: 12px;
+  margin-block-start: 6px;
+  margin-block-end: 6px;	
+}
+#breadcrumb li {
+  display: inline;
+}
+#breadcrumb a {
+  float: left;
+  background: #E7E9EB;
+  padding: 3px 10px 3px 20px;
+  position: relative;
+  margin: 0 5px 0 0; 
+  text-decoration: none;
+  color: #555;
+}
+#breadcrumb a:after {
+  content: "";  
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #E7E9EB;
+  position: absolute; 
+  right: -12px;
+  top: 0;
+  z-index: 1;
+}
+#breadcrumb a:before {
+  content: "";  
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid #fff;
+  position: absolute; 
+  left: 0; 
+  top: 0;
+}
+#breadcrumb ul li:first-child a:before {
+  display: none; 
+}
+#breadcrumb ul:last-child li{
+  padding-right: 5px;
+}
+#breadcrumb ul li a:hover {
+  background: #04AA6D;
+  color:#fff;
+}
+#breadcrumb ul li a:hover:after {
+  border-left-color: #04AA6D;
+  color:#fff;
+}
+#breadcrumb li:last-child {
+  display: inline-block!important;
+  margin-top: 3px!important;
+}
+#runbtn {
+  background-color:#04AA6D;
+  color:white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:18px;
+  padding:6px 25px;
+  margin-top:3px;
+  border-radius:5px;
+  word-spacing:10px;
+}
+#runbtn:hover {
+  background-color: #059862 !important;
+  color:white!important;
+}
+#getwebsitebtn {
+  background-color:#04AA6D;
+  font-family: 'Source Sans Pro', sans-serif;  
+  color: white;
+  font-size: 18px;
+  padding:6px 15px;
+  margin-top:3px;
+  margin-right: 10px;
+  display: block;
+  float: right;
+  border-radius: 5px;
+}
+#getwebsitebtn:hover {
+  background-color: #059862 !important;
+  color:white!important;
+}
+
+@media screen and (max-width: 727px) {
+  #breadcrumb {display:none;}
+  #tryhome  {display:block;}
+}
+@media screen and (max-width: 467px) {
+  .w3-dropdown-content {width:100%}
+}
+@media only screen and (max-device-width: 768px) {
+  #iframewrapper {overflow: auto;}
+  #container     {min-width:310px;}
+  .stack         {display:none;}
+  #tryhome       {display:block;}
+  .trytopnav     {min-width:310px;}  
+}
+
+#iframewrapper {
+	
+}
+
+/*
+  .tabs-container {
+  height:100%;
+  overflow:auto;
+  }
+  .tabs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color:#E7E9EB;
     
-    .btn-primary { 
-        background: linear-gradient(135deg, var(--accent-blue), #2563eb); 
-        color: white; 
-    }
-    
-    .btn-outline { 
-        border: 2px solid var(--accent-blue); 
-        background: transparent; 
-        color: white; 
-    }
-    
-    .btn:hover { 
-        transform: translateY(-3px); 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
-    }
-
-    /* --------------------------------------------------------------------------
-       4. HEADER & NAVIGATION
-       -------------------------------------------------------------------------- */
-    header {
-        position: relative;
-        top: 0;
-        z-index: 9999;
-        width: 100%;
-    }
-
-    /* Top Tier: The Alert Bar */
-    .header-top-tier {
-        background-color: var(--accent-yellow);
-        color: var(--bg-dark); 
-        padding: 8px 5%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        font-size: 13px;
-        font-weight: 700;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    /* Center-stacked Main Tier */
-    .header-main-tier {
-        background-color: var(--glass-bg);
-        backdrop-filter: blur(12px); 
-        -webkit-backdrop-filter: blur(12px);
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column; 
-        align-items: center;    
-        gap: 20px;              
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .z-logo-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-    }
-
-    .z-logo-group:hover {
-        transform: scale(1.05);
-    }
-
-    .nav-logo-img {
-        height: 35px;
-        width: auto;
-        object-fit: contain;
-    }
-
-    .logo-text {
-        color: white;
-        font-weight: 800;
-        font-size: 1.25rem;
-        letter-spacing: 0.5px;
-    }
-
-    .z-nav-section {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; 
-        gap: 30px;
-        margin-left: 0; 
-    }
-
-    .z-nav-link {
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: color 0.3s;
-    }
-    
-    .z-nav-link:hover {
-        color: var(--accent-yellow);
-    }
-
-    .timer-link {
-        background: var(--accent-blue);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 12px;
-        text-transform: uppercase;
-        transition: transform 0.2s ease;
-    }
-
-    .timer-link:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-    }
-
-    /* --------------------------------------------------------------------------
-       5. HERO SECTION & KODAK STACK
-       -------------------------------------------------------------------------- */
-    .hero { 
-        padding: 40px 0 60px; 
-        text-align: center; 
-        background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 70%); 
-    }
-    .hero h1 { 
-        font-size: clamp(2rem, 5vw, 3.5rem); 
-        margin-bottom: 20px; 
-        max-width: 850px; 
-        margin-left: auto; 
-        margin-right: auto; 
-        line-height: 1.3; 
-    }
-    .hero p { 
-        color: var(--text-muted); 
-        max-width: 700px; 
-        margin: 0 auto; 
-        font-size: 1.2rem; 
-    } 
-
-    .novo-hero {
-        padding: 60px 20px; /* Reduced from 120px */
-        text-align: center;
-        background-color: var(--bg-dark);
-    }
-
-    .novo-main-title {
-    font-size: 3.5rem;
-    color: white;
-    font-weight: 700;
-    margin-bottom: 0px;
-    margin-top: 0px; /* Reset this to 0 now that padding is reduced */
-    line-height: 1.1;
-    }
-
-    .novo-rotator-wrapper {
-        position: relative;
-        height: 4.5rem;
-        overflow: hidden;
-        margin-top: 5px;   /* Small gap between "Automated for" and the rotating words */
-        margin-bottom: 15px; /* Controls the space between the words and the subtitle */
-    }
-
-    .novo-rotating-word {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 0;
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: var(--accent-blue);
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
-    }
-
-    .novo-rotating-word.active {
-        opacity: 1;
-        transform: translate3d(0, 0%, 0);
-    }
-
-    .novo-rotating-word.exit {
-        opacity: 0;
-        transform: translate3d(0, -100%, 0);
-    }
-
-    .novo-subtitle {
-        max-width: 600px;
-        font-size: 1.25rem;
-        color: var(--text-muted);
-        line-height: 1.5;
-        margin-bottom: 20px; /* Reduces the gap between the text and the Kodak Slider */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .novo-cta-button {
-        display: inline-block;
-        background-color: var(--accent-blue);
-        color: white;
-        padding: 16px 32px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: background 0.3s ease;
-    }
-
-    .novo-cta-button:hover {
-        filter: brightness(1.1);
-    }
-
-    /* Kodak Stack Styles */
-    .mbm-kodak-wrapper {
-    width: 100%;
-    max-width: 800px;
-    margin: 10px auto; /* Reduced from 40px */
-    min-height: 450px;
-    align-items: center;
-    position: relative;
-    height: 450px;
-    margin-top: 10px;  /* Reduced from 50px to snap it closer to the text */
-    display: flex;
-    justify-content: center;
-    perspective: 1000px;
-}
-    
-    /* Styling the cover specifically as a Kodak card */
-.slider-cover-card {
-    z-index: 100; /* Ensures it stays on top initially */
-    background: var(--bg-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.slider-cover-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* This class will be added by JS to 'open' the cover */
-.slider-cover-card.revealed {
-    opacity: 0;
-    transform: scale(1.05); /* Slight zoom out effect as it disappears */
-    pointer-events: none;
-    transition: all 0.8s ease-in-out;
-}
-
-    .mbm-kodak-stack {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        height: 100%;
-    }
-
-    .mbm-kodak-item {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        z-index: 1;
-        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        transform: translate3d(0, 50px, 0) rotate(12deg);
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .mbm-kodak-item.active {
-        opacity: 1;
-        z-index: 10;
-        transform: translate3d(0, 0, 0) rotate(0deg);
-    }
-
-    .mbm-kodak-item.next {
-        opacity: 0.4;
-        z-index: 5;
-        transform: translate3d(20px, 10px, -50px) rotate(-6deg);
-    }
-
-    .mbm-main-img {
-        width: 100%;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    .mbm-ui-overlay {
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        opacity: 0;
-        transition: all 0.6s ease 0.3s; 
-    }
-
-    .mbm-kodak-item.active .mbm-ui-overlay {
-        opacity: 1;
-        bottom: 10px;
-    }
-
-    /* --------------------------------------------------------------------------
-       6. MBMN BENTO GRID
-       -------------------------------------------------------------------------- */
-    .mbm-bento-section {
-        padding-bottom: 80px; 
-    }
-
-    .mbm-bento-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 30px;
-        width: 100%;
-        margin-bottom: 100px; 
-    }
-
-    .mbm-bento-card {
-        background-color: var(--bg-alt);
-        border: 1px solid var(--border-color);
-        border-radius: 24px; 
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .mbm-bento-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    .mbm-bento-card .bento-eyebrow {
-        text-align: left !important;
-        justify-content: flex-start !important;
-        display: flex;
-        color: var(--accent-blue);
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
-    }
-
-    .mbm-bento-card .bento-title {
-        text-align: left !important; /* Forces left-align even if hero is centered */
-        font-size: 1.8rem;
-        color: var(--text-primary);
-        font-weight: 800;
-        margin-bottom: 15px;
-        line-height: 1.2;
-        display: block;
-        width: 100%;
-    }
-
-    .mbm-bento-card .bento-desc {
-        text-align: left !important;
-        color: var(--text-muted);
-        font-size: 1.05rem;
-        line-height: 1.5;
-        flex-grow: 1; 
-        margin-bottom: 30px;
-        display: block;
-        width: 100%;
-    }
-
-    .bento-link {
-        color: var(--text-primary);
-        text-decoration: none;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: color 0.2s;
-    }
-
-    .bento-link:hover {
-        color: var(--accent-blue);
-    }
-
-    .bento-image-container {
-        width: 100%;
-        height: 200px; 
-        background-color: rgba(15, 23, 42, 0.5); 
-        border-radius: 12px;
-        margin-bottom: 25px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .bento-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-        transition: transform 0.5s ease;
-    }
-
-    .mbm-bento-card:hover .bento-image-container img {
-        transform: scale(1.08); 
-    }
-
-    /* --------------------------------------------------------------------------
-       7. HORIZONTAL & SERVICE SLIDERS
-       -------------------------------------------------------------------------- */
-    .hz-slider-section {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        justify-content: center;
-        padding: 60px 0;
-    }
-
-    .hz-slider-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .hz-slider-window {
-        width: 95%;
-        max-width: 1100px;
-        overflow: hidden; 
-        position: relative;
-    }
-
-    .hz-slider-track {
-        display: flex;
-        gap: 20px;
-        transition: transform 0.5s ease-out;
-        will-change: transform;
-    }
-
-    #hzTrack {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        will-change: transform; 
-    }
-
-    .hz-stage {
-        display: flex;
-        align-items: center; 
-        gap: 40px; 
-        width: 100%;
-        justify-content: center;
-    }
-
-    .hz-slider-viewport {
-        width: 500px; 
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-        border-radius: 24px;
-        position: relative;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    .hz-track {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .hz-card {
-        flex: 0 0 100%; 
-        height: 100%;
-        position: relative;
-        border-radius: 24px;
-        overflow: hidden;
-        scroll-snap-align: center;
-    }
-
-    .service-card-inner {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-
-    .service-card-inner img, .hz-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-        display: block;
-    }
-
-    .card-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 40px 30px; 
-        background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 80%);
-        color: white;
-    }
-
-    .card-overlay h3 {
-        font-size: 2rem; 
-        font-weight: 800;
-    }
-
-    .card-overlay p {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        margin-bottom: 10px;
-    }
-
-    .card-overlay .hz-cta {
-        align-self: flex-start;
-        padding: 10px 20px;
-        background: var(--accent-blue);
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 13px;
-        text-transform: uppercase;
-    }
-
-    .hz-nav-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.5rem;
-        backdrop-filter: blur(10px);
-        transition: 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .hz-nav-btn:hover {
-        background: #3b82f6;
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-    }
-
-    .hz-dots-container {
-        margin-bottom: 20px; 
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-    }
-
-    .hz-controls-row {
-        margin-top: 25px;
-        display: flex;
-        gap: 40px; 
-        justify-content: center;
-        width: 100%;
-    }
-
-    .hz-media-side img, .hz-media-side video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; 
-    }
-
-    /* --------------------------------------------------------------------------
-       8. AUTOMATION REQUEST FORM (THE GLASS FORM LAYOUT FIX)
-       -------------------------------------------------------------------------- */
-    /* THE FIX: Force Centering and 16:9 Scale */
-.contact-section .glass-form {
-    display: block !important;    /* Breaks out of any side-by-side grids */
-    width: 95% !important;        /* Responsive width */
-    max-width: 950px !important;  /* The "Cinematic" horizontal limit */
-    margin: 40px auto !important; /* FORCES centering on the page */
-    padding: 0; 
-    padding-bottom: 40px; 
-    background: rgba(15, 23, 42, 0.8); 
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    overflow: hidden; 
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-}
-
-/* Ensures the video header keeps the 16:9 ratio within the form */
-.glass-form .ad-media {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Force 16:9 Ratio */
-    height: 0;
-    margin-bottom: 30px;
-    background: #000;
-}
-
-.glass-form .ad-media iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Centers the text and buttons inside the widened form */
-.glass-form h3, 
-.glass-form p, 
-.glass-form .cta-button-group {
-    padding-left: 10%;
-    padding-right: 10%;
-    text-align: center;
-}
-
-/* Cinematic Video Header */
-.ad-media {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-    margin-bottom: 30px;
-    background: #000;
-}
-
-.ad-media iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Side-by-Side Buttons */
-.cta-button-group { 
-    display: flex !important; 
-    flex-direction: row !important; 
-    gap: 15px; 
-    justify-content: center; 
-    margin-top: 20px; 
-}
-
-/* Isolated Section Styling */
-.test-automation-isolated-section {
-    width: 100%;
-    padding: 100px 0;
-    display: flex;
-    justify-content: center;
-    background: transparent;
-}
-
-.automation-wide-wrapper {
-    width: 95%;
-    max-width: 1000px; /* This creates the wide 16:9 feel */
-    text-align: center;
-}
-
-.section-title {
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-}
-
-/* The Cinematic Glass Card */
-.glass-form-cinematic {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-}
-
-/* Force 16:9 for the video at the top */
-.ad-media-cinematic {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Ratio */
-    height: 0;
-    background: #000;
-}
-
-.ad-media-cinematic iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.form-content-area {
-    padding: 50px 40px;
-}
-
-.form-content-area h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.form-content-area p {
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
-
-@media (max-width: 600px) {
-    .cta-button-group {
-        flex-direction: column !important;
-    }
-}
-
-    /* --------------------------------------------------------------------------
-       9. NEWS SECTION
-       -------------------------------------------------------------------------- */
-    #news-section {
-        padding: 80px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: transparent !important; 
-        background-color: #0f172a !important; 
-        width: 100%;
-        min-height: 300px; 
-    }
-
-    .news-container-box {
-        width: 100%;
-        max-width: 850px; 
-        min-height: 220px;
-        position: relative;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 50px 40px;
-        background: rgba(255, 255, 255, 0.03) !important; 
-        backdrop-filter: blur(20px); 
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1); 
-        border-radius: 30px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-    }
-
-    .news-container-box::before {
-        display: none !important;
-    }
-        
-    .news-container-box::after {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        border-radius: 30px;
-        padding: 1px;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), transparent, rgba(139, 92, 246, 0.4));
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-    }
-
-    .news-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        animation: fadeIn 1s ease-out;
-    }
-
-    .news-tag {
-        display: inline-block;
-        text-transform: uppercase;
-        font-weight: 900;
-        font-size: 0.7rem;
-        padding: 6px 16px;
-        border-radius: 50px;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .rotator-text {
-        font-size: clamp(1.4rem, 4vw, 2.2rem) !important;
-        line-height: 1.2;
-        color: #ffffff;
-        font-weight: 800;
-        margin: 20px 0;
-        text-shadow: 0 2px 15px rgba(0,0,0,0.6);
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --------------------------------------------------------------------------
-       10. FOOTER & SOCIALS
-       -------------------------------------------------------------------------- */
-    footer { 
-        background: #0f172a; 
-        color: var(--text-muted); 
-        text-align: center; 
-        padding: 60px 20px; 
-        border-top: 1px solid rgba(255,255,255,0.05); 
-    }
-    
-    footer a { color: #60a5fa; text-decoration: none; margin: 0 5px; cursor: pointer; }
-    
-    .footer-social-row { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-    
-    .social-icon { 
-        width: 40px; height: 40px; 
-        background: rgba(255,255,255,0.05); 
-        border-radius: 10px; 
-        display: flex; align-items: center; justify-content: center; 
-        transition: all 0.3s; 
-    }
-    
-    .social-icon svg { fill: #94a3b8; width: 20px; height: 20px; transition: fill 0.3s; }
-    .social-icon:hover { transform: translateY(-5px); }
-    .social-icon:hover svg { fill: #fff; }
-
-    /* BRAND COLORS */
-    .si-pinterest:hover { background: #BD081C; }
-    .si-facebook:hover { background: #1877F2; }
-    .si-youtube:hover { background: #FF0000; }
-    .si-instagram:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-    .si-tiktok:hover { background: #000; border: 1px solid #ff0050; }
-    .si-bluesky:hover { background: #0560ff; }
-    .si-threads:hover { background: #000; }
-    .si-tumblr:hover { background: #35465c; }
-    .si-x:hover { background: #000; }
-
-    /* --------------------------------------------------------------------------
-       11. MODALS & UI ELEMENTS
-       -------------------------------------------------------------------------- */
-    .modal-overlay { 
-        position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; 
-        justify-content: center; align-items: center; z-index: 2000; opacity: 0; 
-        pointer-events: none; transition: 0.3s; 
-    }
-    
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
-    
-    .modal-content { 
-        background: var(--bg-card); padding: 40px; border-radius: 20px; 
-        max-width: 500px; width: 90%; text-align: center; border: 1px solid var(--accent); 
-    }
-
-    #scrollTopBtn {
-        position: fixed;
-        bottom: 30px;
-        right: 100px;
-        width: 50px;
-        height: 50px;
-        background: var(--accent-blue);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        padding: 0;
-        cursor: pointer;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        border: none;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    #scrollTopBtn.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .chat-btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 8px 15px;
-        background: var(--accent-blue);
-        color: white !important;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 0.8rem;
-        text-align: center;
-    }
-
-    /* --------------------------------------------------------------------------
-   12. MOBILE RESPONSIVENESS (CONSOLIDATED)
-   -------------------------------------------------------------------------- */
-
-/* Desktop Base State for Toggle & Logos */
-.mobile-menu-toggle {
-    display: none; 
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-    padding: 10px;
-}
-
-.mobile-menu-toggle span {
+  }
+  .tab {
+    padding: 5px 10px;
+    background: #ddd;
+    width: fit-content;
+    display: inline-block;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;            
+  
+    }
+  .tab.active {
+    background: #fff;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active { 
     display: block;
-    width: 25px;
-    height: 2px;
-    background-color: #ffffff; 
-    margin: 4px 0;
-    transition: 0.3s;
+  }
+*/
+
+.tabitem, #resttab {
+  position:absolute;
+  z-index:2;
+  font-family: Consolas, 'Source Code Pro', Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  padding:4px 15px;  
+  width:70px;
+  cursor:pointer;
 }
 
-.nav-logo-mobile { display: none; }
-
-/* Desktop View Adjustments */
-@media (min-width: 769px) {
-    .nav-logo-desktop { display: block; }
-    .z-nav-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+/*  
+#progqcstab {
+  width:120px;
+  left:0;
+}
+#prog2qcstab {
+  width:100px;
+  left:120px;
+}
+#childtemplatetab {
+  width:150px;
+  left:220px;
+}
+*/
+.tabitem {
+  background-color:lightgray;  
+  color:#000;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  border: 1px solid #E7E9EB;
+  border-bottom:none;
+}
+#resttab {
+  cursor:default;
+  z-index:1;
+  background-color:#E7E9EB;
+  border-bottom: 1px solid #E7E9EB;
+  width:100%;
+  left:0px;
+}
+.tabitem.tabselected{
+  background-color:#ffffff;  
+  border: 1px solid #ffffff;
+}
+.tabitem:hover {
+  background-color:#bfbfbf;;
+}
+.tabitem.tabselected:hover {
+  background-color:#ffffff;;
 }
 
-/* Tablet Adjustments */
-@media (max-width: 900px) {
-    .ad-content {
-        flex-direction: column; 
-        align-items: flex-start;
-        gap: 15px;
-        padding: 30px;
-    }
+.darktheme .tabitem {
+  background-color: #4b5b68;
+  color: #ffffff !important;
+  border: 1px solid #444;
+  border-bottom-color:rgb(21,32,43);
+}
+.darktheme .tabitem.tabselected{
+  background-color:rgb(21,32,43);  
+  border: 1px solid rgb(21,32,43);
+}
+.darktheme .tabitem:hover {
+  background-color: #404e59;
+}
+.darktheme .tabitem.tabselected:hover{
+  background-color:rgb(21,32,43);  
+}
+.darktheme #resttab {
+  background-color:#38444d;
+  border-bottom: 1px solid #38444d;  
 }
 
-/* Mobile Screens (The Primary Fix) */
-@media (max-width: 768px) {
-    /* 1. Header Layout: Logo Left, Toggle Right */
-    .z-nav-container {
-        display: flex !important;
-        flex-direction: row !important; 
-        justify-content: space-between !important;
-        align-items: center;
-        height: 70px;
-        padding: 0 20px;
-        width: 100%;
-    }
-
-    /* 2. Logo Swap */
-    .nav-logo-desktop { display: none !important; }
-    .nav-logo-mobile { 
-        display: block; 
-        height: 40px; /* Adjust based on your new photo size */
-        width: auto;
-    }
-    .z-logo-group { margin: 0 !important; }
-
-    /* 3. Show Toggle & Side-out Menu */
-    .mobile-menu-toggle { display: flex; }
-
-    .z-nav-section {
-        display: flex !important;
-        position: fixed;
-        top: 0;
-        left: -100%; /* Off-screen */
-        width: 100%;
-        height: 100vh;
-        background: rgba(15, 23, 42, 0.98); 
-        backdrop-filter: blur(15px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        gap: 40px !important;
-        z-index: 1000;
-    }
-
-    .z-nav-section.active {
-        left: 0 !important; /* Forces the reveal */
-    }
+/**/
+.fa {
+  padding: 10px 10px!important;
+}
+a.topnav-icons, a.topnav-icons.fa-home, a.topnav-icons.fa-menu, button.topnav-icons.fa-adjust {
+    font-size: 28px!important;
+}
+.darktheme #breadcrumb li {
+  color:#fff;
+}
+.darktheme #breadcrumb a {
+  background:#616161;
+  background-color:#38444d;  
+  color: #ddd;
+}	
+.darktheme #breadcrumb a:after {
+  border-left: 12px solid #616161;
+  border-left: 12px solid #38444d; 
+}
+.darktheme #breadcrumb a:before {
+  border-left: 12px solid rgb(40, 44, 52);
+  border-left: 12px solid #1d2a35;  
+}
+.darktheme .currentcrumb {
+  color:#ddd;
 }
 
-    /* 4. Hamburger to X Animation */
-    .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-    /* 5. General Element Stacking */
-    .cta-button-group { flex-direction: column !important; }
-    .cta-button-group .btn { width: 100%; }
-    .mbm-bento-grid, .hz-card { flex-direction: column; }
+body.darktheme {
+  background-color:rgb(40, 44, 52);
+  background-color:#1d2a35;
 }
-        
-        /* ------------------------------------------
-</style>  
+body.darktheme #tryitLeaderboard{
+  background-color:rgb(40, 44, 52);
+  background-color:#1d2a35;  
+}
+body.darktheme .trytopnav{
+  background-color:#616161;
+  background-color:#38444d;
+  color:#dddddd;
+}
+body.darktheme #container {
+  background-color:#616161;
+  background-color:#38444d;
+}
+body.darktheme .trytopnav a {
+  color:#dddddd;
+}
+body.darktheme #textareaCode {
+  background-color:rgb(40, 44, 52);
+  color:#fff;
+}
+
+body.darktheme #textareawrapper {
+  background-color:rgb(21,32,43);
+}
+body.darktheme .tabs {
+    background-color:#38444d;
+  }
+body.darktheme .tab {
+    background: rgb(21,32,43);
+    color:#fff;
+    opacity:0.5;
+    }
+body.darktheme .tab.active {
+    background: rgb(21,32,43);
+    color:#fff;    
+    opacity:1;
+  }
+
+body.darktheme ::-webkit-scrollbar {width:12px;height:3px;}
+body.darktheme ::-webkit-scrollbar-track-piece {background-color:#000;}
+body.darktheme ::-webkit-scrollbar-thumb {height:50px;background-color: #616161; background-color:#38444d;}
+body.darktheme ::-webkit-scrollbar-thumb:hover {background-color: #aaaaaa;background-color: #4b5b68}
+
+
+/*
+#file1filetab, #resttab {
+  position:absolute;
+  z-index:2;
+  font-family:arial;
+  padding:4px 12px;
+}
+#file1filetab {
+  width:auto;
+  left:0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;            
+}
+#resttab {
+  z-index:1;
+  background-color:#E7E9EB;
+  width:100%;
+  left:0px;
+}
+.tabitem {
+  background-color:#eaeaea;
+}
+.tabitem.tabselected{ 
+  background-color:#fff;
+}
+.darktheme .tabitem {
+  background-color:#444;
+}
+.darktheme .tabitem.tabselected{
+  background-color:rgb(21,32,43);
+}
+.darktheme #resttab {
+  background-color:#38444d;
+}
+*/
+.darktheme #file1filetab {
+  border-right:1px solid rgb(21,32,43);
+}
+
+</style>
+<!--[if lt IE 8]>
+<style>
+#textareacontainer, #iframecontainer {width:48%;}
+#container {height:500px;}
+#textarea, #iframe {width:90%;height:450px;}
+#textareaCode, #textareaCode2, #iframeResult, .codewindow {height:450px;}
+.stack {display:none;}
+</style>
+<![endif]-->
 </head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTCFC3S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
+<div id='tryitLeaderboard'>
+</div>
+
+<div class="trytopnav">
+<div class="w3-bar" style="overflow:auto">
+  <a id="tryhome" href="https://www.w3schools.com" target="_blank" title="w3schools.com Home" class="w3-button w3-bar-item topnav-icons fa fa-home ga-tryit" style="margin-top:-2px;"></a>
+  <a href="javascript:void(0);" onclick="openMenu()" id="menuButton" title="Open Menu" class="w3-dropdown-click w3-button w3-bar-item topnav-icons fa fa-menu ga-tryit" style="margin-top:-2px;"></a>
+
+  <a href="javascript:void(0);" onclick="spaceIt.showDialog()" title="Save code" class="w3-button w3-bar-item topnav-icons fa fa-save ga-tryit" style="margin-top:-2px;"></a>
+
+  <a href="javascript:void(0);" onclick="restack(currentStack)" title="Change Orientation" class="w3-button w3-bar-item w3-hide-small topnav-icons fa fa-rotate ga-tryit" style="margin-top:-2px;"></a>
+  <a href="javascript:void(0);" onclick="retheme()" title="Change Theme" class="w3-button w3-bar-item topnav-icons fa fa-adjust ga-tryit" style="margin-top:-2px;"></a>
+
+  <button id="runbtn" class="w3-button w3-bar-item w3-hover-white w3-hover-text-green ga-tryit" onclick="submitTryit(1);uic_prov_run();">Run &#10095;</button>
+
+  <a id="getwebsitebtn" class="w3-button w3-bar-item w3-hover-white w3-hover-text-green w3-hide-small ga-tryit" href="https://www.w3schools.com/spaces/" target="_blank">Get your<span class='w3-hide-medium'> own</span> website</a>
+  <!--<span class="w3-right w3-hide-small xxw3-hide-medium" style="padding:8px 8px 8px 8px;display:block"></span>-->
+  <span class="w3-right w3-hide-small" style="padding:8px 16px 8px 0;display:block;float:right;font-size:16px;margin-top:4px"><span id="framesize"></span></span>
+</div>
+
+</div>
+
+<div id="shield"></div>
+
+<a href="javascript:void(0)" id="dragbar"></a>
+<div id="container">
+  <div id="navbarDropMenu" class="w3-dropdown-content w3-bar-block w3-border" style="z-index:5">
+    <!--<span onclick="openMenu()" class="w3-button w3-display-topright w3-transparent ws-hover-black" title="Close Menu" style="font-weight:bold;padding-top:10px;padding-bottom:11px;">&times;</span>-->
+    <div class="w3-bar-block">
+      
+      <a class="w3-bar-item w3-button ga-tryit" href='javascript:void(0);' title="Run Code" onclick="openMenu();submitTryit(1);uic_prov_run();"><span style="display:inline-block;font-size:26px;margin-left:15px;margin-right:22px">&#10095;</span><span style="position:relative;top:-4px;left:2px;">Run Code <span style="float:right;font-size:10px;color:#333;margin-top:18px;">Ctrl+Alt+R</span></span></a>
+      
+        <a class="w3-bar-item w3-button ga-tryit" href="javascript:void(0);" title="Save" onclick="openMenu();spaceIt.showDialog()"><i class="fa fa-save" style="font-size:26px;margin-right:10px;"></i><span style="position:relative;top:-4px;left:2px;">Save Code  <span style="float:right;font-size:10px;color:#333;margin-top:18px;">Ctrl+Alt+A</span></span></a>
+      
+      <a class="w3-bar-item w3-button ga-tryit" href='javascript:void(0);' title="Change Orientaton" onclick="openMenu();restack(currentStack)"><i class="fa fa-rotate" style="font-size:26px;margin-left:-4px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Orientation  <span style="float:right;font-size:10px;color:#333;margin-top:18px;">Ctrl+Alt+O</span></span></a>
+      <a class="w3-bar-item w3-button ga-tryit" href='javascript:void(0);' title="Change Theme" onclick="openMenu();retheme()"><i class="fa fa-adjust" style="font-size:26px;margin-right:8px"></i><span style="position:relative;top:-4px;left:2px;">Change Theme  <span style="float:right;font-size:10px;color:#333;margin-top:18px;">Ctrl+Alt+D</span></span></a>
+      <a class="w3-bar-item w3-button ga-tryit" style="height: 62px;padding-top: 18px;" href='https://spaces.w3schools.com' target="_blank" title="Go to Spaces"><img style="margin-left:9px;margin-right:15px;margin-bottom: 8px;" src="/images/spaces-icon-tryit.svg" loading="lazy" /><span style="position:relative;top:-4px;left:2px;">Go to Spaces <span style="float:right;font-size:10px;color:#333;margin-top:8px;">Ctrl+Alt+P</span></span></a>    
+    </div>
+    <footer class="w3-container w3-small ws-grey">
+      <p>
+        <a style="display:inline;padding:0;" href="/about/about_privacy.asp" target="_blank" onclick="openMenu();" class="w3-hover-none ws-hover-text-green ga-tryit">Privacy policy</a> and 
+        <a style="display:inline;padding:0;" href="/about/about_copyright.asp" target="_blank" onclick="openMenu();" class="w3-hover-none ws-hover-text-green ga-tryit">Copyright 1999-2026</a>
+      </p>
+    </footer>
+  </div>
+  <div id="menuOverlay" class="w3-overlay w3-transparent" style="cursor:pointer;z-index:4"></div>
+  <div id="textareacontainer">
+    <div id="textarea">
+      <div id="textareawrapper">
+        
+            <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false"><!DOCTYPE html>
+<html>
 <body>
 
-<header>
-    <div class="header-top-tier">
-        <span>AI Guidebook on Sale!<span>
-        <a href="https://micro-burst-media.launchcart.store" class="top-tier-link">Visit Store →</a>
-    </div>
+<h1>The script element</h1>
 
-    <div class="z-nav-container">
-        <a href="https://microburstmedia.github.io/digital-marketing-network" class="z-logo-group">
-            <img src="https://cdn.launchcart.com/s47561/1684269057-de497636-f662-4e2d-ac5e-b1df715c0e6a-thumb.png" 
-                 alt="MBMN" 
-                 class="nav-logo-mobile">
-            
-            <img src="https://64.media.tumblr.com/58d5a98d8647a651080ece5fdaa7007d/3220a71d0188745c-82/s500x750/2a617ffbc1080b6c67433ff033a26bc1723220b1.pnj" 
-                 alt="MBMN" 
-                 class="nav-logo-desktop" 
-                 style="height: 275px; margin-bottom: -10px; margin-top: -30px;">
-        </a>
-
-        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <nav class="z-nav-section">
-            <a href="https://microburstmedia.github.io/about-us/" class="z-nav-link">About</a>
-            <a href="https://microburstmedia.wordpress.com/" class="z-nav-link">Portfolio</a>
-            <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="z-nav-link">Automation</a>
-            <a href="https://meetings.hubspot.com/kirk-b?uuid=9ee4181c-c194-41a7-ae10-6edbb565622b" target="_blank" rel="noopener noreferrer" class="z-nav-link">Schedule</a>
-            <a href="https://microburstmedia.github.io/ai-automation-learning-hub/" class="z-nav-link">Insights</a>
-            <a href="https://microburstmedia.github.io/business-community-center/" class="z-nav-link">Network</a>
-        </nav>
-    </div>
-</header>
-
-<section class="novo-hero">
-    <div class="novo-container">
-        <h1 class="novo-main-title">Building Foundation <br> Systems Automated for</h1>
-        
-        <div class="novo-rotator-wrapper">
-            <div class="novo-rotating-word active">Workflows</div>
-            <div class="novo-rotating-word">Dropshippers</div>
-            <div class="novo-rotating-word">Freelancers</div>
-            <div class="novo-rotating-word">Streamers</div>
-            <div class="novo-rotating-word">Consultants</div>
-            <div class="novo-rotating-word">Startups</div>
-            <div class="novo-rotating-word">Retailers</div>
-        </div>
-
-        <p class="novo-subtitle">
-            With flexible & forward-thinking strategies, MicroBurstMedia ensures you get the tools to help automate your business processes, no matter what you're building.
-        </p>
-    
-        <div class="mbm-kodak-wrapper">
-            <div class="mbm-kodak-stack" id="kodakStack">
-                
-                <div id="mainSliderPoster" class="mbm-kodak-item active slider-cover-card">
-                    <img src="https://eugesqsskkc.exactdn.com/wp-content/uploads/2024/10/website-development-layout-sketch-drawing-2023-11-27-05-32-33-utc-1.jpg?strip=all&quality=90&webp=85&sharp=1" class="mbm-main-img" alt="System Sync">
-                </div>
-
-                <div class="mbm-kodak-item" data-index="0">
-                    <img src="" class="mbm-main-img" alt="Dropshippers">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-                <div class="mbm-kodak-item" data-index="1">
-                    <img src="" class="mbm-main-img" alt="Freelancers">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-                <div class="mbm-kodak-item" data-index="2">
-                    <img src="" class="mbm-main-img" alt="Streamers">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-                <div class="mbm-kodak-item" data-index="3">
-                    <img src="" class="mbm-main-img" alt="Property">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-                <div class="mbm-kodak-item" data-index="4">
-                    <img src="" class="mbm-main-img" alt="Startups">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-                <div class="mbm-kodak-item" data-index="5">
-                    <img src="" class="mbm-main-img" alt="Retailers">
-                    <img src="" class="mbm-ui-overlay" alt="UI Shot">
-                </div>
-            </div> 
-             </div> 
-               </div> 
-                </section>
-
-    <div id="disclaimerModal" class="modal-overlay">
-        <div class="modal-content">
-            <h2>Site Managed by Digital Marketing Network, MicroBurstMedia</h2>
-            <p style="color: var(--text-muted); margin: 20px 0;">By proceeding, you agree to all policies shown on this site. Disclaimer: We may earn a commission for referrals.</p>
-            <button class="btn btn-primary" onclick="acceptTerms()">Proceed to Website</button>
-        </div>
-    </div>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 style="text-align: center; margin-bottom: 50px;"> #1 Marketing Network <br> Outsourcing Online <br> Products & Services</h1>
-                <p class="novo-subtitle">
-            If you're looking to incorporate AI into your business. <br> Hire us to assist with all of your IT headaches, <br> system handling, and web developments for your business. <br> Stop working harder, start earning smarter today!</p>
-            </div>
-        </section>
-        
-        <div class="hz-slider-section">
-    
-    <div class="hz-slider-container">
-    <div class="hz-stage">
-        <button class="hz-nav-btn prev" onclick="moveHzSlider(-1)">❮</button>
-        
-        <div class="hz-slider-viewport">
-            <div id="hzTrack" class="hz-track">
-                </div>
-        </div>
-
-        <button class="hz-nav-btn next" onclick="moveHzSlider(1)">❯</button>
-    </div>
-
-    <div id="hzDots" class="hz-dots-container"></div>
-</div>
-
-        <section class="features">
-            <div class="container">
-                <h2 style="text-align: center; margin-top: 50px; margin-bottom: 20px;"> Got Questions? <br> Please contact us during business hours from: <br> Monday to Saturday from: <br> 9:00 AM - 6:00 PM EST </h2>
-            </div>
-        </section>
-        
-        <a href="https://meetings.hubspot.com/kirk-b?uuid=551e3c55-a5cb-42ba-9f0d-c6038664d28e" target="_blank" rel="noopener noreferrer" class="novo-cta-button">Schedule A Consultation</a>
-    </div>
-
-        <section class="mbm-padding-global">
-    <div class="spacer-huge"></div>
-    <div class="mbm-container-large">
-        
-        <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-            <h1 style="font-size: 3.0rem; margin-bottom: 20px; margin-top: -60px;">Optimize operations, <br> without the overhead.</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">Stop working harder. Let our IT infrastructure handle the heavy lifting.</p>
-        </div>
-        
-        <div class="spacer-large"></div>
-
-        <div class="mbm-bento-grid">
-    
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg0">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow0">...</div>
-    <h3 class="bento-title" id="stackTitle0">Loading...</h3>
-    <p class="bento-desc" id="stackDesc0">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink0">Schedule Demo <span>&rarr;</span></a>
-</div>
-
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg1">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow1">...</div>
-    <h3 class="bento-title" id="stackTitle1">Loading...</h3>
-    <p class="bento-desc" id="stackDesc1">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink1">View Blueprint <span>&rarr;</span></a>
-</div>
-
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg2">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow2">...</div>
-    <h3 class="bento-title" id="stackTitle2">Loading...</h3>
-    <p class="bento-desc" id="stackDesc2">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink2">View Systems <span>&rarr;</span></a>
-</div>
-    
-    <div class="mbm-bento-card" id="featuredStackCard">
-    <div class="bento-image-container">
-        <img src="" alt="Featured Card" id="stackImg3">
-    </div>
-    <div class="bento-eyebrow" id="stackEyebrow3">...</div>
-    <h3 class="bento-title" id="stackTitle3">Loading...</h3>
-    <p class="bento-desc" id="stackDesc3">Connecting to spreadsheet...</p>
-    <a href="#" class="bento-link" id="stackLink3">Access Resources <span>&rarr;</span></a>
-</div>
-    </main>
-    
-    <section class="contact-section">
-    <div class="container">
-        <h1 style="text-align: center; margin-bottom: 30px;">Learn About <br> Interlink Automation</h1>
-        
-        <div class="glass-form">
-            <div class="ad-media">
-                <iframe src="https://www.youtube.com/embed/4zpyQ8CFjj4?si=CsV7BhSJ7ogyP2_1&amp;rel=0" allowfullscreen=""></iframe>
-            </div>
-            
-            <h3>Ready to Automate Your Business Workflow?</h3>
-            
-            <p>Acquire our no-cost to you presentation guide on AI Automation. <br> Now available to access through our workflow automation test system.</p>
-            
-            <div class="cta-button-group">
-                <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button">Acquire E-Book</button>
-                <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline">Learn More</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="news-section">
-    <div class="news-container-box" id="rotator-content">
-        <p style="color: var(--text-muted); font-size: 0.8rem;">Synchronizing network intelligence...</p>
-    </div>
-</section>
-
-    <footer>
-        <p>© 2026 Digital Marketing Network, MicroBurstMedia</p>
-        <div style="margin: 15px 0;">
-            <a onclick="alert('Affiliate Disclosure: We may receive compensation.')">Affiliate Disclosure</a> |
-            <a onclick="alert('Privacy Policy: Minimal data collection.')">Privacy Policy</a> |
-            <a onclick="alert('Terms: Use constitutes agreement.')">Terms of Service</a> |  
-            <a onclick="alert('Legal Disclaimer: We do not provide financial, legal, or employment advice.')">Legal Disclaimer</a>
-        </div>
-        
-        <div class="footer-social-row">
-            <a href="https://www.pinterest.com/microburstmedia/" class="social-icon si-pinterest"><svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.396 2.966 7.396 6.929 0 4.135-2.607 7.462-6.225 7.462-1.214 0-2.354-.63-2.746-1.37l-.748 2.853c-.271 1.039-1.016 2.342-1.516 3.16a12.003 12.003 0 003.556.541c6.621 0 11.988-5.367 11.988-11.987C23.97 5.39 18.592.026 11.972.026L12.017 0z"/></svg></a>
-            <a href="https://www.facebook.com/microburstmediadotcom" class="social-icon si-facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="https://www.youtube.com/@microburstmedia" class="social-icon si-youtube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="https://www.instagram.com/microburstmedia" class="social-icon si-instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="https://www.tiktok.com/@mbmdotnetwork" class="social-icon si-tiktok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.89-.23-2.74.24-.7.38-1.24 1.02-1.51 1.8-.26.95-.08 2.02.44 2.85.57.91 1.54 1.55 2.61 1.74 1.28.2 2.6-.31 3.35-1.34.48-.65.71-1.46.69-2.26-.03-3.85-.02-7.71-.02-11.56z"/></svg></a>
-            <a href="https://x.com/mbmdotnetwork" class="social-icon si-x"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg></a>
-        </div>
-    </footer>
-
-    <script src="https://js.stripe.com/v3/"></script>
-    
-    <style>
-    :root {
-        --glass-bg: rgba(30, 41, 59, 0.7);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --mbm-blue: #3b82f6;
-    }
-
-    /* Floating Button */
-    #chat-trigger {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, var(--mbm-blue), #8b5cf6);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        z-index: 1000;
-        transition: transform 0.3s;
-    }
-    #chat-trigger:hover { transform: scale(1.1); }
-
-    /* The Chat Window */
-    #chat-window {
-        position: fixed;
-        bottom: 100px;
-        right: 25px;
-        width: 350px;
-        height: 500px;
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        display: none; 
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1000;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    #chat-header { padding: 15px; background: rgba(255,255,255,0.05); font-weight: bold; color: var(--mbm-blue); border-bottom: 1px solid var(--glass-border); }
-    #chat-messages { flex-grow: 1; overflow-y: auto; padding: 15px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
-    #chat-input-area { padding: 15px; display: flex; gap: 10px; background: rgba(0,0,0,0.2); }
-    #user-input { flex-grow: 1; background: transparent; border: 1px solid var(--glass-border); color: white; padding: 8px; border-radius: 8px; outline: none; }
-    #send-btn { background: var(--mbm-blue); color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
-
-    .msg-user { align-self: flex-end; background: var(--mbm-blue); padding: 8px 12px; border-radius: 12px 12px 0 12px; max-width: 80%; word-wrap: break-word; }
-    .msg-ai { align-self: flex-start; background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 12px 12px 12px 0; max-width: 80%; word-wrap: break-word; }
-</style>
-
-<div id="chat-window">
-    <div id="chat-header">MBMN Directory Assistant</div>
-    <div id="chat-messages">
-        <div class="msg-ai">Welcome to the MBMN Network. Select a service below to get started:</div>
-    </div>
-    
-    <div id="chat-dropdown-area" style="padding: 0 15px 10px;">
-        <select id="service-dropdown" onchange="handleDropdownSelect()" style="width: 100%; padding: 8px; border-radius: 8px; background: rgba(255,255,255,0.1); color: white; border: 1px solid var(--glass-border); outline: none;">
-            <option value="">-- Select an Option --</option>
-            <option value="portfolio">View Our Portfolio</option>
-            <option value="automation">Automation Systems</option>
-            <option value="schedule">Schedule a Consultation</option>
-            <option value="ebook">Acquire AI E-Book</option>
-            <option value="network">Visit Business Network</option>
-            <option value="contact">Speak with a Specialist</option>
-            <option value="resources">Visit Resources Center</option>
-        </select>
-    </div>
-
-    <div id="chat-input-area">
-        <input type="text" id="user-input" placeholder="Or type a keyword...">
-        <button id="send-btn" onclick="handleChatSend()">Send</button>
-    </div>
-</div>
-
-<div id="chat-trigger">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-</div>
+<p id="demo"></p>
 
 <script>
-    const trigger = document.getElementById('chat-trigger');
-    const windowEl = document.getElementById('chat-window');
-    const input = document.getElementById('user-input');
-    const sendBtn = document.getElementById('send-btn');
-    const msgBox = document.getElementById('chat-messages');
+document.getElementById("demo").innerHTML = "Hello JavaScript!";
+</script> 
 
-    trigger.onclick = () => {
-        const isHidden = windowEl.style.display === 'none' || windowEl.style.display === '';
-        windowEl.style.display = isHidden ? 'flex' : 'none';
-        if (isHidden) input.focus();
-    };
-
-    async function handleSend() {
-        const text = input.value.trim();
-        if(!text) return;
-
-        // User message
-        msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-        
-        // Thinking placeholder
-        const thinkingId = "temp-" + Date.now();
-        msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}">...Thinking...</div>`;
-        
-        input.value = '';
-        msgBox.scrollTop = msgBox.scrollHeight;
-
-        try {
-            // Updated URL to match your current Render setup
-            const response = await fetch('https://mbmn-chatbot-session.onrender.com/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-
-            const data = await response.json();
-            const thinkingEl = document.getElementById(thinkingId);
-            
-            if(thinkingEl) {
-                // Ensure the reply actually exists before displaying
-                thinkingEl.innerText = data.reply || "I'm having trouble retrieving that answer. Please try again.";
-            }
-            
-        } catch (err) {
-            const thinkingEl = document.getElementById(thinkingId);
-            if(thinkingEl) {
-                thinkingEl.style.color = "#ef4444";
-                thinkingEl.innerText = "Connection error. MBMN server may be waking up—please try again in 30 seconds.";
-            }
-        }
-        // Final scroll update
-        setTimeout(() => { msgBox.scrollTop = msgBox.scrollHeight; }, 50);
-    }
-
-    sendBtn.onclick = handleSend;
-    // Enhanced keyboard listener
-    input.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter') handleSend();
-    });
-</script>
-    
-    <script>
-        // 1. Initial Logic (Terms & Scroll)
-        document.addEventListener('DOMContentLoaded', () => {
-            const hasAccepted = localStorage.getItem('mbm_terms_accepted');
-            const acceptTimestamp = localStorage.getItem('mbm_accept_date');
-            const now = new Date().getTime();
-            const thirtyDays = 30 * 24 * 60 * 60 * 1000;
-
-            if (!hasAccepted || (now - acceptTimestamp > thirtyDays)) {
-                setTimeout(() => { document.getElementById('disclaimerModal').classList.add('active'); }, 500);
-            }
-            
-            // Initialize the news rotator once on load, not on scroll
-            initRotator();
-        });
-
-        function acceptTerms() {
-            localStorage.setItem('mbm_terms_accepted', 'true');
-            localStorage.setItem('mbm_accept_date', new Date().getTime());
-            document.getElementById('disclaimerModal').classList.remove('active');
-        }
-        
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('scrollTopBtn');
-            if (btn) {
-                if (window.scrollY > 500) {
-                    btn.classList.add('show');
-                } else {
-                    btn.classList.remove('show');
-                }
-            }
-        });
-        
-        // 2. Countdown Logic
-        function updateCountdown() {
-    const now = new Date();
-    
-    // This creates a target for the 1st day of the NEXT month at midnight
-    // It automatically handles December -> January transitions
-    const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-
-    const diff = target - now;
-
-    // Time calculations
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    // Update the display IDs
-    document.getElementById("d_val").innerText = d.toString().padStart(2, '0');
-    document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
-    document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
-    document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
-}
-
-// Initialize and run every second
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-        // 3. Unified System Logic (Stripe + Chatbot)
-        const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-        const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
-
-        async function handleCheckout() {
-            const button = document.getElementById('checkout-button');
-            const originalText = button.innerText;
-            button.innerText = "LOADING...";                 
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
-                const session = await response.json();
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session.id,
-                });
-
-                if (result.error) { alert(result.error.message); }
-            } catch (error) {
-                console.error("Stripe Error:", error);
-                alert("Checkout connection failed. Is the MBMN server awake?");
-            } finally {
-                button.innerText = originalText;
-            }
-        }
-
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        async function handleChatSend() {
-            const input = document.getElementById('user-input');
-            const msgBox = document.getElementById('chat-messages');
-            const text = input.value.trim();
-            if(!text) return;
-
-            msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-            input.value = '';
-            
-            const tempId = "waiting-" + Date.now();
-            msgBox.innerHTML += `<div class="msg-ai" id="${tempId}"><i>Let me see what I can find in our database, just a moment...</i></div>`;
-            msgBox.scrollTop = msgBox.scrollHeight;
-
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/chat`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
-
-                const data = await response.json();
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.innerHTML = data.reply;
-                }
-            } catch (err) {
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.style.color = "#f87171";
-                    waitingEl.innerHTML = "Connection busy. Please try again in 20 seconds.";
-                }
-            }
-            msgBox.scrollTop = msgBox.scrollHeight;
-        }
-
-        function handleDropdownSelect() {
-            const dropdown = document.getElementById('service-dropdown');
-            const selectedValue = dropdown.value;
-            if (!selectedValue) return;
-
-            const input = document.getElementById('user-input');
-            input.value = selectedValue;
-            handleChatSend();
-            dropdown.selectedIndex = 0;
-        }
-
-        async function initRotator() {
-            const container = document.getElementById('rotator-content');
-            let newsData = [];
-            let index = 0;
-            let rotatorTimeout; 
-            const REFRESH_INTERVAL = 30 * 60 * 1000;
-
-            async function fetchNews() {
-    try {
-        // REPLACE THE URL BELOW WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
-        
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        
-        if (data && data.length > 0) {
-            newsData = data;
-            if (!rotatorTimeout) showNext();
-        } else {
-            document.getElementById('rotator-content').innerHTML = `
-                <div class="news-card">
-                    <p class="rotator-text">Systems Operational. Check back soon for online network news updates.</p>
-                </div>`;
-        }
-    } catch (error) {
-        console.error("Error fetching news:", error);
-    }
-}
-
-            function showNext() {
-                if (newsData.length === 0) return;
-                const item = newsData[index];
+</body>
+</html>
+</textarea>
+            <form id="codeForm" autocomplete="off" style="margin:0px;display:none;">
+              <input type="hidden" name="code" id="code" />
+            </form>
+                  
+       </div>
+    </div>
+  </div>
+  <div id="iframecontainer">
+    <div id="iframe">
+      
+      
+      <div id="iframewrapper">
                 
-                container.innerHTML = `
-                    <div class="news-card" style="animation: fadeIn 1s ease-out;">
-                        <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">
-                            ${item.tag || 'NETWORK UPDATE'}
-                        </span>
-                        <h2 class="rotator-text">${item.text}</h2>
-                        <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 0.5px;">
-                            SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}
-                        </div>
-                    </div>`;
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script>
+submitTryit()
+function submitTryit(n) {
+  var textArr = [], tno = 0;
+  
+    if (window.editor) {
+      window.editor.save();
+    }
+  
+    var text = document.getElementById("textareaCode").value;
+    textArr[0] = document.getElementById("textareaCode").value;
+  
+  var ifr = document.createElement("iframe");
+  ifr.setAttribute("frameborder", "0");
+  ifr.setAttribute("id", "iframeResult");
+  ifr.setAttribute("name", "iframeResult");  
 
-                index = (index + 1) % newsData.length;
-                rotatorTimeout = setTimeout(showNext, 8000); // Slightly longer to let people read the headline
-            }
+  ifr.setAttribute("allowfullscreen", "true");  
 
-            fetchNews();
-            setInterval(fetchNews, REFRESH_INTERVAL);
-        } // End of initRotator
-        
-    </script>
+  document.getElementById("iframewrapper").innerHTML = "";
+  document.getElementById("iframewrapper").appendChild(ifr);
     
-   <script>
-    // ==========================================
-// CONFIGURATION
-// ==========================================
-const MBM_API_URL = "https://script.google.com/macros/s/AKfycbzPi1OyaOD0N_xNIVrCoet_MV9-xgHcBYihKvdaJuvM7Dparwro_R_d4T-VvDBZB0v_qw/exec";
-
-// ==========================================
-// ENGINE 1: HERO ROTATOR (KEEP AS IS)
-// ==========================================
-let heroIndex = 0;
-const HERO_SPEED = 3000; 
-
-function syncHeroSection() {
-    const words = document.querySelectorAll('.novo-rotating-word');
-    const images = document.querySelectorAll('.mbm-kodak-item');
-    if (words.length === 0 || images.length === 0) return;
-
-    words.forEach(w => w.classList.remove('active', 'exit'));
-    let prevIndex = (heroIndex === 0) ? words.length - 1 : heroIndex - 1;
-    words[prevIndex].classList.add('exit');
-    words[heroIndex].classList.add('active');
-
-    images.forEach(img => img.classList.remove('active', 'next'));
-    images[heroIndex].classList.add('active');
-    let nextImgIndex = (heroIndex + 1) % images.length;
-    images[nextImgIndex].classList.add('next');
-
-    setTimeout(() => {
-        document.querySelectorAll('.novo-rotating-word.exit').forEach(el => el.classList.remove('exit'));
-    }, 600);
-
-    heroIndex = (heroIndex + 1) % words.length;
-}
-
-// ==========================================
-// ENGINE 1, 2 & 3: GOOGLE SHEETS SYNC (THE NEW STUFF)
-// ==========================================
-let hzIndex = 0;
-const HZ_SPEED = 5000;
-let hzTimer;
-
-async function syncDynamicContent() {
-    try {
-        const response = await fetch(MBM_API_URL);
-        const data = await response.json();
-
-        // --- 1. SYNC MAIN KODAK SLIDER (Hero + UI Overlay) ---
-if (data.mainSlider && data.mainSlider.length > 0) {
-    // We select all items, but we will filter out the poster
-    const allKodakItems = document.querySelectorAll('.mbm-kodak-item');
+  var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+  ifrw.document.open();
+  
+  ifrw.document.write(text);  
+  ifrw.document.close();
+  //23.02.2016: contentEditable is set to true, to fix text-selection (bug) in firefox.
+  //(and back to false to prevent the content from being editable)
+  //(To reproduce the error: Select text in the result window with, and without, the contentEditable statements below.)  
+  if (ifrw.document.body && !ifrw.document.body.isContentEditable) {
+    ifrw.document.body.contentEditable = true;
+    ifrw.document.body.contentEditable = false;
+  }
     
-    // We create a counter to track which data row we are on, 
-    // skipping the item with the ID 'mainSliderPoster'
-    let dataRowIndex = 0;
-
-    allKodakItems.forEach((item) => {
-        // SKIP THE COVER: If this item is the poster, don't put sheet data on it
-        if (item.id === 'mainSliderPoster') return;
-
-        const rowData = data.mainSlider[dataRowIndex]; 
-        if (!rowData) return;
-
-        const mainImg = item.querySelector('.mbm-main-img');
-        const uiOverlay = item.querySelector('.mbm-ui-overlay');
-
-        // Sets the background Hero image (Column A)
-        if (mainImg) {
-            mainImg.src = rowData[0];
-            mainImg.style.objectFit = 'cover';
-        }
-
-        // Sets the UI Overlay (Column B)
-        if (uiOverlay && rowData[1]) {
-            uiOverlay.src = rowData[1];
-        }
-
-        // Move to the next row of data for the next card
-        dataRowIndex++;
-    });
 }
 
-        // 2. SYNC SERVICES SLIDER (MIDDLE)
-        const serviceTrack = document.getElementById('hzTrack');
-        if (data.servicesSlider && serviceTrack) {
-            serviceTrack.innerHTML = data.servicesSlider.map(item => `
-    <div class="hz-card">
-            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
-            <div class="card-overlay">
-                <span class="hz-eyebrow">${item.category || 'Service'}</span>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-                <a href="${item.link}" class="hz-cta">Explore</a>
-            </div>
-        </div>
-`).join('');
-
-            // Dynamically create the dots based on how many cards are in the sheet
-            updateSliderDots(data.servicesSlider.length);
-            
-            // Re-initialize the movement engine
-            resetHzTimer();
-        }
-
-        // 3. SYNC STACK CARD
-        if (data.featuredCards) {
-    data.featuredCards.forEach((card, index) => {
-        const titleEl = document.getElementById(`stackTitle${index}`);
-        const descEl = document.getElementById(`stackDesc${index}`);
-        const imgEl = document.getElementById(`stackImg${index}`);
-        const eyebrowEl = document.getElementById(`stackEyebrow${index}`);
-
-        if (titleEl) titleEl.innerText = card.title;
-        if (descEl) descEl.innerText = card.desc;
-        if (imgEl) imgEl.src = card.img;
-        if (eyebrowEl) eyebrowEl.innerText = card.eyebrow;
-    });
+function hideSpinner() {
+  document.getElementById("runloadercontainer").style.display = "none";
+}
+function displaySpinner() {
+  var i, c, w, h, r, top;
+  i = document.getElementById("iframeResult");
+  w = w3_getStyleValue(i, "width");
+  h = w3_getStyleValue(i, "height");
+  c = document.getElementById("runloadercontainer");
+  c.style.width = w;
+  c.style.height = h;
+  c.style.display = "block";
+  w = Number(w.replace("px", "")) / 5;
+  r = document.getElementById("runloader");
+  r.style.width = w + "px";
+  r.style.height = w + "px";
+  h = w3_getStyleValue(r, "height");
+  h = Number(h.replace("px", "")) / 2;
+  top = w3_getStyleValue(c, "height");
+  top = Number(top.replace("px", "")) / 2;
+  top = top - h
+  r.style.top = top + "px";
 }
 
-    // FINAL STEP: Reveal the UI
-        const cover = document.getElementById('mainSliderPoster');
-        if (cover) {
-            setTimeout(() => {
-                cover.classList.add('revealed');
-                console.log("Sheet data loaded. Revealing slider.");
-            }, 500); 
-        }
+var currentStack=true;
+if ((window.screen.availWidth <= 768 && window.innerHeight > window.innerWidth) || "" == " horizontal") {restack(true);}
+function restack(horizontal) {
+    var tc, ic, t, i, c, f, sv, sh, d, b, height, flt, width;
+    tc = document.getElementById("textareacontainer");
+    ic = document.getElementById("iframecontainer");
+    t = document.getElementById("textarea");
+    i = document.getElementById("iframe");
+    c = document.getElementById("container");    
+    sv = document.getElementById("stackV");
+    sh = document.getElementById("stackH");
+    b = document.getElementsByClassName("localhostoutercontainer");
+    tc.className = tc.className.replace("horizontal", "");
+    ic.className = ic.className.replace("horizontal", "");        
+    t.className = t.className.replace("horizontal", "");        
+    i.className = i.className.replace("horizontal", "");        
+    c.className = c.className.replace("horizontal", "");                        
+    if (b[0]) {b[0].className = b[0].className.replace("horizontal", "")};
+    if (sv) {sv.className = sv.className.replace("horizontal", "")};
+    if (sv) {sh.className = sh.className.replace("horizontal", "")};
+    stack = "";
+    if (horizontal) {
+        tc.className = tc.className + " horizontal";
+        ic.className = ic.className + " horizontal";        
+        t.className = t.className + " horizontal";        
+        i.className = i.className + " horizontal";                
+        c.className = c.className + " horizontal";                
+        if (sv) {sv.className = sv.className + " horizontal"};
+        if (sv) {sh.className = sh.className + " horizontal"};
+        if (b[0]) {b[0].className = b[0].className + " horizontal"};        
+        stack = " horizontal";
+        document.getElementById("textareacontainer").style.height = "50%";
+        document.getElementById("iframecontainer").style.height = "50%";
+        document.getElementById("textareacontainer").style.width = "100%";
+        document.getElementById("iframecontainer").style.width = "100%";
+        currentStack=false;
+    } else {
+        document.getElementById("textareacontainer").style.height = "100%";
+        document.getElementById("iframecontainer").style.height = "100%";
+        document.getElementById("textareacontainer").style.width = "50%";
+        document.getElementById("iframecontainer").style.width = "50%";
+        currentStack=true;        
+    }
+    fixDragBtn();
+    showFrameSize();
+      
+}
+function showFrameSize() {
+  var t;
+  var width, height;
+  width = Number(w3_getStyleValue(document.getElementById("iframeResult"), "width").replace("px", "")).toFixed();
+  height = Number(w3_getStyleValue(document.getElementById("iframeResult"), "height").replace("px", "")).toFixed();
+  document.getElementById("framesize").innerHTML = "Result Size: <span>" + width + " x " + height + "</span>";
+}
+var dragging = false;
+var stack;
+var sidebarwidth = 0;
+function fixDragBtn() {
+  var textareawidth, leftpadding, dragleft, containertop, buttonwidth;
+  var containertop = Number(w3_getStyleValue(document.getElementById("container"), "top").replace("px", ""));
+  if (stack != " horizontal") {
+    document.getElementById("dragbar").style.width = "5px";    
+    textareasize = Number(w3_getStyleValue(document.getElementById("textareawrapper"), "width").replace("px", ""));
+    leftpadding = Number(w3_getStyleValue(document.getElementById("textarea"), "padding-left").replace("px", ""));
+    buttonwidth = Number(w3_getStyleValue(document.getElementById("dragbar"), "width").replace("px", ""));
+    textareaheight = w3_getStyleValue(document.getElementById("textareawrapper"), "height");
+    dragleft = textareasize + leftpadding + (leftpadding / 2) - (buttonwidth / 2);
+    document.getElementById("dragbar").style.top = containertop + "px";
+    document.getElementById("dragbar").style.left = dragleft + "px";
+    document.getElementById("dragbar").style.height = textareaheight;
+    document.getElementById("dragbar").style.cursor = "col-resize";
+    
+  } else {
+    document.getElementById("dragbar").style.height = "5px";
+    if (window.getComputedStyle) {
+        textareawidth = window.getComputedStyle(document.getElementById("textareawrapper"),null).getPropertyValue("height");
+        textareaheight = window.getComputedStyle(document.getElementById("textareawrapper"),null).getPropertyValue("width");
+        leftpadding = window.getComputedStyle(document.getElementById("textarea"),null).getPropertyValue("padding-top");
+        buttonwidth = window.getComputedStyle(document.getElementById("dragbar"),null).getPropertyValue("height");
+    } else {
+        dragleft = document.getElementById("textareawrapper").currentStyle["width"];
+    }
+    textareawidth = Number(textareawidth.replace("px", ""));
+    leftpadding = Number(leftpadding .replace("px", ""));
+    buttonwidth = Number(buttonwidth .replace("px", ""));
+    dragleft = containertop + textareawidth + leftpadding + (leftpadding / 2);
+    document.getElementById("dragbar").style.top = dragleft + "px";
+    document.getElementById("dragbar").style.left = "5px";
+    document.getElementById("dragbar").style.width = textareaheight;
+    document.getElementById("dragbar").style.cursor = "row-resize";        
+  }
+}
+function dragstart(e) {
+  e.preventDefault();
+  dragging = true;
+  var main = document.getElementById("iframecontainer");
+}
+function dragmove(e) {
+  if (dragging) 
+  {
+    document.getElementById("shield").style.display = "block";        
+    if (stack != " horizontal") {
+      if (document.getElementById("sidebar")) {
+        sidebarwidth = Number(w3_getStyleValue(document.getElementById("sidebar"), "width").replace("px", ""));
+        if (!sidebarwidth) sidebarwidth = 0;
+      }
+      var percentage = (e.pageX / (window.innerWidth - (sidebarwidth + 15))) * 100;
+      if (percentage > 5 && percentage < 98) {
+        var mainPercentage = 100-percentage;
+        document.getElementById("textareacontainer").style.width = percentage + "%";
+        document.getElementById("iframecontainer").style.width = mainPercentage + "%";
+        fixDragBtn();
+      }
+    } else {
+      var containertop = Number(w3_getStyleValue(document.getElementById("container"), "top").replace("px", ""));
+      var percentage = ((e.pageY - containertop + 20) / (window.innerHeight - containertop + 20)) * 100;
+      if (percentage > 5 && percentage < 98) {
+        var mainPercentage = 100-percentage;
+        document.getElementById("textareacontainer").style.height = percentage + "%";
+        document.getElementById("iframecontainer").style.height = mainPercentage + "%";
+        fixDragBtn();
+      }
+    }
+    showFrameSize();  
+  
+      
+  }
+}
+function dragend() {
+  document.getElementById("shield").style.display = "none";
+  dragging = false;
+  var vend = navigator.vendor;
+  if (window.editor && vend.indexOf("Apple") == -1) {
+      window.editor.refresh();
+  }
+}
+if (window.addEventListener) {              
+  document.getElementById("dragbar").addEventListener("mousedown", function(e) {dragstart(e);});
+  document.getElementById("dragbar").addEventListener("touchstart", function(e) {dragstart(e);});
+  window.addEventListener("mousemove", function(e) {dragmove(e);});
+  window.addEventListener("touchmove", function(e) {dragmove(e);});
+  window.addEventListener("mouseup", dragend);
+  window.addEventListener("touchend", dragend);
+  window.addEventListener("load", fixDragBtn);
+  window.addEventListener("load", showFrameSize);
+  window.addEventListener("load", addKeyboardShortcut);  
+  
+}
 
-    } catch (error) {
-        console.error('Error loading slider data:', error);
-        // Fallback: reveal the cover anyway so the site isn't stuck
-        const cover = document.getElementById('mainSliderPoster');
-        if (cover) cover.classList.add('revealed');
+function addKeyboardShortcut() {
+  window.addEventListener("keydown", addRunShortcut);
+}
+
+function addRunShortcut() {
+
+  if (event.ctrlKey && event.altKey && (event.key == "r" || event.key == "R")) {
+    document.getElementById("runbtn").click();
+  }
+
+  if (event.ctrlKey && event.altKey && (event.key == "o" || event.key == "O")) {
+    restack(currentStack);
+  }
+  if (event.ctrlKey && event.altKey && (event.key == "d" || event.key == "D")) {
+    retheme();
+  }
+  if (event.ctrlKey && event.altKey && (event.key == "a" || event.key == "A")) {
+    spaceIt.showDialog();
+  }
+  if (event.ctrlKey && event.altKey && (event.key == "p" || event.key == "P")) {
+    window.open("https://spaces.w3schools.com");
+  }
+}
+
+function retheme() {
+  var cc = document.body.className;
+  if (cc.indexOf("darktheme") > -1) {
+    document.body.className = cc.replace("darktheme", "");
+    if (opener) {opener.document.body.className = cc.replace("darktheme", "");}
+    localStorage.setItem("preferredmode", "light");
+  } else {
+    document.body.className += " darktheme";
+    if (opener) {opener.document.body.className += " darktheme";}
+    localStorage.setItem("preferredmode", "dark");
+  }
+}
+(
+function setThemeMode() {
+  var x = localStorage.getItem("preferredmode");
+  if (x == "dark") {
+    document.body.className += " darktheme";
+  }
+})();
+function colorcoding() {
+  var ua = navigator.userAgent;
+  //Opera Mini refreshes the page when trying to edit the textarea.
+  if (ua && ua.toUpperCase().indexOf("OPERA MINI") > -1) { return false; }
+  window.editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
+  mode: "text/html",
+  lineWrapping: true,
+  smartIndent: false,
+  htmlMode: true,
+  autocorrect: false,      
+  addModeClass: true,
+
+    
+    //mode: "text/html",
+    //htmlMode: true,
+    //lineWrapping: true,
+    //smartIndent: false,
+    //addModeClass: true
+  
+  });
+//  window.editor.on("change", function () {window.editor.save();});
+}
+
+colorcoding();
+
+
+function clickTab(x) {
+  
+  return false;
+  
+}
+function w3_getStyleValue(elmnt,style) {
+    if (window.getComputedStyle) {
+        return window.getComputedStyle(elmnt,null).getPropertyValue(style);
+    } else {
+        return elmnt.currentStyle[style];
     }
 }
+function openMenu() {
+    var x = document.getElementById("navbarDropMenu");
+    var y = document.getElementById("menuOverlay");
+    var z = document.getElementById("menuButton");
+    if (z.className.indexOf("w3-text-gray") == -1) {
+        z.className += " w3-text-gray";
+    } else { 
+        z.className = z.className.replace(" w3-text-gray", "");
+    }
+    if (z.className.indexOf("w3-gray") == -1) {
+        z.className += " w3-gray";
+    } else { 
+        z.className = z.className.replace(" w3-gray", "");
+    }
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+    if (y.className.indexOf("w3-show") == -1) {
+        y.className += " w3-show";
+    } else { 
+        y.className = y.className.replace(" w3-show", "");
+    }
 
-// ==========================================
-// NAVIGATION LOGIC (STAY AS IS)
-// ==========================================
-function updateHzSlider() {
-    const track = document.getElementById('hzTrack');
-    const dots = document.querySelectorAll('.hz-dot');
-    if (!track) return;
-
-    // Continuous Loop Math: 
-    // This moves the track based on 100% of the viewport width
-    track.style.transform = `translateX(-${hzIndex * 100}%)`;
-
-    // Update dots (using modulo to ensure they loop back)
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === (hzIndex % dots.length));
-    });
 }
-
-function moveHzSlider(direction) {
-    const cards = document.querySelectorAll('.hz-card');
-    if (cards.length === 0) return;
-
-    // Increment index and use modulo for seamless looping
-    hzIndex = (hzIndex + direction + cards.length) % cards.length;
-    
-    updateHzSlider();
-}
-
-// Update your dynamic sync function to ensure the "Verbiage" is injected
-function syncServices(data) {
-    const track = document.getElementById('hzTrack');
-    if (!data.servicesSlider || !track) return;
-
-    track.innerHTML = data.servicesSlider.map(item => `
-        <div class="hz-card">
-            <img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">
-            <div class="card-overlay">
-                <span class="hz-eyebrow">${item.category || 'Service'}</span>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
-                <a href="${item.link}" class="hz-cta">Explore</a>
-            </div>
-        </div>
-    `).join('');
-
-    updateSliderDots(data.servicesSlider.length);
-}
-
-function jumpToHzCard(index) {
-    hzIndex = index;
-    updateHzSlider();
-    resetHzTimer();
-}
-
-function resetHzTimer() {
-    clearInterval(hzTimer);
-    hzTimer = setInterval(() => moveHzSlider(1), HZ_SPEED);
-}
-
-function updateSliderDots(count) {
-    const dotsContainer = document.getElementById('hzDots');
-    if (!dotsContainer) return;
-    dotsContainer.innerHTML = ''; 
-    for (let i = 0; i < count; i++) {
-        const dot = document.createElement('span');
-        dot.className = i === 0 ? 'hz-dot active' : 'hz-dot';
-        dot.onclick = () => jumpToHzCard(i);
-        dotsContainer.appendChild(dot);
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == document.getElementById("menuOverlay")) {
+        openMenu();
     }
 }
-
-async function syncCardStack() {
-    try {
-        const response = await fetch(MBM_API_URL);
-        const data = await response.json();
-
-        // Target our new IDs
-        if (data.featuredCard) {
-            const titleEl = document.getElementById('stackTitle');
-            const descEl = document.getElementById('stackDesc');
-            const imgEl = document.getElementById('stackImg');
-            const linkEl = document.getElementById('stackLink');
-            const eyebrowEl = document.getElementById('stackEyebrow');
-
-            // Only update if the element actually exists on the page
-            if (titleEl) titleEl.innerText = data.featuredCard.title;
-            if (descEl) descEl.innerText = data.featuredCard.desc;
-            if (imgEl) imgEl.src = data.featuredCard.img;
-            if (linkEl) linkEl.href = data.featuredCard.link;
-            if (eyebrowEl && data.featuredCard.eyebrow) {
-                eyebrowEl.innerText = data.featuredCard.eyebrow;
-            }
-        }
-    } catch (e) {
-        console.error("Card Sync Error:", e);
-    }
+function setCodewindowHeight() {
+  var i;
+  var txw = document.getElementById("textareawrapper");
+  var txwh = w3_getStyleValue(txw,"height");
+  
+  var qwsa = document.getElementsByClassName("codewindow");
+  for (i = 0; i < qwsa.length; i++) {
+    qwsa[i].style.height = txwh;
+    qwsa[i].style.setProperty("overflow", "auto", "important");
+  }
 }
-
-// ==========================================
-// INITIALIZE EVERYTHING
-// ==========================================
-window.addEventListener('load', () => {
-    // We only need this one! It handles the Kodak Slider, Services, and Stack Cards.
-    syncDynamicContent(); 
-    
-    // Start the visual rotation for the Hero text/images
-    setInterval(syncHeroSection, HERO_SPEED); 
-    
-    // Initialize the position of the services slider
-    updateHzSlider(); 
-});
-
+function docReady(fn) {
+  document.addEventListener("DOMContentLoaded", fn);
+  if (document.readyState === "interactive" || document.readyState === "complete" ) {
+    fn();
+  }
+}
+uic_prov_al();
 </script>
+
+<script src="/lib/common-deps/main.v1.0.18.js"></script>
+<script src="/lib/user-session/main.v1.0.51.js"></script>
+<script src="/lib/spaceit/main.v1.0.10.js"></script>
+<link rel="stylesheet" type="text/css" href="/lib/spaceit/main.v1.0.10.css" />
 
 </body>
 </html>
