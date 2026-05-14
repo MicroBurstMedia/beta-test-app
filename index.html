@@ -1538,33 +1538,47 @@
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-        // 3. Unified System Logic (Stripe + Chatbot)
-        const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-        const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+// 3. Unified System Logic (Stripe + Chatbot)
+const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
+const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
 
-        async function handleCheckout() {
-            const button = document.getElementById('checkout-button');
-            const originalText = button.innerText;
-            button.innerText = "LOADING...";                 
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
+async function handleCheckout() {
+    const button = document.getElementById('checkout-button');
+    if (!button) return;
 
-                const session = await response.json();
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session.id,
-                });
+    const originalText = button.innerText;
+    button.innerText = "INITIALIZING...";
+    button.disabled = true; // Prevent double-clicks
 
-                if (result.error) { alert(result.error.message); }
-            } catch (error) {
-                console.error("Stripe Error:", error);
-                alert("Checkout connection failed. Is the MBMN server awake?");
-            } finally {
-                button.innerText = originalText;
-            }
+    try {
+        // 1. Request the session from your Render backend
+        const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'cors' // Explicitly ensure CORS is handled
+        });
+
+        if (!response.ok) throw new Error("Server response not OK");
+
+        const session = await response.json();
+
+        // 2. Redirect to Stripe
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) {
+            alert(result.error.message);
         }
+
+    } catch (error) {
+        console.error("Checkout Error:", error);
+        alert("The MBMN Secure Server is currently waking up. Please wait 30 seconds and try again.");
+    } finally {
+        button.innerText = originalText;
+        button.disabled = false;
+    }
+}
 
         function toggleChat() {
             const win = document.getElementById('chat-window');
@@ -1618,56 +1632,45 @@ updateCountdown();
         }
 
         async function initRotator() {
-            const container = document.getElementById('rotator-content');
-            let newsData = [];
-            let index = 0;
-            let rotatorTimeout; 
-            const REFRESH_INTERVAL = 30 * 60 * 1000;
+        const container = document.getElementById('rotator-content');
+        let newsData = [];
+        let index = 0;
+        let rotatorTimeout; 
+        const REFRESH_INTERVAL = 30 * 60 * 1000;
 
-            async function fetchNews() {
-    try {
-        // REPLACE THE URL BELOW WITH YOUR ACTUAL GOOGLE APPS SCRIPT WEB APP URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
-        
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        
-        if (data && data.length > 0) {
-            newsData = data;
-            if (!rotatorTimeout) showNext();
-        } else {
-            document.getElementById('rotator-content').innerHTML = `
-                <div class="news-card">
-                    <p class="rotator-text">Systems Operational. Check back soon for online network news updates.</p>
-                </div>`;
-        }
-    } catch (error) {
-        console.error("Error fetching news:", error);
-    }
-}
-
-            function showNext() {
-                if (newsData.length === 0) return;
-                const item = newsData[index];
+        async function fetchNews() {
+            try {
+                const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
                 
-                container.innerHTML = `
-                    <div class="news-card" style="animation: fadeIn 1s ease-out;">
-                        <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">
-                            ${item.tag || 'NETWORK UPDATE'}
-                        </span>
-                        <h2 class="rotator-text">${item.text}</h2>
-                        <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 0.5px;">
-                            SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}
-                        </div>
-                    </div>`;
-
-                index = (index + 1) % newsData.length;
-                rotatorTimeout = setTimeout(showNext, 8000); // Slightly longer to let people read the headline
+                if (data && data.length > 0) {
+                    newsData = data;
+                    if (!rotatorTimeout) showNext();
+                } else {
+                    container.innerHTML = `<div class="news-card"><p class="rotator-text">Systems Operational. Check back soon.</p></div>`;
+                }
+            } catch (error) {
+                console.error("Error fetching news:", error);
             }
+        }
 
-            fetchNews();
-            setInterval(fetchNews, REFRESH_INTERVAL);
-        } // End of initRotator
+        function showNext() {
+            if (newsData.length === 0) return;
+            const item = newsData[index];
+            container.innerHTML = `
+                <div class="news-card" style="animation: fadeIn 1s ease-out;">
+                    <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
+                    <h2 class="rotator-text">${item.text}</h2>
+                    <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 0.5px;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
+                </div>`;
+            index = (index + 1) % newsData.length;
+            rotatorTimeout = setTimeout(showNext, 8000);
+        }
+
+        fetchNews();
+        setInterval(fetchNews, REFRESH_INTERVAL);
+    } // End of initRotator
         
     </script>
     
