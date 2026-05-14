@@ -1299,11 +1299,9 @@
             <p>Acquire our no-cost to you presentation guide on AI Automation. <br> Now available to access through our workflow automation test system.</p>
             
             <div class="cta-button-group">
-                <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button">Acquire E-Book</button>
-                <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline">Learn More</a>
-            </div>
-        </div>
-    </div>
+                        <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button" style="flex: 1; min-width: 200px;">Acquire E-Book</button>
+                        <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline" style="flex: 1; min-width: 200px;">Learn More</a>
+                    </div>
 </section>
 
 <section id="news-section">
@@ -1539,46 +1537,32 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // 3. Unified System Logic (Stripe + Chatbot)
-const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+        const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
+        const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
 
-async function handleCheckout() {
-    const button = document.getElementById('checkout-button');
-    if (!button) return;
+        async function handleCheckout() {
+            const button = document.getElementById('checkout-button');
+            const originalText = button.innerText;
+            button.innerText = "LOADING...";                 
+            try {
+                const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
 
-    const originalText = button.innerText;
-    button.innerText = "INITIALIZING...";
-    button.disabled = true; // Prevent double-clicks
+                const session = await response.json();
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id,
+                });
 
-    try {
-        // 1. Request the session from your Render backend
-        const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            mode: 'cors' // Explicitly ensure CORS is handled
-        });
-
-        if (!response.ok) throw new Error("Server response not OK");
-
-        const session = await response.json();
-
-        // 2. Redirect to Stripe
-        const result = await stripe.redirectToCheckout({
-            sessionId: session.id,
-        });
-
-        if (result.error) {
-            alert(result.error.message);
+                if (result.error) { alert(result.error.message); }
+            } catch (error) {
+                console.error("Stripe Error:", error);
+                alert("Checkout connection failed. Is the MBMN server awake?");
+            } finally {
+                button.innerText = originalText;
+            }
         }
-
-    } catch (error) {
-        console.error("Checkout Error:", error);
-        alert("The MBMN Secure Server is currently waking up. Please wait 30 seconds and try again.");
-    } finally {
-        button.innerText = originalText;
-        button.disabled = false;
-    }
-}
 
         function toggleChat() {
             const win = document.getElementById('chat-window');
