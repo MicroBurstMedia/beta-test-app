@@ -1299,9 +1299,11 @@
             <p>Acquire our no-cost to you presentation guide on AI Automation. <br> Now available to access through our workflow automation test system.</p>
             
             <div class="cta-button-group">
-                        <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button" style="flex: 1; min-width: 200px;">Acquire E-Book</button>
-                        <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline" style="flex: 1; min-width: 200px;">Learn More</a>
-                    </div>
+                <button onclick="handleCheckout()" class="btn btn-primary" id="checkout-button">Acquire E-Book</button>
+                <a href="https://microburstmedia.github.io/ai-automation-test-center/" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="news-section">
@@ -1477,186 +1479,176 @@
 </script>
     
     <script>
-        // 1. Initial Logic (Terms & Scroll)
-        document.addEventListener('DOMContentLoaded', () => {
-            const hasAccepted = localStorage.getItem('mbm_terms_accepted');
-            const acceptTimestamp = localStorage.getItem('mbm_accept_date');
-            const now = new Date().getTime();
-            const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+    // ==========================================
+    // 1. GLOBAL CONFIGURATION
+    // ==========================================
+    const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
+    const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
+    const CHAT_SERVER_URL = 'https://mbmn-chatbot-session.onrender.com';
 
-            if (!hasAccepted || (now - acceptTimestamp > thirtyDays)) {
-                setTimeout(() => { document.getElementById('disclaimerModal').classList.add('active'); }, 500);
-            }
-            
-            // Initialize the news rotator once on load, not on scroll
-            initRotator();
-        });
+    // ==========================================
+    // 2. STRIPE CHECKOUT ENGINE
+    // ==========================================
+    async function handleCheckout() {
+        const button = document.getElementById('checkout-button');
+        if (!button) return; // Guard against null if button isn't on this specific page
 
-        function acceptTerms() {
-            localStorage.setItem('mbm_terms_accepted', 'true');
-            localStorage.setItem('mbm_accept_date', new Date().getTime());
-            document.getElementById('disclaimerModal').classList.remove('active');
-        }
+        const originalText = button.innerText;
+        button.innerText = "LOADING...";                  
         
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('scrollTopBtn');
-            if (btn) {
-                if (window.scrollY > 500) {
-                    btn.classList.add('show');
-                } else {
-                    btn.classList.remove('show');
-                }
-            }
-        });
+        try {
+            const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                mode: 'cors' // Restoration of the handshake protocol
+            });
+
+            if (!response.ok) throw new Error("Server wake-up required");
+
+            const session = await response.json();
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+
+            if (result.error) { alert(result.error.message); }
+        } catch (error) {
+            console.error("Stripe Error:", error);
+            alert("Checkout connection failed. The secure server is currently waking up—please try again in 30 seconds.");
+        } finally {
+            button.innerText = originalText;
+        }
+    }
+
+    // ==========================================
+    // 3. CHATBOT & UI LOGIC
+    // ==========================================
+    async function handleChatSend() {
+        const input = document.getElementById('user-input');
+        const msgBox = document.getElementById('chat-messages');
+        if (!input || !msgBox) return;
+
+        const text = input.value.trim();
+        if(!text) return;
+
+        msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
+        const thinkingId = "temp-" + Date.now();
+        msgBox.innerHTML += `<div class="msg-ai" id="${thinkingId}"><i>Connecting to MBMN Database...</i></div>`;
         
-        // 2. Countdown Logic
-        function updateCountdown() {
-    const now = new Date();
-    
-    // This creates a target for the 1st day of the NEXT month at midnight
-    // It automatically handles December -> January transitions
-    const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        input.value = '';
+        msgBox.scrollTop = msgBox.scrollHeight;
 
-    const diff = target - now;
-
-    // Time calculations
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    // Update the display IDs
-    document.getElementById("d_val").innerText = d.toString().padStart(2, '0');
-    document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
-    document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
-    document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
-}
-
-// Initialize and run every second
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// 3. Unified System Logic (Stripe + Chatbot)
-        const stripe = Stripe('pk_test_51N5Y2tCYcbtuqUpVR8YK6poRUn5YyEPkAxRMrIO0B1tQvM3EJVid1IdPjTk142N9l2S96XGUnLDeLWsYeJ9RzPKr00cHs2kgfJ'); 
-        const MBMN_SERVER_URL = 'https://mbmn-checkout-session.onrender.com';
-
-        async function handleCheckout() {
-            const button = document.getElementById('checkout-button');
-            const originalText = button.innerText;
-            button.innerText = "LOADING...";                 
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/create-checkout-session`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
-                const session = await response.json();
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session.id,
-                });
-
-                if (result.error) { alert(result.error.message); }
-            } catch (error) {
-                console.error("Stripe Error:", error);
-                alert("Checkout connection failed. Is the MBMN server awake?");
-            } finally {
-                button.innerText = originalText;
-            }
+        try {
+            const response = await fetch(`${CHAT_SERVER_URL}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            const data = await response.json();
+            const thinkingEl = document.getElementById(thinkingId);
+            if(thinkingEl) thinkingEl.innerHTML = data.reply || "No response.";
+        } catch (err) {
+            const thinkingEl = document.getElementById(thinkingId);
+            if(thinkingEl) thinkingEl.innerText = "Connection busy. Re-trying...";
         }
+        msgBox.scrollTop = msgBox.scrollHeight;
+    }
 
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-        }
+    function handleDropdownSelect() {
+        const dropdown = document.getElementById('service-dropdown');
+        const input = document.getElementById('user-input');
+        if (!dropdown || !input || !dropdown.value) return;
 
-        async function handleChatSend() {
-            const input = document.getElementById('user-input');
-            const msgBox = document.getElementById('chat-messages');
-            const text = input.value.trim();
-            if(!text) return;
+        input.value = dropdown.value;
+        handleChatSend();
+        dropdown.selectedIndex = 0;
+    }
 
-            msgBox.innerHTML += `<div class="msg-user">${text}</div>`;
-            input.value = '';
-            
-            const tempId = "waiting-" + Date.now();
-            msgBox.innerHTML += `<div class="msg-ai" id="${tempId}"><i>Let me see what I can find in our database, just a moment...</i></div>`;
-            msgBox.scrollTop = msgBox.scrollHeight;
-
-            try {
-                const response = await fetch(`${MBMN_SERVER_URL}/chat`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
-
-                const data = await response.json();
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.innerHTML = data.reply;
-                }
-            } catch (err) {
-                const waitingEl = document.getElementById(tempId);
-                if (waitingEl) {
-                    waitingEl.style.color = "#f87171";
-                    waitingEl.innerHTML = "Connection busy. Please try again in 20 seconds.";
-                }
-            }
-            msgBox.scrollTop = msgBox.scrollHeight;
-        }
-
-        function handleDropdownSelect() {
-            const dropdown = document.getElementById('service-dropdown');
-            const selectedValue = dropdown.value;
-            if (!selectedValue) return;
-
-            const input = document.getElementById('user-input');
-            input.value = selectedValue;
-            handleChatSend();
-            dropdown.selectedIndex = 0;
-        }
-
-        async function initRotator() {
+    // ==========================================
+    // 4. NEWS & UTILITY SYNC ENGINE
+    // ==========================================
+    async function initRotator() {
         const container = document.getElementById('rotator-content');
+        if (!container) return;
+
         let newsData = [];
         let index = 0;
         let rotatorTimeout; 
-        const REFRESH_INTERVAL = 30 * 60 * 1000;
 
         async function fetchNews() {
             try {
                 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpOGMGIQhtsuk1_dESNyMHzktUc2nNVc4wqhy1luk0zljkiXOgE3vUjxWyA46gVDn9/exec";
                 const response = await fetch(SCRIPT_URL);
                 const data = await response.json();
-                
                 if (data && data.length > 0) {
                     newsData = data;
                     if (!rotatorTimeout) showNext();
-                } else {
-                    container.innerHTML = `<div class="news-card"><p class="rotator-text">Systems Operational. Check back soon.</p></div>`;
                 }
-            } catch (error) {
-                console.error("Error fetching news:", error);
-            }
+            } catch (error) { console.error("News sync error:", error); }
         }
 
         function showNext() {
-            if (newsData.length === 0) return;
             const item = newsData[index];
             container.innerHTML = `
                 <div class="news-card" style="animation: fadeIn 1s ease-out;">
                     <span class="news-tag" style="background: ${item.color || 'var(--primary)'};">${item.tag || 'NETWORK UPDATE'}</span>
                     <h2 class="rotator-text">${item.text}</h2>
-                    <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 0.5px;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
+                    <div style="opacity: 0.6; font-size: 0.8rem;">SYSTEM STATUS: ACTIVE // ${item.date || 'LIVE FEED'}</div>
                 </div>`;
             index = (index + 1) % newsData.length;
             rotatorTimeout = setTimeout(showNext, 8000);
         }
 
         fetchNews();
-        setInterval(fetchNews, REFRESH_INTERVAL);
-    } // End of initRotator
-        
-    </script>
+        setInterval(fetchNews, 30 * 60 * 1000);
+    }
+
+    function updateCountdown() {
+        const dEl = document.getElementById("d_val");
+        if (!dEl) return; // Safety guard to prevent script crash
+
+        const now = new Date();
+        const target = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        const diff = target - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        dEl.innerText = d.toString().padStart(2, '0');
+        document.getElementById("h_val").innerText = h.toString().padStart(2, '0');
+        document.getElementById("m_val").innerText = m.toString().padStart(2, '0');
+        document.getElementById("s_val").innerText = s.toString().padStart(2, '0');
+    }
+
+    // ==========================================
+    // 5. MASTER INITIALIZATION (The "Fix")
+    // ==========================================
+    window.addEventListener('load', () => {
+        // Initialize visual engines
+        initRotator();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Attach event listeners safely
+        const trigger = document.getElementById('chat-trigger');
+        const windowEl = document.getElementById('chat-window');
+        const sendBtn = document.getElementById('send-btn');
+        const checkoutBtn = document.getElementById('checkout-button');
+        const serviceDropdown = document.getElementById('service-dropdown');
+
+        if (trigger && windowEl) {
+            trigger.onclick = () => {
+                const isHidden = windowEl.style.display === 'none' || windowEl.style.display === '';
+                windowEl.style.display = isHidden ? 'flex' : 'none';
+            };
+        }
+
+        if (sendBtn) sendBtn.onclick = handleChatSend;
+        if (checkoutBtn) checkoutBtn.onclick = handleCheckout;
+        if (serviceDropdown) serviceDropdown.onchange = handleDropdownSelect;
+    });
+</script>
     
    <script>
     // ==========================================
