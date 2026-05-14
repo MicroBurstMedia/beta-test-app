@@ -1622,7 +1622,7 @@
     }
 
     // ==========================================
-    // 5. MASTER INITIALIZATION (The "Fix")
+    // 5. MASTER INITIALIZATION (Restored Mobile Nav)
     // ==========================================
     window.addEventListener('load', () => {
         // Initialize visual engines
@@ -1630,13 +1630,45 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Attach event listeners safely
+        // Define Elements
         const trigger = document.getElementById('chat-trigger');
         const windowEl = document.getElementById('chat-window');
         const sendBtn = document.getElementById('send-btn');
         const checkoutBtn = document.getElementById('checkout-button');
         const serviceDropdown = document.getElementById('service-dropdown');
+        
+        // Mobile Navigation Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navSection = document.getElementById('navSection');
+        const navLinks = document.querySelectorAll('.z-nav-link');
 
+        // 1. Mobile Menu Toggle Logic
+        if (menuToggle && navSection) {
+            menuToggle.onclick = () => {
+                menuToggle.classList.toggle('active');
+                navSection.classList.toggle('active');
+                
+                // Prevent background scrolling when menu is open
+                if (navSection.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        }
+
+        // 2. Close Menu When Link is Clicked (Mobile)
+        navLinks.forEach(link => {
+            link.onclick = () => {
+                if (navSection.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navSection.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        });
+
+        // 3. Chat Logic
         if (trigger && windowEl) {
             trigger.onclick = () => {
                 const isHidden = windowEl.style.display === 'none' || windowEl.style.display === '';
@@ -1644,6 +1676,7 @@
             };
         }
 
+        // 4. Other Button Listeners
         if (sendBtn) sendBtn.onclick = handleChatSend;
         if (checkoutBtn) checkoutBtn.onclick = handleCheckout;
         if (serviceDropdown) serviceDropdown.onchange = handleDropdownSelect;
@@ -1895,6 +1928,35 @@ window.addEventListener('load', () => {
     
     // Initialize the position of the services slider
     updateHzSlider(); 
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navSection = document.querySelector('.z-nav-section');
+
+    if (menuToggle && navSection) {
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            menuToggle.classList.toggle('active');
+            navSection.classList.toggle('active');
+            
+            // Prevent background scrolling when menu is open
+            if (navSection.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.z-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navSection.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
 });
 
 </script>
