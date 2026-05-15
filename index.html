@@ -1807,16 +1807,18 @@ if (data.mainSlider && data.mainSlider.length > 0) {
         }
 
         // 3. SYNC STACK CARD
-        if (data.featuredCards) {
+         if (data.featuredCards) {
     data.featuredCards.forEach((card, index) => {
         const titleEl = document.getElementById(`stackTitle${index}`);
         const descEl = document.getElementById(`stackDesc${index}`);
         const imgEl = document.getElementById(`stackImg${index}`);
+        const linkEl = document.getElementById(`stackLink${index}`);
         const eyebrowEl = document.getElementById(`stackEyebrow${index}`);
 
         if (titleEl) titleEl.innerText = card.title;
         if (descEl) descEl.innerText = card.desc;
         if (imgEl) imgEl.src = card.img;
+        if (linkEl) linkEl.href = card.link;
         if (eyebrowEl) eyebrowEl.innerText = card.eyebrow;
     });
 }
