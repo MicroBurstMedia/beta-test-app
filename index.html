@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroBurstMedia Interlink Sequence Simulator</title>
+  <title>MicroBurstMedia Interlink Conveyor Platform</title>
   <style>
-    /* 1. LAYOUT GEOMETRY & SYSTEM RESET */
+    /* 1. RESET AND TOTEM ORIENTATION */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,7 +13,7 @@
     }
     
     body {
-      background-color: #070a13;
+      background-color: #060913;
       color: #f3f4f6;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow: hidden;
@@ -22,437 +22,327 @@
       user-select: none;
     }
 
-    /* Master Container representing the physical DKS-LED43 frame */
-    .totem-display {
+    .totem-canvas {
       width: 1080px;
       height: 1920px;
-      padding: 45px;
+      padding: 60px;
       display: flex;
       flex-direction: column;
-      gap: 35px;
-      background: radial-gradient(circle at 50% 0%, #0f172a 0%, #070a13 100%);
+      justify-content: space-between;
+      background: radial-gradient(circle at 50% 30%, #0f172a 0%, #05070f 100%);
       position: relative;
     }
 
-    /* 2. BRAND HEADER DECK */
-    .system-header {
+    /* SYSTEM BRAND HEADER */
+    .brand-header {
       text-align: center;
-      border-bottom: 2px solid #1e293b;
-      padding-bottom: 25px;
+      margin-bottom: 40px;
     }
 
-    .system-header h1 {
-      font-size: 3rem;
-      letter-spacing: 3px;
+    .brand-header h1 {
+      font-size: 3.5rem;
+      letter-spacing: 4px;
       color: #3b82f6;
       text-transform: uppercase;
-      margin-bottom: 8px;
-      text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+      text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
     }
 
-    .system-header p {
-      font-size: 1.3rem;
-      color: #94a3b8;
+    .brand-header p {
+      font-size: 1.4rem;
+      color: #64748b;
+      margin-top: 10px;
     }
 
-    /* 3. VERTICAL CONVEYOR STACK */
-    .conveyor-belt-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      flex-grow: 1;
+    /* 2. THE CORE CONVEYOR BELT GRID SYSTEM */
+    .conveyor-system-container {
       position: relative;
-    }
-
-    /* Assembly Line Track Row */
-    .assembly-row {
-      background: rgba(15, 23, 42, 0.6);
-      border: 2px solid #1e293b;
-      border-radius: 20px;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: relative;
-      transition: all 0.4s ease;
-    }
-
-    .assembly-row.active-processing {
-      border-color: #3b82f6;
-      box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
-      background: rgba(15, 23, 42, 0.86);
-    }
-
-    /* Stage Badges */
-    .stage-badge {
-      position: absolute;
-      top: -14px;
-      left: 30px;
-      background: #1e293b;
-      color: #94a3b8;
-      padding: 6px 20px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      border: 1px solid #334155;
-      letter-spacing: 1px;
-    }
-
-    .active-processing .stage-badge {
-      background: #3b82f6;
-      color: #fff;
-      border-color: #60a5fa;
-    }
-
-    /* Perspective Container */
-    .perspective-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    /* 4. HEMISPHERE PERSPECTIVE PANELS */
-    .panel-fe, .panel-be {
-      border-radius: 14px;
-      padding: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      position: relative;
-    }
-
-    .panel-info {
-      max-width: 65%;
-    }
-
-    .panel-info h3 {
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .panel-fe h3 { color: #60a5fa; }
-    .panel-be h3 { color: #34d399; }
-
-    .panel-info p {
-      font-size: 1.1rem;
-      color: #94a3b8;
-      line-height: 1.5;
-    }
-
-    /* 5. INTERACTIVE BUTTON INTERFACES */
-    .interactive-mock-btn {
-      width: 280px;
-      height: 65px;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border: 1px solid #334155;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #e2e8f0;
-      cursor: pointer;
+      width: 100%;
+      height: 900px;
+      background: rgba(15, 23, 42, 0.3);
+      border: 2px dashed #1e293b;
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
 
-    .interactive-mock-btn:active {
-      transform: scale(0.96);
-    }
-
-    .active-processing .panel-fe .interactive-mock-btn {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      border-color: #60a5fa;
-      color: #fff;
-    }
-
-    /* Status Monitors inside Backend Panels */
-    .be-status-monitor {
-      width: 280px;
-      padding: 14px;
-      background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      font-family: monospace;
-      font-size: 0.95rem;
-      color: #475569;
-    }
-
-    .active-processing .be-status-monitor {
-      color: #34d399;
-      border-color: rgba(52, 211, 153, 0.3);
-      box-shadow: inset 0 0 10px rgba(52, 211, 153, 0.05);
-    }
-
-    /* 6. EDUCATIONAL SUMMARY GUIDE CARDS */
-    .guide-summary-card {
-      background: #090d16;
-      border-left: 4px solid #334155;
-      padding: 16px 20px;
-      border-radius: 8px;
-      font-size: 1.05rem;
-      color: #94a3b8;
-      display: flex;
-      gap: 25px;
-    }
-
-    .active-processing .guide-summary-card {
-      border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.02);
-    }
-
-    .guide-step {
-      flex: 1;
-    }
-
-    .guide-step strong {
-      color: #cbd5e1;
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.1rem;
-    }
-
-    /* 7. RE-ROUTING CONNECTOR LINE ANIMATIONS */
-    .interlink-flow-connector {
-      text-align: center;
-      color: #1e293b;
-      font-size: 2rem;
-      margin: -10px 0;
-      transition: color 0.3s;
-    }
-
-    .interlink-flow-connector.pulsing-active {
-      color: #3b82f6;
-      animation: flashArrow 0.8s infinite alternate;
-    }
-
-    @keyframes flashArrow {
-      0% { opacity: 0.3; transform: translateY(-3px); }
-      100% { opacity: 1; transform: translateY(3px); }
-    }
-
-    /* Floating Digital Data Packet Simulation Overlay */
-    .data-packet-pulse {
+    /* The Main Structural Track Line */
+    .conveyor-belt-track {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #60a5fa;
+      width: 90%;
+      height: 40px;
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      border: 3px solid #334155;
+      border-radius: 20px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    /* Track Roller Wheels */
+    .track-roller {
+      width: 16px;
+      height: 16px;
+      background: #475569;
+      border-radius: 50%;
+      border: 2px solid #1e293b;
+      animation: spinRoller 2s linear infinite;
+      animation-play-state: paused;
+    }
+
+    @keyframes spinRoller {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 3. THE ACTIVE NETWORK BUSINESS NODES */
+    .interlink-node {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #0f172a;
+      border: 3px solid #334155;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      z-index: 10;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .interlink-node:active {
+      transform: scale(0.92);
+    }
+
+    /* Node Positioning Across the Track Coordinates */
+    #node1 { left: 8%; top: calc(50% - 180px); }  /* Social Intake Above */
+    #node2 { left: 34%; top: calc(50% + 30px); }  /* Triage Matrix Below */
+    #node3 { left: 60%; top: calc(50% - 180px); }  /* Stripe Processor Above */
+    #node4 { left: 84%; top: calc(50% + 30px); }  /* Dropbox Fulfillment Below */
+
+    /* Node Active/Processing States */
+    .interlink-node.processing-state {
+      border-color: #3b82f6;
+      background: #1e293b;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+    }
+
+    .interlink-node h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .interlink-node.processing-state h3 {
+      color: #60a5fa;
+    }
+
+    .node-icon {
+      font-size: 2.2rem;
+    }
+
+    /* 4. DIGITAL DATA PACKET STRIP */
+    .conveyor-data-packet {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: radial-gradient(circle at 30% 30%, #60a5fa 0%, #2563eb 100%);
       border-radius: 50%;
       box-shadow: 0 0 20px #3b82f6, 0 0 40px #3b82f6;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
+      left: 10%;
+      top: calc(50% - 16px);
+      z-index: 5;
       display: none;
+    }
+
+    /* 5. INTERACTIVE LOWER CONTROL BLOCK & QUICK GUIDE */
+    .control-deck-panel {
+      background: #0f172a;
+      border: 2px solid #1e293b;
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+    }
+
+    .trigger-master-btn {
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border: 1px solid #60a5fa;
+      border-radius: 14px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s;
+    }
+
+    .trigger-master-btn:active {
+      transform: scale(0.98);
+    }
+
+    .node-instruction-card {
+      background: #060913;
+      border-radius: 12px;
+      padding: 24px;
+      border-left: 5px solid #334155;
+    }
+
+    .node-instruction-card h4 {
+      font-size: 1.5rem;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    .node-instruction-card p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <div id="packetPulse" class="data-packet-pulse"></div>
-
-  <div class="totem-display">
+  <div class="totem-canvas">
     
-    <div class="system-header">
+    <div class="brand-header">
       <h1>MicroBurstMedia</h1>
-      <p>Interactive Interlink Sequence Engine &bull; Visual E-Learning Totem Matrix</p>
+      <p>Interlink Conveyor Sequence Matrix &bull; Real-Time System Blueprint</p>
     </div>
 
-    <div class="conveyor-belt-stack" id="mainAssemblyStack">
+    <div class="conveyor-system-container">
       
-      <div class="assembly-row" id="row1">
-        <div class="stage-badge">Stage 1: Content Matrix Node</div>
-        <div class="perspective-container">
-          
-          <div class="panel-fe">
-            <div class="panel-info">
-              <h3><span>📱</span> Consumer Journey: The Media Hook</h3>
-              <p>Audience scrolls high-velocity short-form hooks on TikTok or target algorithmic posts on X (Twitter). They engage with an embedded call-to-action link prompt.</p>
-            </div>
-            <button class="interactive-mock-btn" onclick="triggerSequence(1)">⚡ Tap to Inject Lead Hook</button>
-          </div>
-          
-          <div class="panel-be">
-            <div class="panel-info">
-              <h3><span>📡</span> Backend Operation: Traffic Node Routing</h3>
-              <p>The system intercepts the inbound click, dynamically parsing URL tracking parameters to verify which social asset generated the transaction intent.</p>
-            </div>
-            <div class="be-status-monitor" id="status1">[SYSTEM STATUS: IDLE]</div>
-          </div>
-          
-        </div>
-        <div class="guide-summary-card">
-          <div class="guide-step"><strong>Where It Serves:</strong> Public Audience Ecosystems</div>
-          <div class="guide-step"><strong>How It Serves:</strong> Converts unstructured programmatic impressions into trackable landing clicks</div>
-          <div class="guide-step"><strong>To Whom:</strong> Market prospects seeking automated system development assets</div>
-        </div>
+      <div class="conveyor-belt-track" id="beltTrack">
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
+        <div class="track-roller"></div>
       </div>
 
-      <div class="interlink-flow-connector" id="arrow1">▼</div>
+      <div class="conveyor-data-packet" id="dataPacket"></div>
 
-      <div class="assembly-row" id="row2">
-        <div class="stage-badge">Stage 2: Triage Verification Matrix</div>
-        <div class="perspective-container">
-          
-          <div class="panel-fe">
-            <div class="panel-info">
-              <h3><span>⌨️</span> Consumer Journey: Frictionless Scenario Entry</h3>
-              <p>Prospect arrives on a mobile landing interface and inputs basic user context details or enters a mock corporate case criteria query.</p>
-            </div>
-            <button class="interactive-mock-btn" id="btn2" disabled onclick="triggerSequence(2)">📝 Submit Lead Context</button>
-          </div>
-          
-          <div class="panel-be">
-            <div class="panel-info">
-              <h3><span>🛡️</span> Backend Operation: Real-Time Cache Matching</h3>
-              <p>Automated script architecture strips the domain identity name from the input string and instantly queries a spreadsheet rule matrix array in bulk memory.</p>
-            </div>
-            <div class="be-status-monitor" id="status2">[SYSTEM STATUS: IDLE]</div>
-          </div>
-          
-        </div>
-        <div class="guide-summary-card">
-          <div class="guide-step"><strong>Where It Serves:</strong> Core Enterprise Validation Gateways</div>
-          <div class="guide-step"><strong>How It Serves:</strong> Separates specific user context from domain layers to isolate malicious spam bots</div>
-          <div class="guide-step"><strong>To Whom:</strong> The business architecture, defending core data lines from quota blocks</div>
-        </div>
+      <div class="interlink-node" id="node1">
+        <div class="node-icon">📱</div>
+        <h3>Content Matrix</h3>
       </div>
 
-      <div class="interlink-flow-connector" id="arrow2">▼</div>
-
-      <div class="assembly-row" id="row3">
-        <div class="stage-badge">Stage 3: Parallel Split Fulfillment</div>
-        <div class="perspective-container">
-          
-          <div class="panel-fe">
-            <div class="panel-info">
-              <h3><span>💳</span> Consumer Journey: One-Click Transaction</h3>
-              <p>The client interacts with an integrated Stripe checkout overlay. Upon hitting pay, the interface instantly surfaces an automated asset download panel.</p>
-            </div>
-            <button class="interactive-mock-btn" id="btn3" disabled onclick="triggerSequence(3)">🛒 Process Secure Checkout</button>
-          </div>
-          
-          <div class="panel-be">
-            <div class="panel-info">
-              <h3><span>⚙️</span> Backend Operation: Concurrent Webhook Dispatches</h3>
-              <p>The core engine triggers a split parallel path: a Stripe transaction webhook registers financial settlement while a Dropbox asset link is instantly generated.</p>
-            </div>
-            <div class="be-status-monitor" id="status3">[SYSTEM STATUS: IDLE]</div>
-          </div>
-          
-        </div>
-        <div class="guide-summary-card">
-          <div class="guide-step"><strong>Where It Serves:</strong> Operational Monetization & Asset Storage Vaults</div>
-          <div class="guide-step"><strong>How It Serves:</strong> Executes touchless delivery scripts without administrative human intervention</div>
-          <div class="guide-step"><strong>To Whom:</strong> Converted buyers, rendering automated data delivery inside a 24/7 ecosystem</div>
-        </div>
+      <div class="interlink-node" id="node2">
+        <div class="node-icon">🛡️</div>
+        <h3>Triage Registry</h3>
       </div>
 
-      <div class="interlink-flow-connector" id="arrow3">▼</div>
+      <div class="interlink-node" id="node3">
+        <div class="node-icon">💳</div>
+        <h3>Stripe Node</h3>
+      </div>
 
-      <div class="assembly-row" id="row4">
-        <div class="stage-badge" style="border-color: rgba(245, 158, 11, 0.4);">Stage 4: Interlink Loop Re-Route</div>
-        <div class="perspective-container">
-          
-          <div class="panel-fe" style="background: rgba(245, 158, 11, 0.02); border-color: rgba(245, 158, 11, 0.2);">
-            <div class="panel-info">
-              <h3><span>🔄</span> Consumer Journey: Organic Ecosystem Re-Entry</h3>
-              <p>The delivered digital package contains interactive social share hooks, custom tracking nodes, or direct community invite paths.</p>
-            </div>
-            <button class="interactive-mock-btn" id="btn4" disabled onclick="triggerSequence(4)">🔁 Recirculate Traffic Loop</button>
-          </div>
-          
-        </div>
-        <div class="guide-summary-card" style="border-color: #f59e0b;">
-          <div class="guide-step"><strong>Where It Serves:</strong> Delivered Asset Deliverables & Viral Multiplication Fields</div>
-          <div class="guide-step"><strong>How It Serves:</strong> Packages specific share templates that redirect user successes back to public feeds</div>
-          <div class="guide-step"><strong>To Whom:</strong> MicroBurstMedia, turning single conversions right back into traffic generators</div>
-        </div>
+      <div class="interlink-node" id="node4">
+        <div class="node-icon">📦</div>
+        <h3>Dropbox Vault</h3>
       </div>
 
     </div>
+
+    <div class="control-deck-panel">
+      <button class="trigger-master-btn" onclick="startConveyorLoop()">⚡ Inject Live Packet Into Sequence</button>
+      
+      <div class="node-instruction-card" id="guideCard">
+        <h4 id="guideTitle">System Status: Standby</h4>
+        <p id="guideDesc">Tap the master execution button above to inject a theoretical user payload into the MicroBurstMedia Interlink network loop and watch the automated pipeline respond live.</p>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    function triggerSequence(stage) {
-      const packet = document.getElementById('packetPulse');
+    const nodeCoords = [
+      { left: 8, title: "Stage 1: Content Matrix Node", desc: "Captures top-of-funnel short-form traffic interactions across X and TikTok, instantly routing specific URL identity signatures down the track." },
+      { left: 34, title: "Stage 2: Triage Registry Core", desc: "Isolates incoming domain data signatures in memory, screening the payload against security rule protocols before logging validation metrics." },
+      { left: 60, title: "Stage 3: Stripe Transaction Gateway", desc: "Processes financial operations instantly via asynchronous API webhooks, updating centralized ledger fields completely hands-free." },
+      { left: 84, title: "Stage 4: Dropbox Delivery Vault", desc: "Triggers downstream asset packaging, generating dynamic deliverable links and archiving customer file records instantly." }
+    ];
+
+    function startConveyorLoop() {
+      const packet = document.getElementById('dataPacket');
+      const rollers = document.querySelectorAll('.track-roller');
       
-      // Clean previous active row bindings
-      for (let s = 1; s <= 4; s++) {
-        document.getElementById(`row${s}`).classList.remove('active-processing');
-        if (s < 4) document.getElementById(`arrow${s}`).classList.remove('pulsing-active');
-      }
+      // Reset Nodes
+      resetNodes();
+      
+      // Activate Track Rollers Visual Movement
+      rollers.forEach(r => r.style.animationPlayState = "running");
+      
+      packet.style.left = "5%";
+      packet.style.display = "block";
+      
+      let currentStage = 0;
+      
+      function moveNext() {
+        if (currentStage >= nodeCoords.length) {
+          // Sequence Complete
+          setTimeout(() => {
+            packet.style.display = "none";
+            rollers.forEach(r => r.style.animationPlayState = "paused");
+            updateGuide("Sequence Loop Complete", "The data transaction path has cleared all fulfillment lanes smoothly. The automation system has returned to standby.");
+            resetNodes();
+          }, 1000);
+          return;
+        }
 
-      // Lock down row element references
-      const currentRow = document.getElementById(`row${stage}`);
-      currentRow.classList.add('active-processing');
+        let targetPercent = nodeCoords[currentStage].left;
+        let currentPercent = parseFloat(packet.style.left);
+        
+        let interval = setInterval(() => {
+          if (currentPercent >= targetPercent) {
+            clearInterval(interval);
+            
+            // Hit Node Endpoint -> Pulse Node and Update Text Details
+            activateNode(currentStage + 1);
+            updateGuide(nodeCoords[currentStage].title, nodeCoords[currentStage].desc);
+            
+            currentStage++;
+            setTimeout(moveNext, 1800); // Hold at node to let viewer digest details
+          } else {
+            currentPercent += 1;
+            packet.style.left = currentPercent + "%";
+          }
+        }, 20);
+      }
+      
+      moveNext();
+    }
 
-      if (stage === 1) {
-        // Init Path 1
-        const monitor = document.getElementById('status1');
-        monitor.innerHTML = "INBOUND PAYLOAD RECEIVED...<br>&gt; Source: TikTok Profile Link<br>&gt; Token: MBM_TRACK_99x<br>&gt; Action: Passing to Landing Page";
-        
-        // Fire packet to stage 2
-        animateDataPacket(1, 2);
-      }
-      else if (stage === 2) {
-        const monitor = document.getElementById('status2');
-        monitor.innerHTML = "EXECUTING BULK MEMORY CACHE LOOKUP...<br>&gt; Stripping Domain... OK<br>&gt; Isolated Signature: corporate_node.com<br>&gt; Security Check: CLEAN (Safe Pass)";
-        
-        animateDataPacket(2, 3);
-      }
-      else if (stage === 3) {
-        const monitor = document.getElementById('status3');
-        monitor.innerHTML = "FIRING CONCURRENT ASYNCHRONOUS WEBHOOKS...<br>&gt; Stripe API: [Receipt $499 Confirmed]<br>&gt; Dropbox Vault: [Compiling ZIP Link... Done]<br>&gt; Dispatching Deliverable Email";
-        
-        animateDataPacket(3, 4);
-      }
-      else if (stage === 4) {
-        // Complete circuit loop back to step 1
-        alert("Success! The user asset has successfully recirculated a referral action, turning this buyer node into a top-of-funnel impression node. Restarting matrix loop.");
-        
-        // Reset full panel back to defaults
-        location.reload();
+    function activateNode(nodeId) {
+      resetNodes();
+      document.getElementById(`node${nodeId}`).classList.add('processing-state');
+    }
+
+    function resetNodes() {
+      for(let i=1; i<=4; i++) {
+        document.getElementById(`node${i}`).classList.remove('processing-state');
       }
     }
 
-    function animateDataPacket(fromStage, toStage) {
-      const packet = document.getElementById('packetPulse');
-      const startRow = document.getElementById(`row${fromStage}`);
-      const arrow = document.getElementById(`arrow${fromStage}`);
-      
-      // Calculate vertical screen coordinates dynamically
-      const startPos = startRow.offsetTop + startRow.offsetHeight;
-      
-      packet.style.top = startPos + "px";
-      packet.style.display = "block";
-      arrow.classList.add('pulsing-active');
-
-      // Drop data package downwards across the grid lanes
-      let currentTop = startPos;
-      const targetTop = startPos + 75; 
-      
-      const interval = setInterval(() => {
-        if (currentTop >= targetTop) {
-          clearInterval(interval);
-          packet.style.display = "none";
-          arrow.classList.remove('pulsing-active');
-          
-          // Unlock succeeding front-end step buttons
-          document.getElementById(`btn${toStage}`).removeAttribute('disabled');
-          triggerSequence(toStage);
-        } else {
-          currentTop += 5;
-          packet.style.top = currentTop + "px";
-        }
-      }, 15);
+    function updateGuide(title, desc) {
+      document.getElementById('guideTitle').innerText = title;
+      document.getElementById('guideDesc').innerText = desc;
     }
   </script>
 </body>
